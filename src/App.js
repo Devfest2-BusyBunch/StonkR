@@ -1,20 +1,13 @@
 import React from "react";
-import Header from "./components/Header";
-import {
-	ChakraProvider,
-	Box,
-	Text,
-	Link,
-	VStack,
-	Code,
-	Grid,
-} from "@chakra-ui/react";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import Header from "components/Header";
+import { ChakraProvider, Box, Link, VStack, Grid } from "@chakra-ui/react";
+import { ColorModeSwitcher } from "ColorModeSwitcher";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import customTheme from "./utils/theme";
+import customTheme from "utils/theme";
 import LandingPage from "pages/LandingPage";
 import Login from "pages/Login";
+import SignUp from "pages/SignUp";
 
 const App = () => {
 	return (
@@ -31,6 +24,9 @@ const App = () => {
 								</Route>
 								<Route path="/login" exact>
 									<Login />
+								</Route>
+								<Route path="/signup" exact>
+									<SignUp />
 								</Route>
 							</Switch>
 						</Router>

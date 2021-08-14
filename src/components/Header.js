@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
-
 import { Logo } from "Logo";
 
 const NavBar = props => {
@@ -71,7 +70,7 @@ const MenuLinks = ({ isOpen }) => {
 				<MenuItem to="/how">How It works </MenuItem>
 				<MenuItem to="/features">Features </MenuItem>
 				<MenuItem to="/pricing">Pricing </MenuItem>
-				<MenuItem to="/login" isLast>
+				<MenuItem to="/signup" isLast>
 					<Button
 						size="sm"
 						rounded="md"
