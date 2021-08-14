@@ -6,6 +6,7 @@ import {
 	Input,
 	Select,
 	FormLabel,
+	Spinner,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -39,7 +40,23 @@ const Stock = () => {
 				[name]: value,
 			};
 		});
+
+		console.log(inputValues);
 	};
+
+	if (!quote) {
+		return (
+			<VStack>
+				<Spinner
+					thickness="10px"
+					speed="0.55s"
+					emptyColor="gray.900"
+					color="blue.800"
+					size="xl"
+				/>
+			</VStack>
+		);
+	}
 
 	return (
 		<VStack>
@@ -49,6 +66,7 @@ const Stock = () => {
 				</Text>
 				<FormControl mt={2} isRequired>
 					<Select
+						name="option"
 						placeholder="Select trade option"
 						value={inputValues?.option || ""}
 						onChange={handleInputChange}>
@@ -62,12 +80,13 @@ const Stock = () => {
 						value={inputValues?.shares || ""}
 						onChange={handleInputChange}
 					/>
+					<Button></Button>
 				</FormControl>
 			</Container>
 			<Text>
 				{Object.keys(quote).map(key => (
 					<>
-						<span>
+						<span key={key}>
 							{key}: {quote[key]}{" "}
 						</span>
 						<br />
