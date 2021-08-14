@@ -1,0 +1,8 @@
+.calc-items{
+    display: grid;
+    row-gap: 2px
+}
+.calc-title{
+    font-size: 25px;
+    font-weight: bolder;
+}
