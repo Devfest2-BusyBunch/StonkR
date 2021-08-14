@@ -1,5 +1,6 @@
 import { Logo } from "Logo";
 import { Text, Link, Code, Grid } from "@chakra-ui/react";
+import Candle from "components/Chart";
 
 const LandingPage = () => {
 	return (
@@ -16,6 +17,9 @@ const LandingPage = () => {
 				rel="noopener noreferrer">
 				Learn Chakra
 			</Link>
+			<div className="container chart_outer">
+				<Candle/>
+			</div>
 		</>
 	);
 };
