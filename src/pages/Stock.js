@@ -20,7 +20,7 @@ const Stock = () => {
 	const [inputValues, setInputValues] = useState(null);
 
 	const { symbol } = useParams();
-	const stateName = useSelector(state => state.userId);
+	// const stateName = useSelector(state => state.userId);
 
 	useEffect(() => {
 		const getQuote = async () => {
