@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Chart from "react-apexcharts";
 import dayjs from "dayjs";
 

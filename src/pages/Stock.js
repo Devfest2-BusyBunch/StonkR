@@ -7,6 +7,7 @@ import {
 	Select,
 	FormLabel,
 	Spinner,
+	Button,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -80,7 +81,7 @@ const Stock = () => {
 						value={inputValues?.shares || ""}
 						onChange={handleInputChange}
 					/>
-					<Button></Button>
+					<Button type="submit">Place Order</Button>
 				</FormControl>
 			</Container>
 			<Text>
