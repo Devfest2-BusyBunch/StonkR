@@ -6,15 +6,14 @@ import { useDispatch } from "react-redux";
 const API_KEY = process.env.REACT_APP_SAWO_API_KEY;
 
 const SawoLogin = () => {
-	const [isUserLoggedIn, setUserLoggedIn] = useState(() =>
-		JSON.parse(localStorage.getItem("payload")) ? true : false
-	);
-	const [payload, setPayload] = useState(
-		() => JSON.parse(localStorage.getItem("payload")) || {}
-	);
+	const [payload, setPayload] = useState({});
+	const [isUserLoggedIn, setUserLoggedIn] = useState(false);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
+		setPayload(JSON.parse(localStorage.getItem("payload")) || {});
+
+		setUserLoggedIn(JSON.parse(localStorage.getItem("payload")) ? true : false);
 		var config = {
 			containerID: "sawo-container",
 			identifierType: "email",
@@ -30,7 +29,7 @@ const SawoLogin = () => {
 		};
 		let sawo = new Sawo(config);
 		sawo.showForm();
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div className="containerStyle">
