@@ -7,8 +7,7 @@ import {
 	Link,
 	VStack,
 	Code,
-	Grid,
-	theme,
+	Grid
 } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { Logo } from "./Logo";
