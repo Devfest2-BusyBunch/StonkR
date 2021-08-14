@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "components/Header";
+import ConditionalRoute from "components/ConditionalRoute"
 import { ChakraProvider, Box, VStack, Grid } from "@chakra-ui/react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -14,6 +15,18 @@ import Quote from "pages/Quote";
 import Stock from "pages/Stock";
 
 const App = () => {
+
+	// const [token, setToken] = useState();
+
+	// useEffect(() => {
+	// 	if (token) {
+	// 		window.localStorage.setItem("token", token);
+	// 	}
+	// 	return () => {
+	// 		delete window.localStorage.setItem("token");
+	// 	};
+	// }, [token]);
+
 	return (
 		<Provider store={store}>
 			<ChakraProvider theme={customTheme}>
@@ -23,6 +36,10 @@ const App = () => {
 						<VStack spacing={8}>
 							<Router>
 								<Switch>
+									{/* <ConditionalRoute condition={!token} exact path='/signin' redirectPath='/'>
+										<LandingPage setToken={setToken} />
+									</ConditionalRoute>
+									<ConditionalRoute condition={!!gToken} path='/' redirectPath='/login'></ConditionalRoute> */}
 									<Route path="/" exact>
 										<LandingPage />
 									</Route>
