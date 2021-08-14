@@ -14,8 +14,11 @@ const Sawo = () => {
 
 	let sawo = new Sawo(config);
 	sawo.showForm();
+	console.log("done");
 
-	return <div id="sawo-container" style="height: 300px; width: 300px;"></div>;
+	return (
+		<div id="sawo-container" style={{ height: "300px", width: "300px" }}></div>
+	);
 };
 
 export default Sawo;
