@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "./components/Header";
 import {
 	ChakraProvider,
 	Box,
@@ -12,9 +13,12 @@ import {
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { Logo } from "./Logo";
 
+import customTheme from "./utils/theme";
+
 const App = () => {
 	return (
-		<ChakraProvider theme={theme}>
+		<ChakraProvider theme={customTheme}>
+			<Header />
 			<Box textAlign="center" fontSize="xl">
 				<Grid minH="100vh" p={3}>
 					<ColorModeSwitcher justifySelf="flex-end" />
