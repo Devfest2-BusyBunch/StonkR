@@ -4,8 +4,10 @@ import Sawo from "sawo";
 const API_KEY = process.env.REACT_APP_SAWO_API_KEY;
 
 const SawoLogin = () => {
-	const [isUserLoggedIn, setUserLoggedIn] = useState(false);
-	const [payload, setPayload] = useState({});
+	const [isUserLoggedIn, setUserLoggedIn] = useState(
+		() => JSON.parse(localStorage.getItem("todos")) || false
+	);
+	const [payload, setPayload] = useState(() => JSON.parse(localStorage.getItem("todos")) || {});
 
 	useEffect(() => {
 		var config = {
