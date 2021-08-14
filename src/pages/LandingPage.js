@@ -1,10 +1,5 @@
-import { Logo } from "./Logo";
-import {
-	Text,
-	Link,
-	Code,
-	Grid,
-} from "@chakra-ui/react";
+import { Logo } from "Logo";
+import { Text, Link, Code, Grid } from "@chakra-ui/react";
 
 const LandingPage = () => {
 	return (
