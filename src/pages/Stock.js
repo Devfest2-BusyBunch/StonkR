@@ -12,6 +12,7 @@ import {
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
+import { supabase } from "supabaseClient";
 
 const Stock = () => {
 	const [quote, setQuote] = useState({});
@@ -45,6 +46,17 @@ const Stock = () => {
 		console.log(inputValues);
 	};
 
+	const placeOrder = async e => {
+		e.preventDefault();
+		const { option, quantity } = inputValues;
+		if (option == "Buy") {
+			const { data, error } = await supabase
+				.from("users")
+				.select("cash")
+				.filter("user_id", "eq");
+		}
+	};
+
 	if (!quote) {
 		return (
 			<VStack>
@@ -65,7 +77,7 @@ const Stock = () => {
 				<Text>
 					{quote.companyName} - {quote.latestPrice}
 				</Text>
-				<FormControl mt={2} isRequired>
+				<FormControl mt={2} isRequired onSubmit={placeOrder}>
 					<Select
 						name="option"
 						placeholder="Select trade option"
@@ -77,8 +89,8 @@ const Stock = () => {
 					<FormLabel mt={1}>Quantity</FormLabel>
 					<Input
 						type="number"
-						name="shares"
-						value={inputValues?.shares || ""}
+						name="quantity"
+						value={inputValues?.quantity || ""}
 						onChange={handleInputChange}
 					/>
 					<Button type="submit">Place Order</Button>
