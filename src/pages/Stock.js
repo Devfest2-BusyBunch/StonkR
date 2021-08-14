@@ -20,7 +20,7 @@ const Stock = () => {
 	const [inputValues, setInputValues] = useState(null);
 
 	const { symbol } = useParams();
-	// const stateName = useSelector(state => state.userId);
+	const stateName = useSelector(state => state.userId);
 
 	useEffect(() => {
 		const getQuote = async () => {
@@ -52,7 +52,7 @@ const Stock = () => {
 	const placeOrder = async e => {
 		e.preventDefault();
 		const { option, quantity } = inputValues;
-		if (option == "Buy") {
+		if (option === "Buy") {
 			const { data, error } = await supabase
 				.from("users")
 				.select("cash")
