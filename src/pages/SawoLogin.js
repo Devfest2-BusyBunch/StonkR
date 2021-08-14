@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import Sawo from "sawo";
+import { addUserId } from "../redux/actions";
+import { useDispatch } from "react-redux";
 
 const API_KEY = process.env.REACT_APP_SAWO_API_KEY;
 
 const SawoLogin = () => {
-	const [isUserLoggedIn, setUserLoggedIn] = useState(
-		() => JSON.parse(localStorage.getItem("todos")) || false
-	);
-	const [payload, setPayload] = useState(() => JSON.parse(localStorage.getItem("todos")) || {});
+	const [isUserLoggedIn, setUserLoggedIn] = useState(false);
+	const [payload, setPayload] = useState({});
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		var config = {
@@ -18,6 +19,8 @@ const SawoLogin = () => {
 				console.log("Payload : " + JSON.stringify(payload));
 				setUserLoggedIn(true);
 				setPayload(payload);
+				dispatch(addUserId(payload.user_id));
+				localStorage.setItem("userID", JSON.stringify(payload.user_id));
 			},
 		};
 		let sawo = new Sawo(config);
