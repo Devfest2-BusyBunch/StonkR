@@ -10,6 +10,7 @@ import customTheme from "utils/theme";
 import LandingPage from "pages/LandingPage";
 import SawoLogin from "pages/SawoLogin";
 import Calculator from "pages/Calculator";
+import Quote from "pages/Quote";
 
 const App = () => {
 	return (

@@ -22,7 +22,6 @@ const Quote = () => {
 	};
 
 	const getQuote = async () => {
-		const symbol = "aapl";
 		const api_key = "pk_eae71671468a4161b60df617d889adad";
 		const res = await axios.get(
 			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${api_key}`
