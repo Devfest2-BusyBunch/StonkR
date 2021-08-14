@@ -4,7 +4,8 @@ import {
 	Button,
 	Input,
 	FormControl,
-	Spacer,
+	FormLabel,
+	FormHelperText,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
@@ -33,13 +34,15 @@ const Quote = () => {
 	return (
 		<VStack>
 			<FormControl>
+				<FormLabel>Symbol</FormLabel>
 				<Input
 					type="text"
 					value={symbol || ""}
 					name="symbol"
 					onChange={handleInputChange}
 				/>
-				<Button colorScheme="teal" size="md" onClick={getQuote}>
+				<FormHelperText>Enter the stock symbol</FormHelperText>
+				<Button colorScheme="teal" size="md" onClick={getQuote} mt="2">
 					Get Quote!
 				</Button>
 			</FormControl>
