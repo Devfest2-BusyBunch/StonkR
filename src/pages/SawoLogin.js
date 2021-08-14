@@ -1,25 +1,43 @@
+import { useState, useEffect } from "react";
 import Sawo from "sawo";
 
-const SawoLogin = () => {
-	var config = {
-		// should be same as the id of the container created on 3rd step
-		containerID: "sawo-container",
-		// can be one of 'email' or 'phone_number_sms'
-		identifierType: "email",
-		// Add the API key copied from 2nd step
-		apiKey: "09af634a-c1f5-4198-bf10-b394bcb43ba0",
-		// Add a callback here to handle the payload sent by sdk
-		onSuccess: payload => {
-			console.log(payload);
-		},
-	};
+const API_KEY = process.env.REACT_APP_API_KEY; // Process env not working so hard coded it
 
-	let sawo = new Sawo(config);
-	sawo.showForm();
-	console.log("done");
+const SawoLogin = () => {
+	const [isUserLoggedIn, setUserLoggedIn] = useState(false);
+	const [payload, setPayload] = useState({});
+
+	useEffect(() => {
+		var config = {
+			containerID: "sawo-container",
+			identifierType: "email",
+			apiKey: "09af634a-c1f5-4198-bf10-b394bcb43ba0",
+			onSuccess: payload => {
+				console.log("Payload : " + JSON.stringify(payload));
+				setUserLoggedIn(true);
+				setPayload(payload);
+			},
+		};
+		let sawo = new Sawo(config);
+		sawo.showForm();
+	}, []);
 
 	return (
-		<div id="sawo-container" style={{ height: "300px", width: "300px" }}></div>
+		<div className="containerStyle">
+			<section>
+				<h2 className="title">User Logged In : {isUserLoggedIn.toString()}</h2>
+
+				{!isUserLoggedIn ? (
+					<div className="formContainer" id="sawo-container"></div>
+				) : (
+					<div className="loggedin">
+						<h2>User Successful Login</h2>
+						<div>UserId: {payload.user_id}</div>
+						<div>Verification Token: {payload.verification_token}</div>
+					</div>
+				)}
+			</section>
+		</div>
 	);
 };
 
