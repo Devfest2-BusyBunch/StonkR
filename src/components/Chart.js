@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Chart from "react-apexcharts";
 import dayjs from "dayjs";
 
-class Candle extends React.Component {
+class Candle extends Component {
 	constructor(props) {
 		super(props);
 
