@@ -8,6 +8,8 @@ import {
 	FormLabel,
 	Spinner,
 	Button,
+	UnorderedList,
+	ListItem,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -20,6 +22,7 @@ const Stock = () => {
 	const [inputValues, setInputValues] = useState(null);
 
 	const { symbol } = useParams();
+	// eslint-disable-next-line
 	const stateName = useSelector(state => state.userId);
 
 	useEffect(() => {
@@ -51,8 +54,10 @@ const Stock = () => {
 
 	const placeOrder = async e => {
 		e.preventDefault();
+		// eslint-disable-next-line
 		const { option, quantity } = inputValues;
 		if (option === "Buy") {
+			// eslint-disable-next-line
 			const { data, error } = await supabase
 				.from("users")
 				.select("cash")
@@ -101,16 +106,13 @@ const Stock = () => {
 					</Button>
 				</FormControl>
 			</Container>
-			<Text>
+			<UnorderedList>
 				{Object.keys(quote).map(key => (
-					<>
-						<span key={key}>
+					<ListItem key={key}>
 							{key}: {quote[key]}{" "}
-						</span>
-						<br />
-					</>
+					</ListItem>
 				))}
-			</Text>
+			</UnorderedList>
 		</VStack>
 	);
 };

@@ -26,6 +26,7 @@ const SawoLogin = ({ loggedIn }) => {
 				dispatch(addUserId(payload.user_id));
 				localStorage.setItem("userID", JSON.stringify(payload.user_id));
 				localStorage.setItem("payload", JSON.stringify(payload));
+				localStorage.setItem("token", JSON.stringify(payload.verification_token));
 			},
 		};
 		let sawo = new Sawo(config);

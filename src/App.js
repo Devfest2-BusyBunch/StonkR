@@ -1,7 +1,7 @@
+import { useState } from "react";
 import Header from "components/Header";
-import ConditionalRoute from "components/ConditionalRoute"
 import { ChakraProvider, Box, VStack, Grid } from "@chakra-ui/react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import store from "redux/store";
@@ -14,6 +14,8 @@ import Quote from "pages/Quote";
 import Stock from "pages/Stock";
 
 const App = () => {
+	let [token] = useState(false);
+	token = localStorage.getItem("token");
 
 	return (
 		<Provider store={store}>
@@ -24,32 +26,20 @@ const App = () => {
 						<VStack spacing={8}>
 							<Router>
 								<Switch>
-									 <ConditionalRoute condition={!SawoLogin.loggedIn} exact path='/' redirectPath='/signin'>
-										<LandingPage />
-									</ConditionalRoute>
-									<ConditionalRoute condition={!SawoLogin.loggedIn} exact path='/calculator' redirectPath='/signin'>
-										<Calculator />
-									</ConditionalRoute>
-									<ConditionalRoute condition={!SawoLogin.loggedIn} exact path='/quote' redirectPath='/signin'>
-										<Quote />
-									</ConditionalRoute>
-									<ConditionalRoute condition={!SawoLogin.loggedIn} exact path='/stocks/:symbol' redirectPath='/signin'>
-										<Stock />
-									</ConditionalRoute>
-									<Route path="/" exact>
-										<LandingPage />
+									<Route exact path="/" >
+										{ token ? <LandingPage /> : <Redirect to="/signin"/> }
+									</Route>
+									<Route exact path="/calculator" >
+										{token ? <Calculator /> : <Redirect to="/signin"/> }
+									</Route>
+									<Route exact path="/quote" >
+										{token ? <Quote /> : <Redirect to="/signin"/> }
+									</Route>
+									<Route exact path="/stocks/:symbol" >
+										{token ? <Stock /> : <Redirect to="/signin"/> }
 									</Route>
 									<Route path="/signin" exact>
 										<SawoLogin />
-									</Route>
-									<Route path="/calculator" exact>
-										<Calculator />
-									</Route>
-									<Route path="/quote" exact>
-										<Quote />
-									</Route>
-									<Route path="/stocks/:symbol" exact>
-										<Stock />
 									</Route>
 								</Switch>
 							</Router>

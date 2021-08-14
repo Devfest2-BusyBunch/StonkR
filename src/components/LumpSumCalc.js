@@ -39,7 +39,7 @@ const LumpSumCalc = () => {
                             type="number"
                             placeholder="Amount"
                             className={
-                                colormode == "dark"
+                                colormode === "dark"
                                     ? "darkmode-input calc-inputs"
                                     : "lightmode-input calc-inputs"
                             }
@@ -59,7 +59,7 @@ const LumpSumCalc = () => {
                             type="number"
                             placeholder="Years"
                             className={
-                                colormode == "dark"
+                                colormode === "dark"
                                     ? "darkmode-input calc-inputs"
                                     : "lightmode-input calc-inputs"
                             }
@@ -81,7 +81,7 @@ const LumpSumCalc = () => {
                             type="number"
                             placeholder="Rate"
                             className={
-                                colormode == "dark"
+                                colormode === "dark"
                                     ? "darkmode-input calc-inputs"
                                     : "lightmode-input calc-inputs"
                             }

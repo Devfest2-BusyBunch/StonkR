@@ -44,7 +44,7 @@ const BitcoinCalculator = () => {
                             type="number"
                             placeholder="Amount"
                             className={
-                                colormode == "dark"
+                                colormode === "dark"
                                     ? "darkmode-input calc-inputs"
                                     : "lightmode-input calc-inputs"
                             }

@@ -69,6 +69,7 @@ const MenuLinks = ({ isOpen }) => {
 				pt={[4, 4, 0, 0]}>
 				<MenuItem to="/">Home</MenuItem>
 				<MenuItem to="/calculator">SIP Calculator </MenuItem>
+				<MenuItem to="/quote">Quotes </MenuItem>
 				<MenuItem to="/signin" isLast>
 					<Button
 						size="sm"
