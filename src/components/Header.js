@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
 import { Logo } from "Logo";
 import { ColorModeSwitcher } from "ColorModeSwitcher";
+
 const NavBar = props => {
 	const [isOpen, setIsOpen] = React.useState(false);
 
