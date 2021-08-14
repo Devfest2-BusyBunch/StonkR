@@ -78,7 +78,7 @@ const MenuLinks = ({ isOpen }) => {
 						_hover={{
 							bg: ["primary.100", "primary.100", "primary.600", "primary.600"],
 						}}>
-						Sign In Passwordlessly
+						Sign In
 					</Button>
 				</MenuItem>
 				<MenuItem>
