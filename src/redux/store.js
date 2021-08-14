@@ -5,8 +5,8 @@ import logger from "redux-logger";
 import Reducer from "./reducers";
 
 const store = createStore(
-    Reducer,
-    composeWithDevTools(applyMiddleware(logger))
+	Reducer,
+	composeWithDevTools(applyMiddleware(logger))
 );
 
 export default store;

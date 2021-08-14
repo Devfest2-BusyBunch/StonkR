@@ -11,6 +11,7 @@ import LandingPage from "pages/LandingPage";
 import SawoLogin from "pages/SawoLogin";
 import Calculator from "pages/Calculator";
 import Quote from "pages/Quote";
+import Stock from "pages/Stock";
 
 const App = () => {
 	return (
@@ -33,6 +34,9 @@ const App = () => {
 									</Route>
 									<Route path="/quote" exact>
 										<Quote />
+									</Route>
+									<Route path="/stocks/:symbol" exact>
+										<Stock />
 									</Route>
 								</Switch>
 							</Router>
