@@ -32,7 +32,7 @@ const Stock = () => {
 		};
 
 		getQuote();
-		console.log(stateName);
+		// console.log(stateName);
 	}, [symbol]);
 
 	const handleInputChange = event => {
@@ -96,7 +96,9 @@ const Stock = () => {
 						value={inputValues?.quantity || ""}
 						onChange={handleInputChange}
 					/>
-					<Button type="submit">Place Order</Button>
+					<Button type="submit" mt={1}>
+						Place Order
+					</Button>
 				</FormControl>
 			</Container>
 			<Text>
