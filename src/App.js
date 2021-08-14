@@ -27,6 +27,15 @@ const App = () => {
 									 <ConditionalRoute condition={!SawoLogin.loggedIn} exact path='/' redirectPath='/signin'>
 										<LandingPage />
 									</ConditionalRoute>
+									<ConditionalRoute condition={!SawoLogin.loggedIn} exact path='/calculator' redirectPath='/signin'>
+										<Calculator />
+									</ConditionalRoute>
+									<ConditionalRoute condition={!SawoLogin.loggedIn} exact path='/quote' redirectPath='/signin'>
+										<Quote />
+									</ConditionalRoute>
+									<ConditionalRoute condition={!SawoLogin.loggedIn} exact path='/stocks/:symbol' redirectPath='/signin'>
+										<Stock />
+									</ConditionalRoute>
 									<Route path="/" exact>
 										<LandingPage />
 									</Route>
