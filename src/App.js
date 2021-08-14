@@ -26,13 +26,7 @@ const App = () => {
                                     <Route path="/" exact>
                                         <LandingPage />
                                     </Route>
-                                    <Route path="/login" exact>
-                                        <Login />
-                                    </Route>
-                                    <Route path="/signup" exact>
-                                        <SignUp />
-                                    </Route>
-                                    <Route path="/sawo" exact>
+                                    <Route path="/signin" exact>
                                         <SawoLogin />
                                     </Route>
                                     <Route path="/calculator" exact>
