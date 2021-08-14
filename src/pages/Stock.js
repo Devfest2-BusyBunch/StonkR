@@ -1,10 +1,20 @@
-import { VStack, Text } from "@chakra-ui/react";
+import {
+	VStack,
+	Text,
+	Container,
+	FormControl,
+	Input,
+	Select,
+	FormLabel,
+} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 
 const Stock = () => {
 	const [quote, setQuote] = useState({});
+	const [inputValues, setInputValues] = useState(null);
+
 	const { symbol } = useParams();
 
 	useEffect(() => {
@@ -19,8 +29,41 @@ const Stock = () => {
 		getQuote();
 	}, [symbol]);
 
+	const handleInputChange = event => {
+		const target = event.target;
+		const { value, name } = target;
+
+		setInputValues(prevValues => {
+			return {
+				...prevValues,
+				[name]: value,
+			};
+		});
+	};
+
 	return (
 		<VStack>
+			<Container>
+				<Text>
+					{quote.companyName} - {quote.latestPrice}
+				</Text>
+				<FormControl mt={2} isRequired>
+					<Select
+						placeholder="Select trade option"
+						value={inputValues?.option || ""}
+						onChange={handleInputChange}>
+						<option>Buy</option>
+						<option>Sell</option>
+					</Select>
+					<FormLabel mt={1}>Quantity</FormLabel>
+					<Input
+						type="number"
+						name="shares"
+						value={inputValues?.shares || ""}
+						onChange={handleInputChange}
+					/>
+				</FormControl>
+			</Container>
 			<Text>
 				{Object.keys(quote).map(key => (
 					<>
