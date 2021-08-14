@@ -68,8 +68,8 @@ const MenuLinks = ({ isOpen }) => {
 				direction={["column", "row", "row", "row"]}
 				pt={[4, 4, 0, 0]}>
 				<MenuItem to="/">Home</MenuItem>
-				<MenuItem to="/discover">Discover </MenuItem>
-				<MenuItem to="/login" isLast>
+				<MenuItem to="/calculator">SIP Calculator </MenuItem>
+				<MenuItem to="/signin" isLast>
 					<Button
 						size="sm"
 						rounded="md"
@@ -78,19 +78,7 @@ const MenuLinks = ({ isOpen }) => {
 						_hover={{
 							bg: ["primary.100", "primary.100", "primary.600", "primary.600"],
 						}}>
-						Sign In
-					</Button>
-				</MenuItem>
-				<MenuItem to="/signup" isLast>
-					<Button
-						size="sm"
-						rounded="md"
-						color={["primary.500", "primary.500", "white", "white"]}
-						bg={["white", "white", "primary.500", "primary.500"]}
-						_hover={{
-							bg: ["primary.100", "primary.100", "primary.600", "primary.600"],
-						}}>
-						Create Account
+						Sign In Passwordlessly
 					</Button>
 				</MenuItem>
 				<MenuItem>
