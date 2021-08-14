@@ -3,12 +3,12 @@ import SipCalc from "../components/SIPCalc";
 import LumpSumCalc from "../components/LumpSumCalc";
 
 const Calculator = () => {
-    return (
-        <div>
-            <SipCalc />
-            <LumpSumCalc />
-        </div>
-    );
+	return (
+		<div>
+			<SipCalc />
+			<LumpSumCalc />
+		</div>
+	);
 };
 
 export default Calculator;
