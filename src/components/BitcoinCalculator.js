@@ -23,15 +23,10 @@ const BitcoinCalculator = () => {
         <div>
             <h1 className="calc-title">BTC Calculator</h1>
             <div className="calc-items">
-                <div>
-                    <h2>
-                        What if you had invested in some BTC back in 1st
-                        January, 2017?
-                    </h2>
-                </div>
-                <div>
-                    <h2>Imagine how much that could be today</h2>
-                </div>
+				<div>
+					<h2>What if you had invested in some BTC back in 1st January, 2017?</h2>
+					<h2>Imagine how much that could be today</h2>
+				</div>
                 <Grid templateColumns="repeat(2, 1fr)">
                     <GridItem>
                         <label>Amount (in USD): </label>
@@ -40,7 +35,7 @@ const BitcoinCalculator = () => {
                         <input
                             type="number"
                             placeholder="Amount"
-                            className={colormode == "dark" && "darkmode-input"}
+                            className={colormode === "dark" && "darkmode-input"}
                             value={amount}
                             onChange={(e) => {
                                 setAmount(e.target.value);
@@ -67,13 +62,13 @@ const BitcoinCalculator = () => {
             >
                 Calculate
             </Button>
-            <div>Total Invested Amount: $ {investedAmt}</div>
-            <div>Maturity Amount: $ {returns}</div>
-            <div>Profit: $ {returns - investedAmt}</div>
-            <h3 className="calc-subtitle">INR Amounts</h3>
-            <div>Total Invested Amount: ₹ {investedAmt * 74}</div>
-            <div>Maturity Amount: ₹ {returns * 74}</div>
-            <div>Profit: ₹ {(returns - investedAmt) * 74}</div>
+			<h2>Total Invested Amount: $ {investedAmt}</h2>
+			<h2>Maturity Amount: $ {returns}</h2>
+			<h2>Profit: $ {returns - investedAmt}</h2>
+			<h1 className="calc-subtitle">INR Amounts</h1>
+			<h2>Total Invested Amount: ₹ {investedAmt * 74}</h2>
+			<h2>Maturity Amount: ₹ {returns * 74}</h2>
+			<h2>Profit: ₹ {(returns - investedAmt) * 74}</h2>
         </div>
     );
 };
