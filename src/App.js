@@ -7,7 +7,7 @@ import customTheme from "utils/theme";
 import LandingPage from "pages/LandingPage";
 import Login from "pages/Login";
 import SignUp from "pages/SignUp";
-import Sawo from "pages/Sawo";
+import SawoLogin from "pages/SawoLogin";
 
 const App = () => {
 	return (
@@ -28,7 +28,7 @@ const App = () => {
 									<SignUp />
 								</Route>
 								<Route path="/sawo" exact>
-									<Sawo />
+									<SawoLogin />
 								</Route>
 							</Switch>
 						</Router>

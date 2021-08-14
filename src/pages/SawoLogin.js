@@ -1,4 +1,6 @@
-const Sawo = () => {
+import Sawo from "sawo";
+
+const SawoLogin = () => {
 	var config = {
 		// should be same as the id of the container created on 3rd step
 		containerID: "sawo-container",
@@ -21,4 +23,4 @@ const Sawo = () => {
 	);
 };
 
-export default Sawo;
+export default SawoLogin;
