@@ -9,7 +9,7 @@ const Stock = () => {
 
 	useEffect(() => {
 		const getQuote = async () => {
-			const API_KEY = process.env.IEX_API_KEY;
+			const API_KEY = process.env.REACT_APP_IEX_API_KEY;
 			const res = await axios.get(
 				`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
 			);
