@@ -9,7 +9,7 @@ import {
 	Code,
 	Grid,
 } from "@chakra-ui/react";
-import { ColorModeSwitcher } from "./ColorModeSwitcher";
+// import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import customTheme from "./utils/theme";
@@ -22,7 +22,7 @@ const App = () => {
 			<Header />
 			<Box textAlign="center" fontSize="xl">
 				<Grid minH="100vh" p={3}>
-					<ColorModeSwitcher justifySelf="flex-end" />
+					
 					<VStack spacing={8}>
 						<Router>
 							<Switch>
