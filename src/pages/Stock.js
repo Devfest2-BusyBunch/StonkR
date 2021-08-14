@@ -1,12 +1,4 @@
-import {
-	VStack,
-	Text,
-	Button,
-	Input,
-	FormControl,
-	FormLabel,
-	FormHelperText,
-} from "@chakra-ui/react";
+import { VStack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
@@ -20,7 +12,7 @@ const Stock = () => {
 	}, []);
 
 	const getQuote = async () => {
-		const api_key = "pk_eae71671468a4161b60df617d889adad";
+		const api_key = process.env.IEX_API_KEY;
 		const res = await axios.get(
 			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${api_key}`
 		);
@@ -30,19 +22,6 @@ const Stock = () => {
 
 	return (
 		<VStack>
-			{/* <FormControl>
-				<FormLabel>Symbol</FormLabel>
-				<Input
-					type="text"
-					value={symbol || ""}
-					name="symbol"
-					onChange={handleInputChange}
-				/>
-				<FormHelperText>Enter the stock symbol</FormHelperText>
-				<Button colorScheme="teal" size="md" onClick={getQuote} mt="2">
-					Get Quote!
-				</Button>
-			</FormControl> */}
 			<Text>
 				{Object.keys(quote).map(key => (
 					<>

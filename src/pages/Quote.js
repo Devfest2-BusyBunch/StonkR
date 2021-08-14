@@ -22,7 +22,8 @@ const Quote = () => {
 	};
 
 	const getQuote = async () => {
-		const api_key = "pk_eae71671468a4161b60df617d889adad";
+		// const api_key = "pk_eae71671468a4161b60df617d889adad";
+		const api_key = process.env.IEX_API_KEY;
 		const res = await axios.get(
 			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${api_key}`
 		);
