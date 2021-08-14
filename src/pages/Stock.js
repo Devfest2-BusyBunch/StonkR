@@ -13,12 +13,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { supabase } from "supabaseClient";
+import { useSelector } from "react-redux";
 
 const Stock = () => {
 	const [quote, setQuote] = useState({});
 	const [inputValues, setInputValues] = useState(null);
 
 	const { symbol } = useParams();
+	const stateName = useSelector(state => state.userId);
 
 	useEffect(() => {
 		const getQuote = async () => {
@@ -30,6 +32,7 @@ const Stock = () => {
 		};
 
 		getQuote();
+		console.log(stateName);
 	}, [symbol]);
 
 	const handleInputChange = event => {
