@@ -1,4 +1,3 @@
-import React from "react";
 import SipCalc from "../components/SIPCalc";
 import LumpSumCalc from "../components/LumpSumCalc";
 import BitcoinCalculator from "../components/BitcoinCalculator";
