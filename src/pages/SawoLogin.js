@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Sawo from "sawo";
 
-const API_KEY = process.env.REACT_APP_API_KEY; // Process env not working so hard coded it
+const API_KEY = process.env.REACT_APP_SAWO_API_KEY;
 
 const SawoLogin = () => {
 	const [isUserLoggedIn, setUserLoggedIn] = useState(false);
@@ -11,7 +11,7 @@ const SawoLogin = () => {
 		var config = {
 			containerID: "sawo-container",
 			identifierType: "email",
-			apiKey: "09af634a-c1f5-4198-bf10-b394bcb43ba0",
+			apiKey: API_KEY,
 			onSuccess: payload => {
 				console.log("Payload : " + JSON.stringify(payload));
 				setUserLoggedIn(true);

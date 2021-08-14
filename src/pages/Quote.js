@@ -22,12 +22,10 @@ const Quote = () => {
 	};
 
 	const getQuote = async () => {
-		// const api_key = "pk_eae71671468a4161b60df617d889adad";
-		const api_key = process.env.IEX_API_KEY;
+		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
 		const res = await axios.get(
-			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${api_key}`
+			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
 		);
-		console.log(res.data);
 		setQuote(res.data);
 	};
 
@@ -42,7 +40,12 @@ const Quote = () => {
 					onChange={handleInputChange}
 				/>
 				<FormHelperText>Enter the stock symbol</FormHelperText>
-				<Button colorScheme="teal" size="md" onClick={getQuote} mt="2">
+				<Button
+					colorScheme="teal"
+					size="md"
+					onClick={getQuote}
+					mt="2"
+					type="submit">
 					Get Quote!
 				</Button>
 			</FormControl>

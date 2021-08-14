@@ -8,17 +8,16 @@ const Stock = () => {
 	const { symbol } = useParams();
 
 	useEffect(() => {
-		getQuote();
-	}, []);
+		const getQuote = async () => {
+			const API_KEY = process.env.IEX_API_KEY;
+			const res = await axios.get(
+				`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
+			);
+			setQuote(res.data);
+		};
 
-	const getQuote = async () => {
-		const api_key = process.env.IEX_API_KEY;
-		const res = await axios.get(
-			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${api_key}`
-		);
-		console.log(res.data);
-		setQuote(res.data);
-	};
+		getQuote();
+	}, [symbol]);
 
 	return (
 		<VStack>
