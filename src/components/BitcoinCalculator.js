@@ -23,24 +23,31 @@ const BitcoinCalculator = () => {
         <div>
             <h1 className="calc-title">BTC Calculator</h1>
             <div className="calc-items">
-                <div>
+                <div className="center-align">
                     <h2>
-                        What if you had invested in some BTC back in 1st
+                        What if you had invested in some Bitcoin back in 1st
                         January, 2017?
                     </h2>
                 </div>
-                <div>
+                <div className="center-align">
                     <h2>Imagine how much that could be today</h2>
                 </div>
-                <Grid templateColumns="repeat(2, 1fr)">
+                <Grid
+                    templateColumns="repeat(2, 1fr)"
+                    className="input-row btc-input"
+                >
                     <GridItem>
-                        <label>Amount (in USD): </label>
+                        <label className="input-label">Amount (in USD): </label>
                     </GridItem>
                     <GridItem>
                         <input
                             type="number"
                             placeholder="Amount"
-                            className={colormode == "dark" && "darkmode-input"}
+                            className={
+                                colormode == "dark"
+                                    ? "darkmode-input calc-inputs"
+                                    : "lightmode-input calc-inputs"
+                            }
                             value={amount}
                             onChange={(e) => {
                                 setAmount(e.target.value);
@@ -54,6 +61,8 @@ const BitcoinCalculator = () => {
                 onClick={handleCalculateBTC}
                 size="sm"
                 rounded="md"
+                marginTop="50px"
+                marginBottom="40px"
                 color={["primary.500", "primary.500", "white", "white"]}
                 bg={["white", "white", "primary.500", "primary.500"]}
                 _hover={{
@@ -67,13 +76,23 @@ const BitcoinCalculator = () => {
             >
                 Calculate
             </Button>
-            <div>Total Invested Amount: $ {investedAmt}</div>
-            <div>Maturity Amount: $ {returns}</div>
-            <div>Profit: $ {returns - investedAmt}</div>
+            <div className="calc-returns">
+                Total Invested Amount: $ {investedAmt}
+            </div>
+            <div className="calc-returns">Maturity Amount: $ {returns}</div>
+            <div className="calc-returns">
+                Profit: $ {returns - investedAmt}
+            </div>
             <h3 className="calc-subtitle">INR Amounts</h3>
-            <div>Total Invested Amount: ₹ {investedAmt * 74}</div>
-            <div>Maturity Amount: ₹ {returns * 74}</div>
-            <div>Profit: ₹ {(returns - investedAmt) * 74}</div>
+            <div className="calc-returns">
+                Total Invested Amount: ₹ {investedAmt * 74}
+            </div>
+            <div className="calc-returns">
+                Maturity Amount: ₹ {returns * 74}
+            </div>
+            <div className="calc-returns">
+                Profit: ₹ {(returns - investedAmt) * 74}
+            </div>
         </div>
     );
 };
