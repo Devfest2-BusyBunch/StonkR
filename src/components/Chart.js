@@ -318,7 +318,7 @@ class Candle extends React.Component {
                         width="500"
                     />
                 </div>
-                
+
             </div>
         );
     }
