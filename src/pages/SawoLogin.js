@@ -5,11 +5,12 @@ import { useDispatch } from "react-redux";
 
 const API_KEY = process.env.REACT_APP_SAWO_API_KEY;
 
-const SawoLogin = () => {
+const SawoLogin = ({ loggedIn }) => {
 	const [payload, setPayload] = useState({});
 	const [isUserLoggedIn, setUserLoggedIn] = useState(false);
 	const dispatch = useDispatch();
-
+	loggedIn = isUserLoggedIn;
+	
 	useEffect(() => {
 		setPayload(JSON.parse(localStorage.getItem("payload")) || {});
 
@@ -28,9 +29,9 @@ const SawoLogin = () => {
 			},
 		};
 		let sawo = new Sawo(config);
-		sawo.showForm();
+		sawo.showForm();;
 	}, [dispatch]);
-
+	
 	return (
 		<div className="containerStyle">
 			<section>
