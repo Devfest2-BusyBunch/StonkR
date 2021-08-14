@@ -27,7 +27,7 @@ const App = () => {
 								<Route path="/signup" exact>
 									<SignUp />
 								</Route>
-								<Route path="/signup" exact>
+								<Route path="/sawo" exact>
 									<Sawo />
 								</Route>
 							</Switch>
