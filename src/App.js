@@ -39,6 +39,7 @@ const App = () => {
 			<Router>
 				<div className="top-bar">
 					<Header />
+					
 					<ColorMode />
 				</div>
 				<Box textAlign="center" fontSize="xl">
@@ -68,6 +69,7 @@ const App = () => {
 					</Grid>
 				</Box>
 			</Router>
+			
 		</ChakraProvider>
 	);
 };
