@@ -13,20 +13,6 @@ import {
 import { FaGithub } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 
-<<<<<<< HEAD
-const Logo = props => {
-	return (
-		<Box className="footer-topdiv">
-			<Image
-				src={"https://foodict.s3.ap-south-1.amazonaws.com/misc/coins+(1).png"}
-				height="40px"
-				marginRight="20px"
-				{...props}
-			/>
-			<Heading color={"primary.400"}>StonkR</Heading>
-		</Box>
-	);
-=======
 const Logo = (props) => {
     return (
         <Box className="footer-topdiv">
@@ -41,7 +27,6 @@ const Logo = (props) => {
             <Heading color={"primary.400"}>StonkR</Heading>
         </Box>
     );
->>>>>>> 56d9e0bf26208db5e776d1ad1249cee84095dc8d
 };
 
 const SocialButton = ({ children, label, href }) => {
