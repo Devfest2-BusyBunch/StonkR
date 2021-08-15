@@ -42,7 +42,7 @@ const LumpSumCalc = () => {
             <div className="calc-items">
                 <Grid templateColumns="repeat(2, 1fr)" className="input-row">
                     <GridItem>
-                        <label className="input-label">Amount: </label>
+                        <label className="input-label">Amount (in INR): </label>
                     </GridItem>
                     <GridItem>
                         <NumberInput>
