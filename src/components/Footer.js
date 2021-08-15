@@ -99,7 +99,7 @@ export default function Footer() {
                     justify={{ base: "center", md: "space-between" }}
                     align={{ base: "center", md: "center" }}
                 >
-                    <Text>© 2020 StonkR. All rights reserved.</Text>
+                    <Text>© 2020 StonkR | All rights reserved</Text>
                     <Stack direction={"row"} spacing={0}>
                         <SocialButton
                             label={"Github"}

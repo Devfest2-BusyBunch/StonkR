@@ -22,7 +22,7 @@ export default function SocialProfileSimple({
             <Box
                 maxW={"320px"}
                 w={"full"}
-                bg={useColorModeValue("white", "gray.900")}
+                bg={"gray.900"}
                 boxShadow={"2xl"}
                 rounded={"lg"}
                 p={6}
