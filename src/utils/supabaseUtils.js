@@ -5,8 +5,8 @@ import axios from "axios";
 const getPortfolio = async userID => {
 	const { data: portfolioData, error: portfolioError } = await supabase
 		.from("portfolio")
-		.select("user_id, symbol")
-		.eq("user_id", userID);
+		.select("user, symbol, quantity")
+		.eq("user", userID);
 	return { portfolioData, portfolioError };
 };
 
@@ -29,19 +29,23 @@ const assets = async userID => {
 	// eslint-disable-next-line
 	const { portfolioData, portfolioError } = await getPortfolio(userID);
 
-	for (let stock in portfolioData) {
-		let { symbol, quantity } = stock;
-		let price = getQuote(symbol);
-		let amount = price * quantity;
-		total = total + amount;
+	if (portfolioData.length > 0) {
+		portfolioData.forEach(async stock => {
+			let { symbol, quantity } = stock;
+			let { latestPrice: price } = await getQuote(symbol);
+			let amount = Number(price) * Number(quantity);
+			total = total + amount;
+			console.log(`${symbol} ${price} ${quantity} ${amount}`);
+		});
 	}
-	// eslint-disable-next-line
+
+	console.log("ft", total);
 	const { data: assetUpdateData, error: assetUpdateError } = await supabase
 		.from("users")
-		.update("assets", total)
+		.update({ assets: total })
 		.eq("user_id", userID);
 
-	// return { total, assetUpdateData, assetUpdateError };
+	console.log(userID, total, assetUpdateData);
 };
 
 export default assets;
