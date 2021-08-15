@@ -32,7 +32,7 @@ const Leaderboard = () => {
 	return (
 		<Box py={4}>
 			<VStack spacing={1.5} textAlign="center">
-				<Heading as="h1" fontSize="4xl">
+				<Heading as="h1" fontSize="3xl">
 					Leaderboards
 				</Heading>
 			</VStack>
@@ -44,11 +44,11 @@ const Leaderboard = () => {
 				py={10}>
 				<PriceWrapper>
 					<Box py={4} px={12}>
-						<Text fontWeight="500" fontSize="2xl">
+						<Text fontWeight="500" fontSize="xl">
 							Second
 						</Text>
 						<HStack justifyContent="center">
-							<Text fontSize="4xl" fontWeight="900">
+							<Text fontSize="3xl" fontWeight="900">
 								username
 							</Text>
 						</HStack>
@@ -84,11 +84,11 @@ const Leaderboard = () => {
 							</Text>
 						</Box>
 						<Box py={4} px={12}>
-							<Text fontWeight="500" fontSize="4xl">
+							<Text fontWeight="500" fontSize="3xl">
 								First
 							</Text>
 							<HStack justifyContent="center">
-								<Text fontSize="5xl" fontWeight="900">
+								<Text fontSize="4xl" fontWeight="900">
 									username
 								</Text>
 							</HStack>
@@ -106,11 +106,11 @@ const Leaderboard = () => {
 				</PriceWrapper>
 				<PriceWrapper>
 					<Box py={4} px={12}>
-						<Text fontWeight="500" fontSize="2xl">
+						<Text fontWeight="500" fontSize="xl">
 							Third
 						</Text>
 						<HStack justifyContent="center">
-							<Text fontSize="4xl" fontWeight="900">
+							<Text fontSize="3xl" fontWeight="900">
 								username
 							</Text>
 						</HStack>
@@ -128,8 +128,6 @@ const Leaderboard = () => {
 			</Stack>
 			<Stack
 				direction={{ base: "row", md: "row" }}
-				// textAlign="center"
-				// justify="center"
 				spacing={{ base: 4, lg: 10 }}
 				py={10}>
 				<PriceWrapper>
@@ -145,7 +143,7 @@ const Leaderboard = () => {
 
 							<Box className="money">
 								<Heading as="h1" className="cash">
-									Cash($){" "}
+									Cash ($){" "}
 									<Button
 										size="sm"
 										rounded="md"
@@ -163,7 +161,7 @@ const Leaderboard = () => {
 									</Button>
 								</Heading>
 								<Heading as="h1" className="assets">
-									Assets($){" "}
+									Assets ($){" "}
 									<Button
 										size="sm"
 										rounded="md"
@@ -186,16 +184,16 @@ const Leaderboard = () => {
 					<Box py={2} px={12}>
 						<Flex justifyContent={"space-between"} className="leaderboardLabel">
 							<Box className="userInfo">
-								<Heading as="h3">3</Heading>
-								<Heading as="h3" className="username">
+								<Heading as="h4">3</Heading>
+								<Heading as="h4" className="username">
 									jesadasdasdasde
 								</Heading>
 							</Box>
 							<Box className="money">
-								<Heading as="h3" className="cash">
+								<Heading as="h4" className="cash">
 									10022
 								</Heading>
-								<Heading as="h3" className="assets">
+								<Heading as="h4" className="assets">
 									12
 								</Heading>
 							</Box>
