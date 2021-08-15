@@ -76,9 +76,9 @@ function Trending() {
                             stat={trend.price_change_percentage_24h}
                             icon={
                                 trend.price_change_percentage_24h > 0 ? (
-                                    <FiTrendingUp size={"1em"} />
+                                    <FiTrendingUp color={'green'} size={"1em"} />
                                 ) : (
-                                    <FiTrendingDown size={"1em"} />
+                                    <FiTrendingDown color={'red'} size={"1em"} />
                                 )
                             }
                         />
