@@ -5,9 +5,7 @@ import {
 	FormControl,
 	FormLabel,
 	FormHelperText,
-	Heading,
 	Link,
-	UnorderedList,
 	ListItem,
 	Container,
 } from "@chakra-ui/react";
