@@ -81,10 +81,18 @@ const App = () => {
                                     )}
                                 </Route>
                                 <Route path="/landing" exact>
-                                    <LandingPage />
+                                    {token ? (
+                                        <Redirect to="/dashboard" />
+                                    ) : (
+                                        <LandingPage />
+                                    )}
                                 </Route>
                                 <Route path="/signin" exact>
-                                    <SawoLogin />
+                                    {token ? (
+                                        <Redirect to="/dashboard" />
+                                    ) : (
+                                        <SawoLogin />
+                                    )}
                                 </Route>
                             </Switch>
                         </VStack>
