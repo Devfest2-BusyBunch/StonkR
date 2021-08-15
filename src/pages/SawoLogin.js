@@ -10,7 +10,7 @@ const SawoLogin = ({ loggedIn }) => {
 	const [isUserLoggedIn, setUserLoggedIn] = useState(false);
 	const dispatch = useDispatch();
 	loggedIn = isUserLoggedIn;
-	
+
 	useEffect(() => {
 		setPayload(JSON.parse(localStorage.getItem("payload")) || {});
 
@@ -26,13 +26,16 @@ const SawoLogin = ({ loggedIn }) => {
 				dispatch(addUserId(payload.user_id));
 				localStorage.setItem("userID", JSON.stringify(payload.user_id));
 				localStorage.setItem("payload", JSON.stringify(payload));
-				localStorage.setItem("token", JSON.stringify(payload.verification_token));
+				localStorage.setItem(
+					"token",
+					JSON.stringify(payload.verification_token)
+				);
 			},
 		};
 		let sawo = new Sawo(config);
-		sawo.showForm();;
+		sawo.showForm();
 	}, [dispatch]);
-	
+
 	return (
 		<div className="containerStyle">
 			<section>

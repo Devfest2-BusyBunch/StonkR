@@ -1,47 +1,47 @@
 .calc-items {
-    display: grid;
-    row-gap: 15px;
-    font-size: 20px;
-    text-align: right;
+	display: grid;
+	row-gap: 15px;
+	font-size: 20px;
+	text-align: right;
 }
 
 .calc-inputs {
-    height: 40px;
-    padding-left: 10px;
-    outline: none;
-    border-radius: 7px;
+	height: 40px;
+	padding-left: 10px;
+	outline: none;
+	border-radius: 7px;
 }
 
 .calc-title {
-    font-size: 30px;
-    font-weight: bolder;
-    margin: 80px 0;
+	font-size: 30px;
+	font-weight: bolder;
+	margin: 80px 0;
 }
 
 .calc-subtitle {
-    font-size: 20px;
-    font-weight: bolder;
-    margin: 25px 0;
+	font-size: 20px;
+	font-weight: bolder;
+	margin: 25px 0;
 }
 
 .darkmode-input {
-    background-color: #3a475e;
+	background-color: #3a475e;
 }
 
 .calc-returns {
-    margin: 15px 0;
+	margin: 15px 0;
 }
 
 .btc-input {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 .input-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .center-align {
-    text-align: center;
+	text-align: center;
 }

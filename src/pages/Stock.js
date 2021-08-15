@@ -109,7 +109,7 @@ const Stock = () => {
 			<UnorderedList>
 				{Object.keys(quote).map(key => (
 					<ListItem key={key}>
-							{key}: {quote[key]}{" "}
+						{key}: {quote[key]}{" "}
 					</ListItem>
 				))}
 			</UnorderedList>

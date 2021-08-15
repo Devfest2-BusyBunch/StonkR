@@ -1,7 +1,12 @@
 import { useState } from "react";
 import Header from "components/Header";
 import { ChakraProvider, Box, VStack, Grid } from "@chakra-ui/react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from "react-router-dom";
 import { Provider } from "react-redux";
 
 import store from "redux/store";
@@ -14,8 +19,11 @@ import Quote from "pages/Quote";
 import Stock from "pages/Stock";
 
 const App = () => {
-	let [token] = useState(false);
-	token = localStorage.getItem("token");
+	const [token, setToken] = useState(false);
+
+	useEffect(() => {
+		setToken(localStorage.getItem("token"));
+	});
 
 	return (
 		<Provider store={store}>
@@ -26,17 +34,17 @@ const App = () => {
 						<VStack spacing={8}>
 							<Router>
 								<Switch>
-									<Route exact path="/" >
-										{ token ? <LandingPage /> : <Redirect to="/signin"/> }
+									<Route exact path="/">
+										{token ? <LandingPage /> : <Redirect to="/signin" />}
 									</Route>
-									<Route exact path="/calculator" >
-										{token ? <Calculator /> : <Redirect to="/signin"/> }
+									<Route exact path="/calculator">
+										{token ? <Calculator /> : <Redirect to="/signin" />}
 									</Route>
-									<Route exact path="/quote" >
-										{token ? <Quote /> : <Redirect to="/signin"/> }
+									<Route exact path="/quote">
+										{token ? <Quote /> : <Redirect to="/signin" />}
 									</Route>
-									<Route exact path="/stocks/:symbol" >
-										{token ? <Stock /> : <Redirect to="/signin"/> }
+									<Route exact path="/stocks/:symbol">
+										{token ? <Stock /> : <Redirect to="/signin" />}
 									</Route>
 									<Route path="/signin" exact>
 										<SawoLogin />
