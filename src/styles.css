@@ -19,3 +19,23 @@
 	position: absolute;
 	left: 0;
 }
+
+.leaderboardLabel{
+	
+}
+
+.userInfo{
+	display: flex;
+
+}
+
+.money{
+	display: flex;
+	
+}
+.username{
+	 width: 300px;
+}
+.cash{
+	width: 300px;
+}

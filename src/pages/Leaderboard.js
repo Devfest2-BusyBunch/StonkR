@@ -12,6 +12,8 @@ import {
     ListItem,
     ListIcon,
     Button,
+    Flex,
+    Spacer,
 } from '@chakra-ui/react';
 import { FaCheckCircle } from 'react-icons/fa';
 
@@ -31,12 +33,12 @@ function PriceWrapper({ children }: { children: ReactNode }) {
 
 export default function Leaderboard() {
     return (
-        <Box py={12}>
-            <VStack spacing={2} textAlign="center">
+        <Box py={4}>
+            <VStack spacing={1.5} textAlign="center">
                 <Heading as="h1" fontSize="4xl">
-                   Leaderboards
+                    Leaderboards
                 </Heading>
-                
+
             </VStack>
             <Stack
                 direction={{ base: 'column', md: 'row' }}
@@ -50,29 +52,29 @@ export default function Leaderboard() {
                             Second
                         </Text>
                         <HStack justifyContent="center">
-                            
+
                             <Text fontSize="4xl" fontWeight="900">
                                 username
                             </Text>
-                          
+
                         </HStack>
-                     </Box>
+                    </Box>
                     <VStack
                         bg={useColorModeValue('gray.50', 'gray.700')}
                         py={4}
                         borderBottomRadius={'xl'}>
                         <List spacing={3} textAlign="start" px={12}>
                             <ListItem>
-                                $asdasdas - 
+                                $asdasdas -
                                 Cash
                             </ListItem>
                             <ListItem>
                                 $asdasdas -
                                 Assets
                             </ListItem>
-                            
+
                         </List>
-                       
+
                     </VStack>
                 </PriceWrapper>
 
@@ -118,9 +120,9 @@ export default function Leaderboard() {
                                     $asdasdas -
                                     Assets
                                 </ListItem>
-                                
+
                             </List>
-                          
+
                         </VStack>
                     </Box>
                 </PriceWrapper>
@@ -157,16 +159,41 @@ export default function Leaderboard() {
                 </PriceWrapper>
             </Stack>
             <Stack
-                direction={{ base: 'column', md: 'row' }}
-                textAlign="center"
-                justify="center"
+                direction={{ base: 'row', md: 'row' }}
+                // textAlign="center"
+                // justify="center"
                 spacing={{ base: 4, lg: 10 }}
                 py={10}>
-                    <PriceWrapper>
-                        <Box>
+                <PriceWrapper>
+                    <Box py={2} px={12}>
+                        <Flex  className="leaderboardLabel">
+                            <div className="userInfo"> <h1>Rank</h1>
+                                <h1 className='username'>Username</h1></div>
+
+                            <div className="money">
+                                <h1 className='cash'>Cash($)</h1>
+                                <h1>Assets($)</h1>
+                            </div>
                             
-                        </Box>
-                    </PriceWrapper>
+
+                        </Flex>
+                     </Box>
+                    <Box py={2} px={12}>
+                        <Flex justifyContent={'space-between'} className="leaderboardLabel">
+                            <div className="userInfo"> <h1>3</h1>
+                                <h1 className='username'>jesadasdasdasde</h1></div>
+
+                            <div className="money">
+                                <h1 className='cash'>10022</h1>
+                                <h1>12</h1>
+                            </div>
+
+
+                        </Flex>
+                     </Box>
+
+                </PriceWrapper>
+
             </Stack>
         </Box>
     );
