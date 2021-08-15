@@ -15,6 +15,7 @@ import {
     Spacer,
 } from '@chakra-ui/react';
 import { FaCheckCircle } from 'react-icons/fa';
+import { TriangleUpIcon } from "@chakra-ui/icons";
 
 function PriceWrapper({ children }) {
     return (
@@ -166,12 +167,40 @@ export default function Leaderboard() {
                 <PriceWrapper>
                     <Box py={2} px={12}>
                         <Flex className="leaderboardLabel">
-                            <div className="userInfo"> <h1>Rank</h1>
+                            <div className="userInfo"> <h1>Rank </h1>
                                 <h1 className='username'>Username</h1></div>
 
                             <div className="money">
-                                <h1 className='cash'>Cash($)</h1>
-                                <h1>Assets($)</h1>
+                                <h1 className='cash'>Cash($) <Button
+                                    size="sm"
+                                    rounded="md"
+                                    color={["primary.500", "primary.500", "white", "white"]}
+                                    bg={["white", "white", "primary.500", "primary.500"]}
+                                    _hover={{
+                                        bg: [
+                                            "primary.100",
+                                            "primary.100",
+                                            "primary.600",
+                                            "primary.600",
+                                        ],
+                                    }}>
+                                    <TriangleUpIcon w={6} h={6} />
+                                </Button></h1>
+                                <h1 className='assets'>Assets($) <Button
+                                    size="sm"
+                                    rounded="md"
+                                    color={["primary.500", "primary.500", "white", "white"]}
+                                    bg={["white", "white", "primary.500", "primary.500"]}
+                                    _hover={{
+                                        bg: [
+                                            "primary.100",
+                                            "primary.100",
+                                            "primary.600",
+                                            "primary.600",
+                                        ],
+                                    }}>
+                                    <TriangleUpIcon w={6} h={6} />
+                                </Button></h1>
                             </div>
 
 
@@ -179,12 +208,13 @@ export default function Leaderboard() {
                     </Box>
                     <Box py={2} px={12}>
                         <Flex justifyContent={'space-between'} className="leaderboardLabel">
-                            <div className="userInfo"> <h1>3</h1>
-                                <h1 className='username'>jesadasdasdasde</h1></div>
+                            <div className="userInfo">
+                                <h3>3</h3>
+                                <h3 className='username'>jesadasdasdasde</h3></div>
 
                             <div className="money">
-                                <h1 className='cash'>10022</h1>
-                                <h1>12</h1>
+                                <h3 className='cash'>10022</h3>
+                                <h3 className='assets'>12</h3>
                             </div>
 
 
