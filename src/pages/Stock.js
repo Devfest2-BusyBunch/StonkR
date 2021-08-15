@@ -66,8 +66,8 @@ const Stock = () => {
 
 	const placeOrder = async e => {
 		e.preventDefault();
-		const { option, quantity } = inputValues;
-		console.log(option, quantity);
+		let { option, quantity } = inputValues;
+		quantity = Number(quantity);
 		if (quantity < 0) {
 			console.log("not valid");
 			return;
@@ -84,11 +84,8 @@ const Stock = () => {
 				return;
 			}
 
-			console.log(data);
-
-			const cash = data.cash;
-			console.log("cash", cash);
-			getQuote();
+			const cash = data[0].cash;
+			await getQuote();
 			const price = quote.latestPrice;
 
 			if (cash < price * quantity) {
@@ -109,21 +106,30 @@ const Stock = () => {
 
 			const { data: portfolioData, error: portfolioError } = await supabase
 				.from("portfolio")
-				.select("user_id, symbol")
-				.eq("user_id", userID);
+				.select("user, symbol")
+				.eq("user", userID);
+
+			console.log("pdata", portfolioData);
+			console.log(portfolioError);
 
 			if (!portfolioData) {
 				const { data: portfolioInsertData, error: portfolioInsertError } =
 					await supabase
 						.from("portfolio")
 						.insert([{ user: userID, symbol, quantity }]);
+
+				console.log(portfolioInsertData);
+				console.log(portfolioInsertError);
 			} else {
 				const { data: portfolioUpdateData, error: portfolioUpdateError } =
 					await supabase
 						.from("portfolio")
 						.update([{ quantity: portfolioData.quantity + quantity }])
-						.eq("user_id", userID)
+						.eq("user", userID)
 						.eq("symbol", symbol);
+
+				console.log(portfolioUpdateData);
+				console.log(portfolioUpdateError);
 			}
 		}
 	};
