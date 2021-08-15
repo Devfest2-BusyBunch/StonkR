@@ -81,3 +81,8 @@
 .about-stonkr {
     font-family: "Quicksand", sans-serif;
 }
+
+.meet-dev-button {
+    text-decoration: none !important;
+    width: 50%;
+}

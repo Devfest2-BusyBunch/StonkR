@@ -1,6 +1,8 @@
 import { Box, Heading, HStack, Image, Text } from "@chakra-ui/react";
 import aboutsvg from "../aboutsvg.svg";
 
+import MeetDevelopers from "components/MeetDevelopers";
+
 const About = () => {
     return (
         <Box>
@@ -19,7 +21,6 @@ const About = () => {
                 fontSize="40px"
                 marginTop="80px"
                 marginBottom="50px"
-                color="white"
                 className="about-stonkr"
             >
                 StonkR
@@ -77,13 +78,43 @@ const About = () => {
             </HStack>
             <Text
                 as="h2"
-                fontSize="30px"
-                marginTop="100px"
-                marginBottom="0px"
-                color="white"
+                fontSize="35px"
+                marginTop="120px"
+                marginBottom="70px"
+                className="about-stonkr"
             >
                 Meet the Developer Team
             </Text>
+            <HStack spacing="20px">
+                <MeetDevelopers
+                    name="Arihant Bansal"
+                    githubpfp="https://avatars.githubusercontent.com/u/17180950?v=4"
+                    linkedinbtn={"https://www.linkedin.com/in/arihantbansal/"}
+                    githubbtn={"https://github.com/arihantbansal"}
+                />
+                <MeetDevelopers
+                    name="Piyush Mohite"
+                    githubpfp="https://avatars.githubusercontent.com/u/75901900?v=4"
+                    linkedinbtn={
+                        "https://www.linkedin.com/in/piyush-mohite-2b66421ba/"
+                    }
+                    githubbtn={"https://github.com/git-pi-e"}
+                />
+                <MeetDevelopers
+                    name="Pranay Varshney"
+                    githubpfp="https://avatars.githubusercontent.com/u/75934932?v=4"
+                    linkedinbtn={
+                        "https://www.linkedin.com/in/pranay-varshney-43b677204/"
+                    }
+                    githubbtn={"https://github.com/pranayvarshney"}
+                />
+                <MeetDevelopers
+                    name="Swarnab Garang"
+                    githubpfp="https://avatars.githubusercontent.com/u/72680953?v=4"
+                    linkedinbtn={"https://www.linkedin.com/in/swarnabgarang/"}
+                    githubbtn={"https://github.com/swarnabgarang"}
+                />
+            </HStack>
         </Box>
     );
 };
