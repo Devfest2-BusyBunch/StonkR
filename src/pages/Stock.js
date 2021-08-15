@@ -23,7 +23,7 @@ import {
 	RouterLink,
 } from "@chakra-ui/react";
 
-import { CheckIcon } from "@chakra-ui/icons";
+import { ArrowRightIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
@@ -227,9 +227,9 @@ const Stock = () => {
 		<VStack>
 			<Container>
 				<Text>
-					{quote.companyName} - ${quote.latestPrice}
+					{quote.companyName} : ${quote.latestPrice}
 					<br />
-					{inputValues?.option} - {inputValues?.quantity}
+					{inputValues?.option}  {inputValues?.quantity}
 				</Text>
 				<FormControl mt={2} isRequired>
 					<FormLabel mt={1}>Trade Option</FormLabel>
@@ -259,7 +259,8 @@ const Stock = () => {
 				{quote && (
 					<Center py={6}>
 						<Box
-							maxW={"330px"}
+							maxW={"700px"}
+							minW={"350px"}
 							w={"full"}
 							bg={v1}
 							boxShadow={"2xl"}
@@ -286,12 +287,52 @@ const Stock = () => {
 
 							<Box bg={v4} px={6} py={10}>
 								<List spacing={3}>
-									{Object.keys(quote).map(key => (
+									{/* {Object.keys(quote).map(key => (
 										<ListItem key={key}>
 											<ListIcon as={CheckIcon} color="green.400" />
 											{key}: {quote[key]}{" "}
 										</ListItem>
-									))}
+									))} */}
+									<ListItem>
+										<ListIcon as={ArrowRightIcon} color="green.400" />
+										Latest Price : {quote.latestPrice}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Low : {quote.low}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										High : {quote.high}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Open : {quote.open}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Close : {quote.close}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Change : {quote.change}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Volume : {quote.volume}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										P/E Ratio : {quote.peRatio}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										YTD Change : {quote.ytdChange}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Change : {quote.changePercent} %
+									</ListItem>
 								</List>
 							</Box>
 						</Box>

@@ -28,7 +28,7 @@ const PriceWrapper = ({ children }) => {
 	);
 };
 
-export default function Leaderboard() {
+const Leaderboard = () => {
 	return (
 		<Box py={4}>
 			<VStack spacing={1.5} textAlign="center">
@@ -205,4 +205,6 @@ export default function Leaderboard() {
 			</Stack>
 		</Box>
 	);
-}
+};
+
+export default Leaderboard;
