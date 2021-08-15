@@ -43,14 +43,15 @@ export default function SocialProfileSimple({
                     {name}
                 </Heading>
                 <Text fontWeight={600} color={"gray.500"} mb={4}>
-                    Crew @ DevSoc BITS Goa
+                    Undergrad @ BITS Goa
                 </Text>
 
                 <Stack mt={8} direction={"row"} spacing={4}>
                     <Link className="meet-dev-button" href={linkedinbtn}>
                         <Button
                             flex={1}
-                            width={"-moz-fit-content"}
+                            height="50px"
+                            width="50px"
                             fontSize={"sm"}
                             rounded={"full"}
                             bg={"blue.400"}
@@ -71,16 +72,17 @@ export default function SocialProfileSimple({
                                 bg: "blue.200",
                             }}
                         >
-                            <FaLinkedin />
+                            <FaLinkedin className="meet-dev-socials" />
                         </Button>
                     </Link>
                     <Link className="meet-dev-button" href={githubbtn}>
                         <Button
                             flex={1}
+                            height="50px"
+                            width="50px"
                             fontSize={"sm"}
                             rounded={"full"}
                             bg={"gray.500"}
-                            width={"-moz-fit-content"}
                             color={"white"}
                             boxShadow={
                                 "0px 1px 25px -5px rgb(140 140 140 / 48%), 0 10px 10px -5px rgb(140 140 140 / 43%)"
@@ -92,7 +94,7 @@ export default function SocialProfileSimple({
                                 bg: "gray.600",
                             }}
                         >
-                            <FaGithub />
+                            <FaGithub className="meet-dev-socials" />
                         </Button>
                     </Link>
                 </Stack>
