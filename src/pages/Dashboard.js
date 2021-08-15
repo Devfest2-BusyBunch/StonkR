@@ -24,20 +24,24 @@ const Dashboard = () => {
 
 	return (
 		<>
-			
-		<Box>
 			<Box>
-				{userName ? <Heading>Welcome {userName}</Heading> : console.log("err")}
+				<Box>
+					{userName ? (
+						<Heading>Welcome {userName}</Heading>
+					) : (
+						console.log("err")
+					)}
+				</Box>
+				<Box className="container side-bar">
+					<Trending />
+				</Box>
+				<Box>
+					<Portfolio />
+				</Box>
+				<Box width={"min"} className="container chart_outer">
+					<Candle />
+				</Box>
 			</Box>
-			<Box className="container side-bar">
-				<Trending />
-			</Box>
-				<Box><Portfolio /></Box>
-			<Box width={'min'} className="container chart_outer">
-				<Candle />
-			</Box>
-		
-		</Box>
 		</>
 	);
 };
