@@ -53,12 +53,16 @@ const BitcoinCalculator = () => {
                         <label className="input-label">Amount (in USD): </label>
                     </GridItem>
                     <GridItem>
-                        <NumberInput>
+                        <NumberInput min={50}>
                             <NumberInputField
                                 placeholder="Amount"
                                 value={amount}
                                 onChange={(e) => {
-                                    setAmount(e.target.value);
+                                    setAmount(
+                                        e.target.value > 50
+                                            ? e.target.value
+                                            : 50
+                                    );
                                 }}
                             />
                         </NumberInput>

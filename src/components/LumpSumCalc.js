@@ -43,22 +43,28 @@ const LumpSumCalc = () => {
                 <Flex>
                     <FormControl className="calc_item">
                         <FormLabel width={220}>Amount in INR:</FormLabel>
-                        <NumberInput width={220}>
+                        <NumberInput width={220} min={500}>
                             <NumberInputField
                                 placeholder="Amount"
                                 value={amount}
                                 onChange={(e) => {
-                                    setAmount(e.target.value);
+                                    setAmount(
+                                        e.target.value > 500
+                                            ? e.target.value
+                                            : 500
+                                    );
                                 }}
                             />
                         </NumberInput>
                         <FormLabel width={220}>Number of Years:</FormLabel>
-                        <NumberInput width={220}>
+                        <NumberInput width={220} min={2}>
                             <NumberInputField
                                 placeholder="Years"
                                 value={years}
                                 onChange={(e) => {
-                                    setYears(e.target.value);
+                                    setYears(
+                                        e.target.value > 2 ? e.target.value : 2
+                                    );
                                 }}
                             />
                         </NumberInput>
@@ -66,12 +72,14 @@ const LumpSumCalc = () => {
                             {" "}
                             Expected Rate of Return (in %):{" "}
                         </FormLabel>
-                        <NumberInput width={220}>
+                        <NumberInput width={220} min={2}>
                             <NumberInputField
                                 placeholder="Rate"
                                 value={rate}
                                 onChange={(e) => {
-                                    setRate(e.target.value);
+                                    setRate(
+                                        e.target.value > 2 ? e.target.value : 2
+                                    );
                                 }}
                             />
                         </NumberInput>
