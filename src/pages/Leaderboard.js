@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	Box,
 	Stack,
@@ -29,6 +29,8 @@ const PriceWrapper = ({ children }) => {
 };
 
 const Leaderboard = () => {
+	useEffect(() => {}, []);
+
 	return (
 		<Box py={4}>
 			<VStack spacing={1.5} textAlign="center">
@@ -44,11 +46,11 @@ const Leaderboard = () => {
 				py={10}>
 				<PriceWrapper>
 					<Box py={4} px={12}>
-						<Text fontWeight="500" fontSize="2xl">
+						<Text fontWeight="500" fontSize="xl">
 							Second
 						</Text>
 						<HStack justifyContent="center">
-							<Text fontSize="4xl" fontWeight="900">
+							<Text fontSize="3xl" fontWeight="900">
 								username
 							</Text>
 						</HStack>
@@ -58,8 +60,8 @@ const Leaderboard = () => {
 						py={4}
 						borderBottomRadius={"xl"}>
 						<List spacing={3} textAlign="start" px={12}>
-							<ListItem>$asdasdas - Cash</ListItem>
-							<ListItem>$asdasdas - Assets</ListItem>
+							<ListItem>Cash - $xyz</ListItem>
+							<ListItem>Assets - $xyz</ListItem>
 						</List>
 					</VStack>
 				</PriceWrapper>
@@ -84,11 +86,11 @@ const Leaderboard = () => {
 							</Text>
 						</Box>
 						<Box py={4} px={12}>
-							<Text fontWeight="500" fontSize="4xl">
+							<Text fontWeight="500" fontSize="3xl">
 								First
 							</Text>
 							<HStack justifyContent="center">
-								<Text fontSize="5xl" fontWeight="900">
+								<Text fontSize="4xl" fontWeight="900">
 									username
 								</Text>
 							</HStack>
@@ -98,19 +100,19 @@ const Leaderboard = () => {
 							py={4}
 							borderBottomRadius={"xl"}>
 							<List spacing={3} textAlign="start" px={12}>
-								<ListItem>$asdasdas - Cash</ListItem>
-								<ListItem>$asdasdas - Assets</ListItem>
+								<ListItem>Cash - $xyz</ListItem>
+								<ListItem>Assets - $xyz</ListItem>
 							</List>
 						</VStack>
 					</Box>
 				</PriceWrapper>
 				<PriceWrapper>
 					<Box py={4} px={12}>
-						<Text fontWeight="500" fontSize="2xl">
+						<Text fontWeight="500" fontSize="xl">
 							Third
 						</Text>
 						<HStack justifyContent="center">
-							<Text fontSize="4xl" fontWeight="900">
+							<Text fontSize="3xl" fontWeight="900">
 								username
 							</Text>
 						</HStack>
@@ -137,15 +139,15 @@ const Leaderboard = () => {
 						<Flex className="leaderboardLabel">
 							<Box className="userInfo">
 								{" "}
-								<Heading fontSize={"3xl"}>Rank </Heading>
-								<Heading fontSize={"3xl"} className="username">
+								<Heading fontSize="2xl">Rank</Heading>
+								<Heading fontSize="2xl" className="username">
 									Username
 								</Heading>
 							</Box>
 
 							<Box className="money">
-								<Heading fontSize={"3xl"} className="cash">
-									Cash($){" "}
+								<Heading fontSize="2xl" className="cash">
+									Cash ($){" "}
 									<Button
 										size="sm"
 										rounded="md"
@@ -162,8 +164,8 @@ const Leaderboard = () => {
 										<TriangleUpIcon w={6} h={6} />
 									</Button>
 								</Heading>
-								<Heading fontSize={"3xl"} className="assets">
-									Assets($){" "}
+								<Heading fontSize="2xl" className="assets">
+									Assets ($){" "}
 									<Button
 										size="sm"
 										rounded="md"
@@ -186,18 +188,18 @@ const Leaderboard = () => {
 					<Box py={2} px={12}>
 						<Flex justifyContent={"space-between"} className="leaderboardLabel">
 							<Box className="userInfo">
-								<Text fontSize={"2xl"} fontWeight="200">
+								<Text fontSize="xl" fontWeight="200">
 									3
 								</Text>
-								<Text fontSize={"2xl"} fontWeight="200" className="username">
+								<Text fontSize="xl" fontWeight="200" className="username">
 									jesadasdasdasde
 								</Text>
 							</Box>
 							<Box className="money">
-								<Text fontSize={"2xl"} fontWeight="200" className="cash">
+								<Text fontSize="xl" fontWeight="200" className="cash">
 									10022
 								</Text>
-								<Text fontSize={"2xl"} fontWeight="200" className="assets">
+								<Text fontSize="xl" fontWeight="200" className="assets">
 									12
 								</Text>
 							</Box>
