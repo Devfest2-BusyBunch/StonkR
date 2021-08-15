@@ -16,7 +16,6 @@ const Dashboard = () => {
 				.from("users")
 				.select("user_id, username")
 				.eq("user_id", userID);
-
 			setUserName(userData[0].username);
 		};
 
