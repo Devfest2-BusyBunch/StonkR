@@ -15,28 +15,25 @@
 	list-style-type: none !important;
 }
 
-.side-bar{
+.side-bar {
 	position: absolute;
 	left: 0;
 }
 
-.leaderboardLabel{
-	
+.leaderboardLabel {
 }
 
-.userInfo{
+.userInfo {
 	display: flex;
-
 }
 
-.money{
+.money {
 	display: flex;
-	
 }
-.username{
-	 width: 300px;
+.username {
+	width: 300px;
 }
-.cash{
+.cash {
 	width: 300px;
 }
 .assets{
