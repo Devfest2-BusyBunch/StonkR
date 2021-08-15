@@ -4,6 +4,7 @@ import { addUserId } from "redux/actions";
 import { useDispatch } from "react-redux";
 // import { Spinner } from "@chakra-ui/react";
 import { supabase } from "supabaseClient";
+import { randName } from "utils/usernameUtils";
 
 // import "./pages.css"
 
@@ -46,7 +47,7 @@ const SawoLogin = ({ loggedIn }) => {
 					// eslint-disable-next-line no-unused-vars
 					const { data, error } = await supabase
 						.from("users")
-						.insert([{ user_id: payload.user_id }]);
+						.insert([{ user_id: payload.user_id, username: randName() }]);
 					console.log(data);
 				}
 			},
