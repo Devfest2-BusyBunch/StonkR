@@ -9,12 +9,9 @@ import {
 	useColorModeValue,
 	List,
 	ListItem,
-	ListIcon,
 	Button,
 	Flex,
-	Spacer,
 } from "@chakra-ui/react";
-import { FaCheckCircle } from "react-icons/fa";
 import { TriangleUpIcon } from "@chakra-ui/icons";
 
 function PriceWrapper({ children }) {
