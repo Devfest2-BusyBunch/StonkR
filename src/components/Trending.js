@@ -22,7 +22,6 @@ function StatsCard(props) {
     const { title, stat, icon } = props;
     return (
         <Stat
-           
             bg= 'cyan.400'
             color='white'
             
@@ -55,17 +54,19 @@ function StatsCard(props) {
 function Trending() {
     const [trends, setTrends] = useState([])
 
-    useEffect(() => {
-        axios({
-            method: "get",
-            url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=7&page=1&sparkline=false&price_change_percentage=14d",
+	useEffect(() => {
+		axios({
+			method: "get",
+			url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=7&page=1&sparkline=false&price_change_percentage=14d",
+		})
+			.then(res => res.data)
+			.then(doc => {
+				setTrends(doc);
+			})
+			.catch(err => console.log(err));
+	}, []);
 
-        }).then(res => res.data).then(doc => {
-            setTrends(doc)
-        })
-            .catch((err) => console.log(err))
-
-    }, [])
+        
     return (
         <Box maxW="7xl" mx={'auto'} pt={1} px={{ base: 2, sm: 12, md: 17 }}>
             <SimpleGrid rows={{ base: 1, md:3 }} spacing={{ base: 1, lg: 2}}>
@@ -75,7 +76,7 @@ function Trending() {
                         return <StatsCard title={trend.name}
                             stat={trend.price_change_percentage_24h}
                             icon={trend.price_change_percentage_24h>0 ? <FiTrendingUp size={'1em'} /> : <FiTrendingDown size={'1em'} />}
-                          />
+                        />
                         
                     }
                 )}

@@ -16,14 +16,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { supabase } from "supabaseClient";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const Stock = () => {
 	const [quote, setQuote] = useState({});
 	const [inputValues, setInputValues] = useState(null);
-
+	const [userID, setUserID] = useState(null);
 	const { symbol } = useParams();
-	const userID = localStorage.getItem("userID");
 
 	useEffect(() => {
 		const getQuote = async () => {
@@ -34,6 +33,7 @@ const Stock = () => {
 			setQuote(res.data);
 		};
 
+		setUserID(JSON.parse(localStorage.getItem("userID")));
 		getQuote();
 	}, [symbol]);
 
@@ -74,22 +74,55 @@ const Stock = () => {
 			return;
 		}
 
-		let { data: users, error } = await supabase
-			.from("users")
-			.select("user_id, cash")
-			.eq("user_id", userID);
-		if (!error) {
-			console.log(users);
-			// return;
-		}
-
 		if (option === "Buy") {
-			const { data: userData, error } = await supabase
+			const { data, error } = await supabase
 				.from("users")
-				.select("*")
-				.filter("user_id", userID);
-			console.log(userData);
-			console.log(error);
+				.select("user_id, cash")
+				.eq("user_id", userID);
+
+			if (error) {
+				console.log("error");
+				return;
+			}
+
+			const cash = data.cash;
+			getQuote();
+			const price = quote.latestPrice;
+
+			if (cash < price * quantity) {
+				console.log("not enough cash");
+				return;
+			}
+
+			const { data: updated, error: updatedError } = await supabase
+				.from("users")
+				.update({ cash: cash - price * quantity })
+				.eq("user_id", userID);
+
+			const { data: historyData, error: historyError } = await supabase
+				.from("history")
+				.insert([
+					{ user: userID, symbol: symbol, operation: "buy", price, quantity },
+				]);
+
+			const { data: portfolioData, error: portfolioError } = await supabase
+				.from("portfolio")
+				.select("user_id, symbol")
+				.eq("user_id", userID);
+
+			if (!portfolioData) {
+				const { data: portfolioInsertData, error: portfolioInsertError } =
+					await supabase
+						.from("portfolio")
+						.insert([{ user: userID, symbol, quantity }]);
+			} else {
+				const { data: portfolioUpdateData, error: portfolioUpdateError } =
+					await supabase
+						.from("portfolio")
+						.update([{ quantity: portfolioData.quantity + quantity }])
+						.eq("user_id", userID)
+						.eq("symbol", symbol);
+			}
 		}
 	};
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ColorMode from "components/ColorMode";
 import Header from "components/Header";
-import LandingPage from "pages/LandingPage";
+import Footer from "components/Footer";
 import { ChakraProvider, Box, VStack, Grid } from "@chakra-ui/react";
 import {
 	BrowserRouter as Router,
@@ -10,15 +10,16 @@ import {
 	Redirect,
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { addUserId } from "redux/actions";
 
 import customTheme from "utils/theme";
+import LandingPage from "pages/LandingPage";
 import Dashboard from "pages/Dashboard";
 import SawoLogin from "pages/SawoLogin";
 import Calculator from "pages/Calculator";
 import Quote from "pages/Quote";
 import Stock from "pages/Stock";
-
-import { addUserId } from "redux/actions";
+import About from "pages/About";
 
 const App = () => {
 	let [token] = useState(false);
@@ -32,7 +33,7 @@ const App = () => {
 			? localStorage.getItem("userID")
 			: "";
 		dispatch(addUserId(userID));
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<ChakraProvider theme={customTheme}>
@@ -64,10 +65,14 @@ const App = () => {
 								<Route path="/signin" exact>
 									{token ? <Redirect to="/dashboard" /> : <SawoLogin />}
 								</Route>
+								<Route path="/about" exact>
+									<About />
+								</Route>
 							</Switch>
 						</VStack>
 					</Grid>
 				</Box>
+				<Footer />
 			</Router>
 			
 		</ChakraProvider>
