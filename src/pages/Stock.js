@@ -22,7 +22,7 @@ const Stock = () => {
 	const [inputValues, setInputValues] = useState(null);
 
 	const { symbol } = useParams();
-	//const stateName = useSelector(state => state.userId);
+	const userID = localStorage.getItem("userID");
 
 	useEffect(() => {
 		const getQuote = async () => {
@@ -55,7 +55,7 @@ const Stock = () => {
 			const { data, error } = await supabase
 				.from("users")
 				.select("cash")
-				.filter("user_id", "eq");
+				.filter("user_id", "eq", userID);
 		}
 	};
 
