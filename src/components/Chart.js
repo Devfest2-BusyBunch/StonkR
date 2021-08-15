@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import dayjs from "dayjs";
+import { Box } from "@chakra-ui/react";
 
 const Candle = () => {
 	const [series, setSeries] = useState([]);
@@ -302,16 +303,16 @@ const Candle = () => {
 	};
 
 	return (
-		<div id="chart">
-			<div className="candlestick-chart">
+		<Box id="chart">
+			<Box className="candlestick-chart">
 				<Chart
 					options={options}
 					series={series}
 					type="candlestick"
 					width="500"
 				/>
-			</div>
-		</div>
+			</Box>
+		</Box>
 	);
 };
 

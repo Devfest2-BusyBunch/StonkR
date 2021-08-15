@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 import {
 	Box,
 	Flex,
@@ -15,7 +14,7 @@ import { FiTrendingDown, FiTrendingUp } from "react-icons/fi";
 const StatsCard = ({ title, stat, icon }) => {
 	return (
 		<Stat
-			bg={ useColorModeValue("green.500", "green.500") }
+			bg={useColorModeValue("green.500", "green.500")}
 			color="white"
 			px={{ base: 2, md: 4 }}
 			py={"2"}

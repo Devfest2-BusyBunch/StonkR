@@ -83,7 +83,7 @@ const SIPCalc = () => {
 					</FormControl>
 					<Spacer />
 
-					<div className="expected_output_sip">
+					<Box className="expected_output_sip">
 						<Text as="h1" fontSize="30px" width="240px" marginBottom="50px">
 							Expected Amount
 						</Text>
@@ -127,7 +127,7 @@ const SIPCalc = () => {
 								₹ {infProfits}
 							</Text>
 						</Box>
-					</div>
+					</Box>
 				</Flex>
 			</Box>
 

@@ -15,7 +15,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 const Logo = props => {
 	return (
-		<div className="footer-topdiv">
+		<Box className="footer-topdiv">
 			<Image
 				src={"https://foodict.s3.ap-south-1.amazonaws.com/misc/coins+(1).png"}
 				height="40px"
@@ -23,7 +23,7 @@ const Logo = props => {
 				{...props}
 			/>
 			<Heading color={"primary.400"}>AppName</Heading>
-		</div>
+		</Box>
 	);
 };
 

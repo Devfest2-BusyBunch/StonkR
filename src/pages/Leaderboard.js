@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { TriangleUpIcon } from "@chakra-ui/icons";
 
-function PriceWrapper({ children }) {
+const PriceWrapper = ({ children }) => {
 	return (
 		<Box
 			mb={4}
@@ -26,7 +26,7 @@ function PriceWrapper({ children }) {
 			{children}
 		</Box>
 	);
-}
+};
 
 export default function Leaderboard() {
 	return (
@@ -135,13 +135,13 @@ export default function Leaderboard() {
 				<PriceWrapper>
 					<Box py={2} px={12}>
 						<Flex className="leaderboardLabel">
-							<div className="userInfo">
+							<Box className="userInfo">
 								{" "}
 								<h1>Rank </h1>
 								<h1 className="username">Username</h1>
-							</div>
+							</Box>
 
-							<div className="money">
+							<Box className="money">
 								<h1 className="cash">
 									Cash($){" "}
 									<Button
@@ -178,7 +178,7 @@ export default function Leaderboard() {
 										<TriangleUpIcon w={6} h={6} />
 									</Button>
 								</h1>
-							</div>
+							</Box>
 						</Flex>
 					</Box>
 					<Box py={2} px={12}>
