@@ -68,8 +68,8 @@ const MenuLinks = ({ isOpen }) => {
 				direction={["column", "row", "row", "row"]}
 				pt={[4, 4, 0, 0]}>
 				<MenuItem to="/">Home</MenuItem>
-				<MenuItem to="/calculator"> Calculators </MenuItem>
-				<MenuItem to="/quote">Quotes </MenuItem>
+				<MenuItem to="/calculator">Calculators</MenuItem>
+				<MenuItem to="/quote">Quotes</MenuItem>
 				<MenuItem to="/signin" isLast>
 					<Button
 						size="sm"
