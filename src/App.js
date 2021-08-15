@@ -32,7 +32,7 @@ const App = () => {
 			? localStorage.getItem("userID")
 			: "";
 		dispatch(addUserId(userID));
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<ChakraProvider theme={customTheme}>
