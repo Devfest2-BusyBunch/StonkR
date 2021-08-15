@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ColorMode from "components/ColorMode";
 import Header from "components/Header";
+import LandingPage from "pages/LandingPage";
 import { ChakraProvider, Box, VStack, Grid } from "@chakra-ui/react";
 import {
     BrowserRouter as Router,
@@ -11,7 +12,7 @@ import {
 import { useDispatch } from "react-redux";
 
 import customTheme from "utils/theme";
-import LandingPage from "pages/LandingPage";
+import Dashboard from "pages/Dashboard";
 import SawoLogin from "pages/SawoLogin";
 import Calculator from "pages/Calculator";
 import Quote from "pages/Quote";
@@ -46,31 +47,34 @@ const App = () => {
                             <Switch>
                                 <Route exact path="/">
                                     {token ? (
-                                        <LandingPage />
+                                        <Dashboard />
                                     ) : (
-                                        <Redirect to="/signin" />
+                                        <Redirect to="/landing" />
                                     )}
                                 </Route>
                                 <Route exact path="/calculator">
                                     {token ? (
                                         <Calculator />
                                     ) : (
-                                        <Redirect to="/signin" />
+                                        <Redirect to="/landing" />
                                     )}
                                 </Route>
                                 <Route exact path="/quote">
                                     {token ? (
                                         <Quote />
                                     ) : (
-                                        <Redirect to="/signin" />
+                                        <Redirect to="/landing" />
                                     )}
                                 </Route>
                                 <Route exact path="/stocks/:symbol">
                                     {token ? (
                                         <Stock />
                                     ) : (
-                                        <Redirect to="/signin" />
+                                        <Redirect to="/landing" />
                                     )}
+                                </Route>
+                                <Route path="/landing" exact>
+                                    <LandingPage />
                                 </Route>
                                 <Route path="/signin" exact>
                                     <SawoLogin />
