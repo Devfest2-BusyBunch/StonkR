@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
 	VStack,
 	Text,
@@ -51,11 +52,27 @@ const Stock = () => {
 	const placeOrder = async e => {
 		e.preventDefault();
 		const { option, quantity } = inputValues;
+		console.log(option, quantity);
+		if (quantity < 0) {
+			console.log("not valid");
+			return;
+		}
 		if (option === "Buy") {
-			const { data, error } = await supabase
+			const { data: cash, error } = await supabase
 				.from("users")
 				.select("cash")
-				.filter("user_id", "eq", userID);
+				.eq("user_id", userID);
+
+			console.log(cash);
+			if (cash < quantity * quote.latestPrice) {
+				console.log("not enough cash");
+				return;
+			}
+			const res = await supabase
+				.from("users")
+				.update("cash", "dec", quantity * quote.latestPrice)
+				.eq("user_id", userID);
+			console.log(res);
 		}
 	};
 
@@ -77,14 +94,18 @@ const Stock = () => {
 		<VStack>
 			<Container>
 				<Text>
-					{quote.companyName} - {quote.latestPrice}
+					{quote.companyName} - ${quote.latestPrice}
+					<br />
+					{inputValues?.option} - {inputValues?.quantity}
 				</Text>
-				<FormControl mt={2} isRequired onSubmit={placeOrder}>
+				<FormControl mt={2} isRequired>
+					<FormLabel mt={1}>Trade Option</FormLabel>
 					<Select
 						name="option"
 						placeholder="Select trade option"
 						value={inputValues?.option || ""}
-						onChange={handleInputChange}>
+						onChange={handleInputChange}
+						isRequired>
 						<option>Buy</option>
 						<option>Sell</option>
 					</Select>
@@ -94,8 +115,9 @@ const Stock = () => {
 						name="quantity"
 						value={inputValues?.quantity || ""}
 						onChange={handleInputChange}
+						min={0}
 					/>
-					<Button type="submit" mt={2}>
+					<Button type="submit" onClick={placeOrder} mt={2}>
 						Place Order
 					</Button>
 				</FormControl>
