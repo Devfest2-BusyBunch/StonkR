@@ -24,21 +24,17 @@ const App = () => {
 
     token = localStorage.getItem("token");
 
-    // useEffect(() => {
-    // 	setToken(localStorage.getItem("token"));
-    // }, []);
-
     return (
         <Provider store={store}>
             <ChakraProvider theme={customTheme}>
-                <div className="top-bar">
-                    <Header />
-                    <ColorMode />
-                </div>
-                <Box textAlign="center" fontSize="xl">
-                    <Grid minH="100vh" p={3}>
-                        <VStack spacing={8}>
-                            <Router>
+                <Router>
+                    <div className="top-bar">
+                        <Header />
+                        <ColorMode />
+                    </div>
+                    <Box textAlign="center" fontSize="xl">
+                        <Grid minH="100vh" p={3}>
+                            <VStack spacing={8}>
                                 <Switch>
                                     <Route exact path="/">
                                         {token ? (
@@ -72,10 +68,10 @@ const App = () => {
                                         <SawoLogin />
                                     </Route>
                                 </Switch>
-                            </Router>
-                        </VStack>
-                    </Grid>
-                </Box>
+                            </VStack>
+                        </Grid>
+                    </Box>
+                </Router>
             </ChakraProvider>
         </Provider>
     );
