@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ColorMode from "components/ColorMode";
 import Header from "components/Header";
+import LandingPage from "pages/LandingPage";
 import { ChakraProvider, Box, VStack, Grid } from "@chakra-ui/react";
 import {
 	BrowserRouter as Router,
@@ -11,7 +12,7 @@ import {
 import { useDispatch } from "react-redux";
 
 import customTheme from "utils/theme";
-import LandingPage from "pages/LandingPage";
+import Dashboard from "pages/Dashboard";
 import SawoLogin from "pages/SawoLogin";
 import Calculator from "pages/Calculator";
 import Quote from "pages/Quote";
@@ -45,7 +46,10 @@ const App = () => {
 						<VStack spacing={8}>
 							<Switch>
 								<Route exact path="/">
-									{token ? <LandingPage /> : <Redirect to="/signin" />}
+									<LandingPage />
+								</Route>
+								<Route exact path="/dashboard">
+									{token ? <Dashboard /> : <Redirect to="/" />}
 								</Route>
 								<Route exact path="/calculator">
 									{token ? <Calculator /> : <Redirect to="/signin" />}
@@ -57,7 +61,7 @@ const App = () => {
 									{token ? <Stock /> : <Redirect to="/signin" />}
 								</Route>
 								<Route path="/signin" exact>
-									<SawoLogin />
+									{token ? <Redirect to="/dashboard" /> : <SawoLogin />}
 								</Route>
 							</Switch>
 						</VStack>

@@ -60,6 +60,13 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
     );
 };
 
+const signOut = () => {
+    localStorage.removeItem("userID");
+    localStorage.removeItem("token");
+    localStorage.removeItem("payload");
+    window.location.reload();
+};
+
 const MenuLinks = ({ isOpen }) => {
     return (
         <Box
@@ -73,10 +80,10 @@ const MenuLinks = ({ isOpen }) => {
                 direction={["column", "row", "row", "row"]}
                 pt={[4, 4, 0, 0]}
             >
-                <MenuItem to="/">Home</MenuItem>
+                <MenuItem to="/dashboard">Dashboard</MenuItem>
                 <MenuItem to="/calculator">Calculators</MenuItem>
                 <MenuItem to="/quote">Quotes</MenuItem>
-                <MenuItem to="/signin" isLast>
+                <MenuItem to="/signin">
                     {!localStorage.getItem("userID") && (
                         <Button
                             size="sm"
@@ -106,6 +113,36 @@ const MenuLinks = ({ isOpen }) => {
                         </Button>
                     )}
                 </MenuItem>
+                <MenuItem onClick={() => signOut()} isLast>
+                    {localStorage.getItem("userID") && (
+                        <Button
+                            size="sm"
+                            rounded="md"
+                            color={[
+                                "primary.500",
+                                "primary.500",
+                                "white",
+                                "white",
+                            ]}
+                            bg={[
+                                "white",
+                                "white",
+                                "primary.500",
+                                "primary.500",
+                            ]}
+                            _hover={{
+                                bg: [
+                                    "primary.100",
+                                    "primary.100",
+                                    "primary.600",
+                                    "primary.600",
+                                ],
+                            }}
+                        >
+                            Sign Out
+                        </Button>
+                    )}
+                </MenuItem>
             </Stack>
         </Box>
     );
@@ -122,7 +159,7 @@ const NavBarContainer = ({ children, ...props }) => {
             mb={8}
             p={8}
             bg={["primary.500", "primary.500", "transparent", "transparent"]}
-            color={["white", "white", "primary.700", "primary.700"]}
+            color={["white", "white", "primary.700", "primary.500"]}
             {...props}
         >
             {children}
