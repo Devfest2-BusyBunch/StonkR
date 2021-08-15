@@ -76,7 +76,8 @@ const Quote = () => {
 				{quote && (
 					<Center py={6}>
 						<Box
-							maxW={"330px"}
+							maxW={"700px"}
+							minW={"350px"}
 							w={"full"}
 							bg={v1}
 							boxShadow={"2xl"}
