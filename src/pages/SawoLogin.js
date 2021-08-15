@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 // import { Spinner } from "@chakra-ui/react";
 import { supabase } from "supabaseClient";
 
+// import "./pages.css"
+
 const API_KEY = process.env.REACT_APP_SAWO_API_KEY;
 
 const SawoLogin = ({ loggedIn }) => {
@@ -62,8 +64,8 @@ const SawoLogin = ({ loggedIn }) => {
 	}
 	return (
 		<div className="containerStyle">
-			<section>
-				{/* {!loaded && (
+			{/* <section> */}
+			{/* {!loaded && (
 					<Spinner
 						thickness="4px"
 						speed="0.65s"
@@ -72,23 +74,29 @@ const SawoLogin = ({ loggedIn }) => {
 						size="xl"
 					/>
 				)} */}
-				{/* {loaded && ( */}
-				<>
-					<h2 className="title">
-						User Logged In : {isUserLoggedIn.toString()}
-					</h2>
+			{/* {loaded && ( */}
+			{/* <> */}
+			<h2 className="title">
+				User Logged In : {isUserLoggedIn.toString()}
+			</h2>
 
-					{!isUserLoggedIn ? (
-						<div className="formContainer" id="sawo-container"></div>
-					) : (
-						<div className="loggedin">
-							<h2>User Successful Login</h2>
-							<div>UserId: {payload.user_id}</div>
-							<div>Verification Token: {payload.verification_token}</div>
-						</div>
-					)}
-				</>
-			</section>
+			{!isUserLoggedIn ? (
+				<div
+					className="formContainer"
+					id="sawo-container"
+					style={{height: '300px', width: '300px'}}
+				></div>
+			) : (
+				<div className="loggedin">
+					<h2>User Successful Login</h2>
+					<div>UserId: {payload.user_id}</div>
+					<div>
+						Verification Token: {payload.verification_token}
+					</div>
+				</div>
+			)}
+			{/* </>
+            </section> */}
 		</div>
 	);
 };
