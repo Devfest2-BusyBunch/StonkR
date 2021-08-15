@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, Redirect } from "react-router-dom";
 
 const Quote = () => {
 	const [quote, setQuote] = useState({});
@@ -47,9 +47,16 @@ const Quote = () => {
 				/>
 				<FormHelperText>Enter the stock symbol</FormHelperText>
 				<Button
+
 					colorScheme="teal"
 					size="md"
-					onClick={getQuote}
+					onClick={() => {
+						getQuote();
+						window.location.href = `/stocks/${symbol.toLowerCase()}`;
+						// if (symbol) {
+						// 	return <Redirect to={`/stocks/${symbol.toLowerCase()}`} />
+						// }
+					}}
 					mt="2"
 					type="submit">
 					Get Quote!
