@@ -20,7 +20,7 @@ import {
 	ListIcon,
 	useColorModeValue,
 } from "@chakra-ui/react";
-import { CheckIcon } from "@chakra-ui/icons";
+import { ArrowRightIcon, CheckCircleIcon } from "@chakra-ui/icons";
 
 import { useState } from "react";
 import axios from "axios";
@@ -125,20 +125,28 @@ const Quote = () => {
 							<Box bg={v4} px={6} py={10}>
 								<List spacing={3}>
 									<ListItem>
-										<ListIcon as={CheckIcon} color="green.400" />
-										primaryExchange: {quote.primaryExchange}
+										<ListIcon as={ArrowRightIcon} color="green.400" />
+										Latest Price : {quote.latestPrice}
 									</ListItem>
 									<ListItem>
-										<ListIcon as={CheckIcon} color="green.400" />
-										currency: {quote.currency}
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Primary Exchange : {quote.primaryExchange}
 									</ListItem>
 									<ListItem>
-										<ListIcon as={CheckIcon} color="green.400" />
-										high: {quote.high}
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Low : {quote.low}
 									</ListItem>
 									<ListItem>
-										<ListIcon as={CheckIcon} color="green.400" />
-										low: {quote.low}
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										High : {quote.high}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Open : {quote.open}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Close : {quote.close}
 									</ListItem>
 								</List>
 

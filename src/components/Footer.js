@@ -58,7 +58,6 @@ export default function Footer() {
         <Box
             bg={useColorModeValue("gray.50", "gray.900")}
             color={useColorModeValue("gray.700", "gray.200")}
-            marginTop="80px"
         >
             <Container
                 as={Stack}
@@ -76,11 +75,17 @@ export default function Footer() {
                     <Link as={RouterLink} to="/dashboard">
                         Dashboard
                     </Link>
-                    <Link as={RouterLink} to="/about">
-                        About
+                    <Link as={RouterLink} to="/leaderboard">
+                        Leaderboard
                     </Link>
                     <Link as={RouterLink} to="/quote">
                         Quote
+                    </Link>
+                    <Link as={RouterLink} to="/calculator">
+                        Calculator
+                    </Link>
+                    <Link as={RouterLink} to="/about">
+                        About
                     </Link>
                 </Stack>
             </Container>
