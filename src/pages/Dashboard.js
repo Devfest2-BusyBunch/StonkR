@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Candle from "components/Chart";
 import Trending from "components/Trending";
 import { supabase } from "supabaseClient";
+import Portfolio from "components/Portfolio";
 
 const Dashboard = () => {
 	const [userID, setUserID] = useState(null);
@@ -22,18 +23,22 @@ const Dashboard = () => {
 	}, [userID]);
 
 	return (
+		<>
+			
 		<Box>
 			<Box>
-				<Text>Dashboard</Text>
 				{userName ? <Heading>Welcome {userName}</Heading> : console.log("err")}
 			</Box>
 			<Box className="container side-bar">
 				<Trending />
 			</Box>
-			<Box className="container chart_outer">
+				<Box><Portfolio /></Box>
+			<Box width={'min'} className="container chart_outer">
 				<Candle />
 			</Box>
+		
 		</Box>
+		</>
 	);
 };
 
