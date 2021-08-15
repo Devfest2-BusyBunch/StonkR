@@ -283,6 +283,10 @@ const Stock = () => {
 									</ListItem>
 									<ListItem>
 										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Primary Exchange : {quote.primaryExchange}
+									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
 										Low : {quote.low}
 									</ListItem>
 									<ListItem>
@@ -317,6 +321,11 @@ const Stock = () => {
 										<ListIcon as={CheckCircleIcon} color="green.400" />
 										Change : {quote.changePercent} %
 									</ListItem>
+									<ListItem>
+										<ListIcon as={CheckCircleIcon} color="green.400" />
+										Currency : {quote.currency}
+									</ListItem>
+
 								</List>
 							</Box>
 						</Box>
