@@ -68,19 +68,22 @@ const Stock = () => {
 		e.preventDefault();
 		let { option, quantity } = inputValues;
 		quantity = Number(quantity);
+
 		if (quantity < 0) {
 			console.log("not valid");
 			return;
 		}
 
 		if (option === "Buy") {
+			// BUY begins!
+
 			const { data, error } = await supabase
 				.from("users")
 				.select("user_id, cash")
 				.eq("user_id", userID);
 
 			if (error) {
-				console.log("error");
+				console.log(error);
 				return;
 			}
 
@@ -98,27 +101,16 @@ const Stock = () => {
 				.update({ cash: Number(cash - price * quantity) })
 				.eq("user_id", userID);
 
-			const { data: historyData, error: historyError } = await supabase
-				.from("history")
-				.insert([
-					{ user: userID, symbol: symbol, operation: "buy", price, quantity },
-				]);
-
 			const { data: portfolioData, error: portfolioError } = await supabase
 				.from("portfolio")
 				.select("user, symbol, quantity")
 				.eq("user", userID);
 
-			console.log(portfolioData);
-
-			if (Array.isArray(portfolioData) && portfolioData.length > 0) {
+			if (portfolioData.length === 0) {
 				const { data: portfolioInsertData, error: portfolioInsertError } =
 					await supabase
 						.from("portfolio")
 						.insert([{ user: userID, symbol, quantity }]);
-
-				console.log(portfolioInsertData);
-				console.log(portfolioInsertError);
 			} else {
 				const { data: portfolioUpdateData, error: portfolioUpdateError } =
 					await supabase
@@ -126,9 +118,77 @@ const Stock = () => {
 						.update([{ quantity: portfolioData[0].quantity + quantity }])
 						.eq("user", userID)
 						.eq("symbol", symbol);
+			}
 
-				console.log(portfolioUpdateData);
-				console.log(portfolioUpdateError);
+			const { data: historyData, error: historyError } = await supabase
+				.from("history")
+				.insert([
+					{ user: userID, symbol: symbol, operation: "buy", price, quantity },
+				]);
+		} else if (option === "Sell") {
+			// SELL begins!
+
+			const { data, error } = await supabase
+				.from("users")
+				.select("user_id, cash")
+				.eq("user_id", userID);
+
+			const cash = data[0].cash;
+			await getQuote();
+			const price = quote.latestPrice;
+
+			if (error) {
+				console.log(error);
+				return;
+			}
+
+			const { data: portfolioData, error: portfolioError } = await supabase
+				.from("portfolio")
+				.select("user, symbol, quantity")
+				.eq("user", userID);
+
+			if (portfolioData[0].length === 0) {
+				console.log("no portfolio");
+				return;
+			}
+
+			let currentShares = portfolioData[0].quantity;
+			if (currentShares < quantity) {
+				console.log("not enough shares");
+				return;
+			}
+			currentShares -= quantity;
+
+			const { data: portfolioUpdatedData, error: portfolioUpdateError } =
+				await supabase
+					.from("portfolio")
+					.update({ quantity: currentShares })
+					.eq("user", userID)
+					.eq("symbol", symbol);
+
+			const { data: updatedUser, error: userError } = await supabase
+				.from("users")
+				.update({ cash: Number(cash + price * quantity) })
+				.eq("user_id", userID);
+
+			const { data: historyData, error: historyError } = await supabase
+				.from("history")
+				.insert([
+					{
+						user: userID,
+						symbol: symbol,
+						operation: "sell",
+						price,
+						quantity,
+					},
+				]);
+
+			if (currentShares === 0) {
+				await supabase
+					.from("portfolio")
+					.delete()
+					.eq("user", userID)
+					.eq("symbol", symbol);
 			}
 		}
 	};
