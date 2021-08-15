@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUserId } from "redux/actions";
-
+import Leaderboard from "pages/Leaderboard";
 import customTheme from "utils/theme";
 import LandingPage from "pages/LandingPage";
 import Dashboard from "pages/Dashboard";
@@ -67,6 +67,9 @@ const App = () => {
 								</Route>
 								<Route path="/about" exact>
 									<About />
+								</Route>
+								<Route path="/leaderboard">
+									<Leaderboard></Leaderboard>
 								</Route>
 							</Switch>
 						</VStack>
