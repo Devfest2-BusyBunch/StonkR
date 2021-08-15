@@ -29,18 +29,21 @@ const assets = async userID => {
 
 	if (portfolioData.length > 0) {
 		portfolioData.forEach(async stock => {
-			console.log(stock);
 			let { symbol, quantity } = stock;
 			let { latestPrice: price } = await getQuote(symbol);
 			let amount = Number(price) * Number(quantity);
 			total = total + amount;
+			console.log(`${symbol} ${price} ${quantity} ${amount}`);
 		});
 	}
 
+	console.log("ft", total);
 	const { data: assetUpdateData, error: assetUpdateError } = await supabase
 		.from("users")
 		.update({ assets: total })
 		.eq("user_id", userID);
+
+	console.log(userID, total, assetUpdateData);
 };
 
 export default assets;
