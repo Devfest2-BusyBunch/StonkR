@@ -9,7 +9,6 @@ import {
 	FormLabel,
 	Spinner,
 	Button,
-	UnorderedList,
 	ListItem,
 	Box,
 	Center,
@@ -19,53 +18,32 @@ import {
 	useColorModeValue,
 	FormHelperText,
 	Heading,
-	Link,
-	RouterLink,
-	useToast
 } from "@chakra-ui/react";
 
 import { ArrowRightIcon, CheckCircleIcon } from "@chakra-ui/icons";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { supabase } from "supabaseClient";
-function SuccessToast() {
-	const toast = useToast()
-	toast({
-		title: "Account created.",
-		description: "We've created your account for you.",
-		status: "success",
-		duration: 9000,
-		isClosable: true,
-	})
-	
-}
+
 const Stock = () => {
 	const [quote, setQuote] = useState({});
 	const [inputValues, setInputValues] = useState(null);
 	const [userID, setUserID] = useState(null);
 	const { symbol } = useParams();
 
-	useEffect(() => {
-		const getQuote = async () => {
-			const API_KEY = process.env.REACT_APP_IEX_API_KEY;
-			const res = await axios.get(
-				`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
-			);
-			setQuote(res.data);
-		};
-
-		setUserID(JSON.parse(localStorage.getItem("userID")));
-		getQuote();
-	}, [symbol]);
-
-	const getQuote = async () => {
+	const getQuote = useCallback(async () => {
 		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
 		const res = await axios.get(
 			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
 		);
 		setQuote(res.data);
-	};
+	}, [symbol]);
+
+	useEffect(() => {
+		setUserID(JSON.parse(localStorage.getItem("userID")));
+		getQuote();
+	}, [symbol, getQuote]);
 
 	const handleInputChange = event => {
 		const target = event.target;
@@ -127,7 +105,8 @@ const Stock = () => {
 			const { data: portfolioData, error: portfolioError } = await supabase
 				.from("portfolio")
 				.select("user, symbol, quantity")
-				.eq("user", userID);
+				.eq("user", userID)
+				.eq("symbol", symbol);
 
 			if (portfolioData.length === 0) {
 				const { data: portfolioInsertData, error: portfolioInsertError } =
@@ -300,12 +279,6 @@ const Stock = () => {
 
 							<Box bg={v4} px={6} py={10}>
 								<List spacing={3}>
-									{/* {Object.keys(quote).map(key => (
-										<ListItem key={key}>
-											<ListIcon as={CheckIcon} color="green.400" />
-											{key}: {quote[key]}{" "}
-										</ListItem>
-									))} */}
 									<ListItem>
 										<ListIcon as={ArrowRightIcon} color="green.400" />
 										Latest Price : {quote.latestPrice}
