@@ -6,9 +6,12 @@ import {
 	FormControl,
 	FormLabel,
 	FormHelperText,
+	Heading,
+	Link,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
+import { Link as RouterLink } from "react-router-dom";
 
 const Quote = () => {
 	const [quote, setQuote] = useState({});
@@ -51,6 +54,13 @@ const Quote = () => {
 				</Button>
 			</FormControl>
 			<Text>
+				{symbol && (
+					<Heading as="h3" size="md">
+						<Link as={RouterLink} to={`stocks/${symbol.toLowerCase()}`}>
+							{quote.companyName}
+						</Link>
+					</Heading>
+				)}
 				{Object.keys(quote).map(key => (
 					<>
 						<span>

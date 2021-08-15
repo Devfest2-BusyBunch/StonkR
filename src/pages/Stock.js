@@ -22,8 +22,7 @@ const Stock = () => {
 	const [inputValues, setInputValues] = useState(null);
 
 	const { symbol } = useParams();
-	// eslint-disable-next-line
-	const stateName = useSelector(state => state.userId);
+	//const stateName = useSelector(state => state.userId);
 
 	useEffect(() => {
 		const getQuote = async () => {
@@ -35,7 +34,6 @@ const Stock = () => {
 		};
 
 		getQuote();
-		// console.log(stateName);
 	}, [symbol]);
 
 	const handleInputChange = event => {
@@ -48,16 +46,12 @@ const Stock = () => {
 				[name]: value,
 			};
 		});
-
-		console.log(inputValues);
 	};
 
 	const placeOrder = async e => {
 		e.preventDefault();
-		// eslint-disable-next-line
 		const { option, quantity } = inputValues;
 		if (option === "Buy") {
-			// eslint-disable-next-line
 			const { data, error } = await supabase
 				.from("users")
 				.select("cash")
@@ -101,12 +95,12 @@ const Stock = () => {
 						value={inputValues?.quantity || ""}
 						onChange={handleInputChange}
 					/>
-					<Button type="submit" mt={1}>
+					<Button type="submit" mt={2}>
 						Place Order
 					</Button>
 				</FormControl>
 			</Container>
-			<UnorderedList>
+			<UnorderedList class="list-none">
 				{Object.keys(quote).map(key => (
 					<ListItem key={key}>
 						{key}: {quote[key]}{" "}
