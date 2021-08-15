@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import "./components.css";
 import {
@@ -9,7 +9,7 @@ import {
     FormLabel,
     FormErrorMessage,
     FormHelperText,
-} from "@chakra-ui/react"
+} from "@chakra-ui/react";
 import {
     NumberInput,
     NumberInputField,
@@ -52,11 +52,19 @@ const SIPCalc = () => {
     };
 
     return (
-        <div>
-            <h1 className="calc-title">SIP Calculator</h1>
-            <div className="calc-items">
+        <Box>
+            <Text
+                as="h1"
+                fontSize="30px"
+                marginTop="50px"
+                marginBottom="50px"
+                color={"primary.400"}
+            >
+                SIP Calculator
+            </Text>
+            <Box className="calc-items">
                 <Flex>
-                    <FormControl id="sip_calc">
+                    <FormControl className="calc_item">
                         <FormLabel width={220}>Amount in INR:</FormLabel>
                         <NumberInput width={220}>
                             <NumberInputField
@@ -66,10 +74,6 @@ const SIPCalc = () => {
                                     setAmount(e.target.value);
                                 }}
                             />
-                            <NumberInputStepper>
-                                <NumberIncrementStepper />
-                                <NumberDecrementStepper />
-                            </NumberInputStepper>
                         </NumberInput>
                         <FormLabel width={220}>Number of Years:</FormLabel>
                         <NumberInput width={220}>
@@ -80,12 +84,11 @@ const SIPCalc = () => {
                                     setYears(e.target.value);
                                 }}
                             />
-                            <NumberInputStepper>
-                                <NumberIncrementStepper />
-                                <NumberDecrementStepper />
-                            </NumberInputStepper>
                         </NumberInput>
-                        <FormLabel width={300}> Expected Rate of Return (in %):{" "}</FormLabel>
+                        <FormLabel width={300}>
+                            {" "}
+                            Expected Rate of Return (in %):{" "}
+                        </FormLabel>
                         <NumberInput width={220}>
                             <NumberInputField
                                 placeholder="Rate"
@@ -94,39 +97,68 @@ const SIPCalc = () => {
                                     setRate(e.target.value);
                                 }}
                             />
-                            <NumberInputStepper>
-                                <NumberIncrementStepper />
-                                <NumberDecrementStepper />
-                            </NumberInputStepper>
                         </NumberInput>
-                        
                     </FormControl>
-                    <Spacer/>
-                                
+                    <Spacer />
+
                     <div className="expected_output_sip">
-                        <h1 style={{fontSize:'30px'}} >Expected Amount</h1>
-                        <div className="calc-returns">
-                            <h1>Total Invested Amount: </h1>
-                            <p>  ₹{investedAmt}</p>
-                        </div>
-                        <div className="calc-returns">Maturity Amount: ₹ {returns}</div>
-                        <div className="calc-returns">
-                            Profit: ₹ {returns - investedAmt}
-                        </div>
-                        <div className="calc-returns">
-                            Profit (adjusted for inflation): ₹ {infProfits}
-                        </div>
+                        <Text
+                            as="h1"
+                            fontSize="30px"
+                            width="240px"
+                            marginBottom="50px"
+                        >
+                            Expected Amount
+                        </Text>
+                        <Box className="calc-returns" marginBottom="30px">
+                            <Text as="span" fontSize="20px">
+                                {" "}
+                                Total Invested Amount:
+                            </Text>
+                            <Text as="p" fontSize="20px" color={"primary.300"}>
+                                {" "}
+                                ₹ {investedAmt}
+                            </Text>
+                        </Box>
+                        <Box className="calc-returns" marginBottom="30px">
+                            <Text as="span" fontSize="20px">
+                                {" "}
+                                Maturity Amount:
+                            </Text>
+                            <Text as="p" fontSize="20px" color={"primary.300"}>
+                                {" "}
+                                ₹ {returns}
+                            </Text>
+                        </Box>
+                        <Box className="calc-returns" marginBottom="30px">
+                            <Text as="span" fontSize="20px">
+                                {" "}
+                                Profit:
+                            </Text>
+                            <Text as="p" fontSize="20px" color={"primary.300"}>
+                                {" "}
+                                ₹ {returns - investedAmt}
+                            </Text>
+                        </Box>
+                        <Box className="calc-returns" marginBottom="30px">
+                            <Text as="span" fontSize="20px">
+                                {" "}
+                                Profit (adjusted for inflation):
+                            </Text>
+                            <Text as="p" fontSize="20px" color={"primary.300"}>
+                                {" "}
+                                ₹ {infProfits}
+                            </Text>
+                        </Box>
                     </div>
                 </Flex>
-                
-                
-            </div>
+            </Box>
 
             <Button
                 onClick={handleCalculateSIP}
                 size="sm"
                 rounded="md"
-                marginTop="50px"
+                marginTop="80px"
                 marginBottom="40px"
                 color={["primary.500", "primary.500", "white", "white"]}
                 bg={["white", "white", "primary.500", "primary.500"]}
@@ -141,9 +173,7 @@ const SIPCalc = () => {
             >
                 Calculate
             </Button>
-
-            
-        </div>
+        </Box>
     );
 };
 
