@@ -31,9 +31,11 @@ const PriceWrapper = ({ children }) => {
 };
 
 const Leaderboard = () => {
+	// eslint-disable-next-line
 	const [userData, setUserData] = useState(null);
 
 	const loadData = useCallback(async () => {
+		// eslint-disable-next-line
 		const { data, error } = await supabase.from("users").select("user_id");
 		let user_list = data.map(el => el["user_id"]);
 
@@ -44,7 +46,7 @@ const Leaderboard = () => {
 		}
 
 		console.log("first part done");
-
+	// eslint-disable-next-line
 		const { data: usersData, error: userError } = await supabase
 			.from("users")
 			.select("user_id, cash, assets")

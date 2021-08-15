@@ -19,12 +19,14 @@ const getQuote = async symbol => {
 };
 
 const assets = async userID => {
+	// eslint-disable-next-line
 	const { data, error } = await supabase
 		.from("users")
 		.select("user_id, cash")
 		.eq("user_id", userID);
 
 	let total = data[0].cash;
+	// eslint-disable-next-line
 	const { portfolioData, portfolioError } = await getPortfolio(userID);
 
 	for (let stock in portfolioData) {
@@ -33,7 +35,7 @@ const assets = async userID => {
 		let amount = price * quantity;
 		total = total + amount;
 	}
-
+	// eslint-disable-next-line
 	const { data: assetUpdateData, error: assetUpdateError } = await supabase
 		.from("users")
 		.update("assets", total)

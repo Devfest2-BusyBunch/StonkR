@@ -45,6 +45,7 @@ const SawoLogin = ({ loggedIn }) => {
 					console.log("User does not exist");
 					// eslint-disable-next-line no-unused-vars
 					const randomUsername = randName();
+					// eslint-disable-next-line
 					const { data, error } = await supabase
 						.from("users")
 						.insert([{ user_id: payload.user_id, username: randomUsername }]);

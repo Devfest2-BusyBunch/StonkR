@@ -25,7 +25,6 @@ import { CheckIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import axios from "axios";
 import { Link as RouterLink } from "react-router-dom";
-import { useEffect } from "react";
 
 const Quote = () => {
 	const [quote, setQuote] = useState(null);
@@ -47,7 +46,7 @@ const Quote = () => {
 				`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
 			);
 
-			if (res.status != 404) {
+			if (res.status !== 404) {
 				toast({
 					title: "Success getting quote",
 					description: "We've created a quote for you.",
