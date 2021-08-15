@@ -22,9 +22,8 @@ export default function SocialProfileSimple({
             <Box
                 maxW={"320px"}
                 w={"full"}
-                bg={"gray.900"}
                 boxShadow={"2xl"}
-                rounded={"lg"}
+                borderRadius="15px"
                 p={6}
                 textAlign={"center"}
             >

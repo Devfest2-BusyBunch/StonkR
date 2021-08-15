@@ -73,7 +73,7 @@ const About = () => {
                 </Box>
 
                 <Box>
-                    <Image src={aboutsvg} w="300px" marginTop="120px" />
+                    <Image src={aboutsvg} w="300px" />
                 </Box>
             </HStack>
             <Text
