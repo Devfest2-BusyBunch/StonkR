@@ -9,15 +9,9 @@ import {
     IconProps,
     Link,
 } from "@chakra-ui/react";
-import { useHistory, Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const LandingPage = () => {
-    // const history = useHistory();
-
-    // const handleStart = () => {
-    // 	history.push("/signin");
-    // };
-
     return (
         <Container maxW={"5xl"} marginTop="-50px">
             <Stack
@@ -42,7 +36,7 @@ const LandingPage = () => {
                     your money at stake? Well, 'App Name' is here for you!
                 </Text>
                 <Stack spacing={6} direction={"row"}>
-                    <Link as={RouterLink} to="/signin">
+                    <Link as={RouterLink} to="/signin" className="router-link">
                         <Button
                             rounded={"full"}
                             px={6}
@@ -53,7 +47,7 @@ const LandingPage = () => {
                             Get started
                         </Button>
                     </Link>
-                    <Link as={RouterLink} to="/about">
+                    <Link as={RouterLink} to="/about" className="router-link">
                         <Button rounded={"full"} px={6}>
                             Learn more
                         </Button>
