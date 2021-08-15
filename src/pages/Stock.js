@@ -214,7 +214,9 @@ const Stock = () => {
 	}
 
 	return (
+	
 		<VStack>
+			
 			<Container>
 				<Text>
 					{quote.companyName} : ${quote.latestPrice}

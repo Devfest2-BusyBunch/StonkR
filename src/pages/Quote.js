@@ -8,6 +8,7 @@ import {
 	Link,
 	ListItem,
 	Container,
+	useToast
 } from "@chakra-ui/react";
 
 import {
@@ -28,22 +29,45 @@ import { Link as RouterLink } from "react-router-dom";
 const Quote = () => {
 	const [quote, setQuote] = useState(null);
 	const [symbol, setSymbol] = useState(null);
-
+	const toast = useToast()
 	const handleInputChange = event => {
 		const target = event.target;
 		const { value } = target;
 
 		setSymbol(value);
 	};
+	
 
 	const getQuote = async event => {
 		event.preventDefault();
 		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
-		const res = await axios.get(
-			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
-		);
-		setQuote(res.data);
-		console.log(res.data);
+		try {
+			const res = await axios.get(
+				`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
+			);
+
+			if (res.status !== 404) {
+				toast({
+					title: "Success getting quote",
+					description: "We've created a quote for you.",
+					status: "success",
+					duration: 9000,
+					isClosable: true,
+				})
+			}
+
+			setQuote(res.data);
+			console.log(res.data);
+		} catch (error) {
+			toast({
+				title: "Failed getting quote",
+				description: "We could not locate that stock symbol",
+				status: "error",
+				duration: 9000,
+				isClosable: true,
+			})
+		}
+		
 	};
 	const v1 = useColorModeValue("white", "gray.800");
 	const v2 = useColorModeValue("gray.800", "white");
@@ -73,6 +97,7 @@ const Quote = () => {
 			<Container>
 				{quote && (
 					<Center py={6}>
+						
 						<Box
 							maxW={"700px"}
 							minW={"350px"}
