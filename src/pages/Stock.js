@@ -74,21 +74,20 @@ const Stock = () => {
 			return;
 		}
 
-		let { data: users, error } = await supabase
-			.from("users")
-			.select("user_id, cash")
-			.eq("user_id", userID);
-		if (!error) {
-			console.log(users);
-			// return;
-		}
-
 		if (option === "Buy") {
-			const { data: userData, error } = await supabase
+			const { data, error } = await supabase
 				.from("users")
-				.select("*")
-				.filter("user_id", userID);
+				.select("user_id, cash")
+				.eq("user_id", userID);
+
+			const { data: userData, error: userError } = await supabase
+				.from("users")
+				.select("user_id, cash");
+
 			console.log(userData);
+			// let temp = search();
+
+			console.log(data);
 			console.log(error);
 		}
 	};

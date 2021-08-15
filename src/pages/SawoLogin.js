@@ -18,15 +18,13 @@ const SawoLogin = ({ loggedIn }) => {
 
 	useEffect(() => {
 		setPayload(JSON.parse(localStorage.getItem("payload")) || {});
-		setUserLoggedIn(
-			JSON.parse(localStorage.getItem("payload")) ? true : false
-		);
+		setUserLoggedIn(JSON.parse(localStorage.getItem("payload")) ? true : false);
 
 		var config = {
 			containerID: "sawo-container",
 			identifierType: "email",
 			apiKey: API_KEY,
-			onSuccess: async (payload) => {
+			onSuccess: async payload => {
 				console.log("Payload : " + JSON.stringify(payload));
 				setUserLoggedIn(true);
 				setPayload(payload);

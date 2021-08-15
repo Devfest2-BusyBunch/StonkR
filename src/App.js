@@ -17,6 +17,7 @@ import SawoLogin from "pages/SawoLogin";
 import Calculator from "pages/Calculator";
 import Quote from "pages/Quote";
 import Stock from "pages/Stock";
+import About from "pages/About";
 
 import { addUserId } from "redux/actions";
 
@@ -32,7 +33,7 @@ const App = () => {
 			? localStorage.getItem("userID")
 			: "";
 		dispatch(addUserId(userID));
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<ChakraProvider theme={customTheme}>
@@ -62,6 +63,9 @@ const App = () => {
 								</Route>
 								<Route path="/signin" exact>
 									{token ? <Redirect to="/dashboard" /> : <SawoLogin />}
+								</Route>
+								<Route path="/about" exact>
+									<About />
 								</Route>
 							</Switch>
 						</VStack>
