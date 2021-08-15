@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
 import { Logo } from "Logo";
-import { ColorModeSwitcher } from "ColorModeSwitcher";
 
 const NavBar = (props) => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -9,7 +8,7 @@ const NavBar = (props) => {
     const toggle = () => setIsOpen(!isOpen);
 
     return (
-        <NavBarContainer {...props}>
+        <NavBarContainer {...props} className="navbar">
             <Logo
                 w="50px"
                 color={["white", "white", "primary.500", "primary.500"]}
@@ -93,9 +92,6 @@ const MenuLinks = ({ isOpen }) => {
                     >
                         Sign In
                     </Button>
-                </MenuItem>
-                <MenuItem>
-                    <ColorModeSwitcher justifySelf="flex-end" />
                 </MenuItem>
             </Stack>
         </Box>
