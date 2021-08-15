@@ -7,15 +7,16 @@ import {
 	Button,
 	Icon,
 	IconProps,
+	Link,
 } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link as RouterLink } from "react-router-dom";
 
-export default function LandingPage() {
-	const history = useHistory();
+const LandingPage = () => {
+	// const history = useHistory();
 
-	const handleStart = () => {
-		history.push("/signin");
-	};
+	// const handleStart = () => {
+	// 	history.push("/signin");
+	// };
 
 	return (
 		<Container maxW={"5xl"}>
@@ -39,23 +40,21 @@ export default function LandingPage() {
 					'App Name' is here for you!
 				</Text>
 				<Stack spacing={6} direction={"row"}>
-					<Button
-						rounded={"full"}
-						px={6}
-						colorScheme={"primary"}
-						bg={"primary.400"}
-						_hover={{ bg: "primary.500" }}
-						onClick={handleStart}>
-						Get started
-					</Button>
-					<Button
-						rounded={"full"}
-						px={6}
-						onClick={() => {
-							history.push("/about");
-						}}>
-						Learn more
-					</Button>
+					<Link as={RouterLink} to="/signin">
+						<Button
+							rounded={"full"}
+							px={6}
+							colorScheme={"primary"}
+							bg={"primary.400"}
+							_hover={{ bg: "primary.500" }}>
+							Get started
+						</Button>
+					</Link>
+					<Link as={RouterLink} to="/about">
+						<Button rounded={"full"} px={6}>
+							Learn more
+						</Button>
+					</Link>
 				</Stack>
 				<Flex w={"full"}>
 					<Illustration
@@ -66,7 +65,7 @@ export default function LandingPage() {
 			</Stack>
 		</Container>
 	);
-}
+};
 
 export const Illustration = (props = { IconProps }) => {
 	return (
@@ -883,3 +882,5 @@ export const Illustration = (props = { IconProps }) => {
 		</Icon>
 	);
 };
+
+export default LandingPage;
