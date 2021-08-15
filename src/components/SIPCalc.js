@@ -28,7 +28,7 @@ const SIPCalc = () => {
                 (Math.pow(1 + periodicRate, 12 * years) - 1)) /
                 periodicRate
         );
-        const returns = maturityAmount - amount * years * 12;
+        const returns = maturityAmount;
         setReturns(returns);
         setInvestedAmt(amount * years * 12);
 
@@ -40,12 +40,7 @@ const SIPCalc = () => {
                 periodicRateinf
         );
 
-        // const maturityAmountInf = Math.round(
-        //     amount * Math.pow(1 + 6 / 100, years)
-        // );
-
-        const inflationProfit =
-            maturityAmount - amount * years * 12 - maturityAmountInf;
+        const inflationProfit = maturityAmount - maturityAmountInf;
         setInfProfits(inflationProfit);
     };
 
