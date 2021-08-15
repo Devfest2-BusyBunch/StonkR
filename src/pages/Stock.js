@@ -20,7 +20,7 @@ import {
 	FormHelperText,
 	Heading,
 	Link,
-	RouterLink
+	RouterLink,
 } from "@chakra-ui/react";
 
 import { CheckIcon } from "@chakra-ui/icons";
@@ -223,7 +223,6 @@ const Stock = () => {
 		);
 	}
 
-	
 	return (
 		<VStack>
 			<Container>
@@ -293,7 +292,6 @@ const Stock = () => {
 											{key}: {quote[key]}{" "}
 										</ListItem>
 									))}
-
 								</List>
 							</Box>
 						</Box>
