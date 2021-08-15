@@ -50,8 +50,7 @@ const Quote = () => {
 	const v1 = useColorModeValue('white', 'gray.800')
 	const v2 = useColorModeValue('gray.800', 'white')
 	const v3 = useColorModeValue('green.50', 'green.900')
-	const v4 = useColorModeValue('gray.50', 'gray.900')
-
+	const v4 = useColorModeValue('gray.100', 'gray.900')
 
 	return (
 		<VStack>
