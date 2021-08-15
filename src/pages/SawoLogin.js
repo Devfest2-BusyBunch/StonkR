@@ -1,15 +1,17 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import Sawo from "sawo";
 import { addUserId } from "redux/actions";
 import { useDispatch } from "react-redux";
 import { Spinner } from "@chakra-ui/react";
+import { supabase } from "supabaseClient";
 
 const API_KEY = process.env.REACT_APP_SAWO_API_KEY;
 
 const SawoLogin = ({ loggedIn }) => {
 	const [payload, setPayload] = useState({});
 	const [isUserLoggedIn, setUserLoggedIn] = useState(false);
-	const [loaded, setLoaded] = useState(false);
+	// const [loaded, setLoaded] = useState(false);
 	const dispatch = useDispatch();
 	loggedIn = isUserLoggedIn;
 
@@ -21,7 +23,7 @@ const SawoLogin = ({ loggedIn }) => {
 			containerID: "sawo-container",
 			identifierType: "email",
 			apiKey: API_KEY,
-			onSuccess: payload => {
+			onSuccess: async payload => {
 				console.log("Payload : " + JSON.stringify(payload));
 				setUserLoggedIn(true);
 				setPayload(payload);
@@ -32,14 +34,26 @@ const SawoLogin = ({ loggedIn }) => {
 					"token",
 					JSON.stringify(payload.verification_token)
 				);
+
+				let { data: users, error } = await supabase
+					.from("users")
+					.select("user_id");
+				console.log(users);
+				if (!users.includes(payload.user_id)) {
+					console.log("User does not exist");
+					const { data, error } = await supabase
+						.from("users")
+						.insert([{ user_id: payload.user_id }]);
+					console.log(data);
+				}
 			},
 		};
 		let sawo = new Sawo(config);
 		sawo.showForm();
 
-		setTimeout(() => {
-			setLoaded(true);
-		}, 2000);
+		// setTimeout(() => {
+		// 	setLoaded(true);
+		// }, 2000);
 	}, [dispatch]);
 
 	return (
