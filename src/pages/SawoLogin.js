@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import Sawo from "sawo";
 import { addUserId } from "redux/actions";
 import { useDispatch } from "react-redux";
