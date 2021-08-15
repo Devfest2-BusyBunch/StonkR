@@ -105,7 +105,8 @@ const Stock = () => {
 			const { data: portfolioData, error: portfolioError } = await supabase
 				.from("portfolio")
 				.select("user, symbol, quantity")
-				.eq("user", userID);
+				.eq("user", userID)
+				.eq("symbol", symbol);
 
 			if (portfolioData.length === 0) {
 				const { data: portfolioInsertData, error: portfolioInsertError } =
