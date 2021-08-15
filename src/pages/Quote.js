@@ -40,7 +40,7 @@ const Quote = () => {
 	};
 	useEffect(() => {
 		const gettingDataForChart = async () =>{
-			const rsp = await axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/chart/2m?token=pk_eae71671468a4161b60df617d889adad`)
+			const rsp = await axios.get(`https://sandbox.iexapis.com/stable/stock/${symbol}/chart/2m?token=${process.env.REACT_APP_SANDBOX_IEX_API_KEY}`)
 			const data = rsp.data
 			setDataProp(data)
 		}

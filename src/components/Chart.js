@@ -8,7 +8,7 @@ const Candle = ({dataProp}) => {
 	const data = dataProp
 
 	const formattedData = []
-	
+
 	data.map((doc) => {
 		var currentITem = {
 			x: new Date(doc.updated),
@@ -32,7 +32,7 @@ const Candle = ({dataProp}) => {
 		},
 		title: {
 			
-			text: "CandleStick Chart - Category X-axis",
+			text: "DEMOGRAPH",
 			align: "left",
 		},
 		annotations: {
