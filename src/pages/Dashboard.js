@@ -6,7 +6,7 @@ import { supabase } from "supabaseClient";
 
 const Dashboard = () => {
     const [userID, setUserID] = useState(null);
-    const [userName, setUserName] = useState("");
+    const [userName, setUserName] = useState(null);
 
     useEffect(() => {
         const update = async () => {
@@ -16,8 +16,9 @@ const Dashboard = () => {
                 .from("users")
                 .select("user_id, username")
                 .eq("user_id", userID);
-
-            setUserName(userData[0].username);
+            userData.length > 0
+                ? setUserName(userData[0].username)
+                : console.log("");
         };
 
         update();
@@ -27,7 +28,11 @@ const Dashboard = () => {
         <Box>
             <Box>
                 <Text>Dashboard</Text>
-                {userName && <Heading>Welcome {userName}</Heading>}
+                {userName ? (
+                    <Heading>Welcome {userName}</Heading>
+                ) : (
+                    console.log("err")
+                )}
             </Box>
             <Box className="container side-bar">
                 <Trending />
