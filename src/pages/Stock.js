@@ -106,13 +106,12 @@ const Stock = () => {
 
 			const { data: portfolioData, error: portfolioError } = await supabase
 				.from("portfolio")
-				.select("user, symbol")
+				.select("user, symbol, quantity")
 				.eq("user", userID);
 
-			console.log("pdata", portfolioData);
-			console.log(portfolioError);
+			console.log(portfolioData);
 
-			if (!portfolioData) {
+			if (Array.isArray(portfolioData) && portfolioData.length > 0) {
 				const { data: portfolioInsertData, error: portfolioInsertError } =
 					await supabase
 						.from("portfolio")
@@ -124,7 +123,7 @@ const Stock = () => {
 				const { data: portfolioUpdateData, error: portfolioUpdateError } =
 					await supabase
 						.from("portfolio")
-						.update([{ quantity: portfolioData.quantity + quantity }])
+						.update([{ quantity: portfolioData[0].quantity + quantity }])
 						.eq("user", userID)
 						.eq("symbol", symbol);
 
