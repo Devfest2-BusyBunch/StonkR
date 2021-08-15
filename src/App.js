@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUserId } from "redux/actions";
-
+import Leaderboard from "pages/Leaderboard";
 import customTheme from "utils/theme";
 import LandingPage from "pages/LandingPage";
 import Dashboard from "pages/Dashboard";
@@ -40,7 +40,7 @@ const App = () => {
 			<Router>
 				<div className="top-bar">
 					<Header />
-					
+
 					<ColorMode />
 				</div>
 				<Box textAlign="center" fontSize="xl">
@@ -68,13 +68,15 @@ const App = () => {
 								<Route path="/about" exact>
 									<About />
 								</Route>
+								<Route path="/leaderboard" exact>
+									<Leaderboard />
+								</Route>
 							</Switch>
 						</VStack>
 					</Grid>
 				</Box>
 				<Footer />
 			</Router>
-			
 		</ChakraProvider>
 	);
 };
