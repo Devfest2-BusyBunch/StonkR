@@ -5,8 +5,7 @@ import { useDispatch } from "react-redux";
 // import { Spinner } from "@chakra-ui/react";
 import { supabase } from "supabaseClient";
 import { randName } from "utils/usernameUtils";
-
-// import "./pages.css"
+import { Heading, Box } from "@chakra-ui/react";
 
 const API_KEY = process.env.REACT_APP_SAWO_API_KEY;
 
@@ -63,8 +62,9 @@ const SawoLogin = ({ loggedIn }) => {
 	if (isUserLoggedIn) {
 		window.location.reload();
 	}
+
 	return (
-		<div className="containerStyle">
+		<Box className="containerStyle">
 			{/* <section> */}
 			{/* {!loaded && (
 					<Spinner
@@ -77,7 +77,9 @@ const SawoLogin = ({ loggedIn }) => {
 				)} */}
 			{/* {loaded && ( */}
 			{/* <> */}
-			<h2 className="title">User Logged In : {isUserLoggedIn.toString()}</h2>
+			<Heading className="title">
+				User Logged In : {isUserLoggedIn.toString()}
+			</Heading>
 
 			{!isUserLoggedIn ? (
 				<div
@@ -85,15 +87,15 @@ const SawoLogin = ({ loggedIn }) => {
 					id="sawo-container"
 					style={{ height: "300px", width: "300px" }}></div>
 			) : (
-				<div className="loggedin">
+				<Box className="loggedin">
 					<h2>User Successful Login</h2>
 					<div>UserId: {payload.user_id}</div>
 					<div>Verification Token: {payload.verification_token}</div>
-				</div>
+				</Box>
 			)}
 			{/* </>
             </section> */}
-		</div>
+		</Box>
 	);
 };
 
