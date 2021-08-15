@@ -47,10 +47,10 @@ const Quote = () => {
 		setQuote(res.data);
 		console.log(res.data);
 	};
-	const v1 = useColorModeValue('white', 'gray.800')
-	const v2 = useColorModeValue('gray.800', 'white')
-	const v3 = useColorModeValue('green.50', 'green.900')
-	const v4 = useColorModeValue('gray.100', 'gray.900')
+	const v1 = useColorModeValue("white", "gray.800");
+	const v2 = useColorModeValue("gray.800", "white");
+	const v3 = useColorModeValue("green.50", "green.900");
+	const v4 = useColorModeValue("gray.100", "gray.900");
 
 	return (
 		<VStack>
@@ -82,11 +82,7 @@ const Quote = () => {
 							boxShadow={"2xl"}
 							rounded={"md"}
 							overflow={"hidden"}>
-							<Stack
-								textAlign={"center"}
-								p={6}
-								color={v2}
-								align={"center"}>
+							<Stack textAlign={"center"} p={6} color={v2} align={"center"}>
 								<Text
 									fontSize={"sm"}
 									fontWeight={500}
@@ -105,10 +101,7 @@ const Quote = () => {
 								</Stack>
 							</Stack>
 
-							<Box
-								bg={v4}
-								px={6}
-								py={10}>
+							<Box bg={v4} px={6} py={10}>
 								<List spacing={3}>
 									<ListItem>
 										<ListIcon as={CheckIcon} color="green.400" />
