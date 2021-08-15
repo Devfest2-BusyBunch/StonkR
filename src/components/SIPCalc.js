@@ -3,6 +3,14 @@ import { Button } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import "./components.css";
 
+import {
+    NumberInput,
+    NumberInputField,
+    NumberInputStepper,
+    NumberIncrementStepper,
+    NumberDecrementStepper,
+} from "@chakra-ui/react";
+
 const SIPCalc = () => {
     const [amount, setAmount] = useState();
     const [years, setYears] = useState();
@@ -10,12 +18,6 @@ const SIPCalc = () => {
 
     const [investedAmt, setInvestedAmt] = useState(0);
     const [returns, setReturns] = useState(0);
-
-    const [colormode, setColormode] = useState("");
-
-    useEffect(() => {
-        setColormode(localStorage.getItem("chakra-ui-color-mode"));
-    }, []);
 
     const handleCalculateSIP = () => {
         const periodicRate = rate / 1200;
@@ -38,19 +40,19 @@ const SIPCalc = () => {
                         <label className="input-label">Amount: </label>
                     </GridItem>
                     <GridItem>
-                        <input
-                            type="number"
-                            placeholder="Amount"
-                            className={
-                                colormode === "dark"
-                                    ? "darkmode-input calc-inputs"
-                                    : "lightmode-input calc-inputs"
-                            }
-                            value={amount}
-                            onChange={(e) => {
-                                setAmount(e.target.value);
-                            }}
-                        />
+                        <NumberInput>
+                            <NumberInputField
+                                placeholder="Amount"
+                                value={amount}
+                                onChange={(e) => {
+                                    setAmount(e.target.value);
+                                }}
+                            />
+                            <NumberInputStepper>
+                                <NumberIncrementStepper />
+                                <NumberDecrementStepper />
+                            </NumberInputStepper>
+                        </NumberInput>
                     </GridItem>
                 </Grid>
                 <Grid templateColumns="repeat(2, 1fr)" className="input-row">
@@ -59,19 +61,19 @@ const SIPCalc = () => {
                         <label className="input-label">Number of Years: </label>
                     </GridItem>
                     <GridItem>
-                        <input
-                            type="number"
-                            placeholder="Years"
-                            className={
-                                colormode === "dark"
-                                    ? "darkmode-input calc-inputs"
-                                    : "lightmode-input calc-inputs"
-                            }
-                            value={years}
-                            onChange={(e) => {
-                                setYears(e.target.value);
-                            }}
-                        />
+                        <NumberInput>
+                            <NumberInputField
+                                placeholder="Years"
+                                value={years}
+                                onChange={(e) => {
+                                    setYears(e.target.value);
+                                }}
+                            />
+                            <NumberInputStepper>
+                                <NumberIncrementStepper />
+                                <NumberDecrementStepper />
+                            </NumberInputStepper>
+                        </NumberInput>
                     </GridItem>
                 </Grid>
                 <Grid templateColumns="repeat(2, 1fr)" className="input-row">
@@ -81,19 +83,19 @@ const SIPCalc = () => {
                         </label>
                     </GridItem>
                     <GridItem>
-                        <input
-                            type="number"
-                            placeholder="Rate"
-                            className={
-                                colormode === "dark"
-                                    ? "darkmode-input calc-inputs"
-                                    : "lightmode-input calc-inputs"
-                            }
-                            value={rate}
-                            onChange={(e) => {
-                                setRate(e.target.value);
-                            }}
-                        />
+                        <NumberInput>
+                            <NumberInputField
+                                placeholder="Rate"
+                                value={rate}
+                                onChange={(e) => {
+                                    setRate(e.target.value);
+                                }}
+                            />
+                            <NumberInputStepper>
+                                <NumberIncrementStepper />
+                                <NumberDecrementStepper />
+                            </NumberInputStepper>
+                        </NumberInput>
                     </GridItem>
                 </Grid>
             </div>

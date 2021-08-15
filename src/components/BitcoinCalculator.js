@@ -1,17 +1,19 @@
 import { Button, Grid, GridItem } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
+import {
+    NumberInput,
+    NumberInputField,
+    NumberInputStepper,
+    NumberIncrementStepper,
+    NumberDecrementStepper,
+} from "@chakra-ui/react";
+
 const BitcoinCalculator = () => {
     const [amount, setAmount] = useState();
 
     const [investedAmt, setInvestedAmt] = useState(0);
     const [returns, setReturns] = useState(0);
-
-    const [colormode, setColormode] = useState("");
-
-    useEffect(() => {
-        setColormode(localStorage.getItem("chakra-ui-color-mode"));
-    }, []);
 
     const handleCalculateBTC = () => {
         setInvestedAmt(amount);
@@ -40,19 +42,19 @@ const BitcoinCalculator = () => {
                         <label className="input-label">Amount (in USD): </label>
                     </GridItem>
                     <GridItem>
-                        <input
-                            type="number"
-                            placeholder="Amount"
-                            className={
-                                colormode === "dark"
-                                    ? "darkmode-input calc-inputs"
-                                    : "lightmode-input calc-inputs"
-                            }
-                            value={amount}
-                            onChange={(e) => {
-                                setAmount(e.target.value);
-                            }}
-                        />
+                        <NumberInput>
+                            <NumberInputField
+                                placeholder="Amount"
+                                value={amount}
+                                onChange={(e) => {
+                                    setAmount(e.target.value);
+                                }}
+                            />
+                            <NumberInputStepper>
+                                <NumberIncrementStepper />
+                                <NumberDecrementStepper />
+                            </NumberInputStepper>
+                        </NumberInput>
                     </GridItem>
                 </Grid>
             </div>

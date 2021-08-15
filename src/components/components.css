@@ -12,6 +12,10 @@
     border-radius: 7px;
 }
 
+.input-label {
+    margin-right: 25px;
+}
+
 .calc-title {
     font-size: 30px;
     font-weight: bolder;
