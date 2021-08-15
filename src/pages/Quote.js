@@ -47,6 +47,11 @@ const Quote = () => {
 		setQuote(res.data);
 		console.log(res.data);
 	};
+	const v1 = useColorModeValue('white', 'gray.800')
+	const v2 = useColorModeValue('gray.800', 'white')
+	const v3 = useColorModeValue('green.50', 'green.900')
+	const v4 = useColorModeValue('gray.50', 'gray.900')
+
 
 	return (
 		<VStack>
@@ -74,19 +79,19 @@ const Quote = () => {
 						<Box
 							maxW={"330px"}
 							w={"full"}
-							// bg={useColorModeValue('white', 'gray.800')}
+							bg={v1}
 							boxShadow={"2xl"}
 							rounded={"md"}
 							overflow={"hidden"}>
 							<Stack
 								textAlign={"center"}
 								p={6}
-								// color={useColorModeValue('gray.800', 'white')}
+								color={v2}
 								align={"center"}>
 								<Text
 									fontSize={"sm"}
 									fontWeight={500}
-									// bg={useColorModeValue('green.50', 'green.900')}
+									bg={v3}
 									p={2}
 									px={3}
 									color={"green.500"}
@@ -98,12 +103,11 @@ const Quote = () => {
 									<Text fontSize={"3xl"} fontWeight={800}>
 										{quote.companyName}
 									</Text>
-									{/* <Text color={'gray.500'}>/month</Text> */}
 								</Stack>
 							</Stack>
 
 							<Box
-								// bg={useColorModeValue('gray.50', 'gray.900')}
+								bg={v4}
 								px={6}
 								py={10}>
 								<List spacing={3}>
