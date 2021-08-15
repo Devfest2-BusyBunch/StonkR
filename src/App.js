@@ -40,7 +40,7 @@ const App = () => {
 			<Router>
 				<div className="top-bar">
 					<Header />
-					
+
 					<ColorMode />
 				</div>
 				<Box textAlign="center" fontSize="xl">
@@ -68,8 +68,8 @@ const App = () => {
 								<Route path="/about" exact>
 									<About />
 								</Route>
-								<Route path="/leaderboard">
-									<Leaderboard></Leaderboard>
+								<Route path="/leaderboard" exact>
+									<Leaderboard />
 								</Route>
 							</Switch>
 						</VStack>
@@ -77,7 +77,6 @@ const App = () => {
 				</Box>
 				<Footer />
 			</Router>
-			
 		</ChakraProvider>
 	);
 };

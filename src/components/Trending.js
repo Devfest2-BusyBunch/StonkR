@@ -12,8 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { FiTrendingDown, FiTrendingUp } from "react-icons/fi";
 
-function StatsCard(props) {
-	const { title, stat, icon } = props;
+const StatsCard = ({ title, stat, icon }) => {
 	return (
 		<Stat
 			bg="cyan.400"
@@ -42,9 +41,9 @@ function StatsCard(props) {
 			</Flex>
 		</Stat>
 	);
-}
+};
 
-function Trending() {
+const Trending = () => {
 	const [trends, setTrends] = useState([]);
 
 	useEffect(() => {
@@ -80,5 +79,5 @@ function Trending() {
 			</SimpleGrid>
 		</Box>
 	);
-}
+};
 export default Trending;
