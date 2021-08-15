@@ -9,17 +9,13 @@ const Dashboard = () => {
 	const [userName, setUserName] = useState(null);
 
 	useEffect(() => {
+		setUserID(JSON.parse(localStorage.getItem("userID")));
 		const update = async () => {
-			setUserID(JSON.parse(localStorage.getItem("userID")));
-
 			const { data: userData, error } = await supabase
 				.from("users")
 				.select("user_id, username")
 				.eq("user_id", userID);
-				userData.length > 0? setUserName(userData[0].username) :console.log("")
-				
-				
-			;
+			userData.length > 0 ? setUserName(userData[0].username) : console.log("");
 		};
 
 		update();
@@ -29,7 +25,7 @@ const Dashboard = () => {
 		<Box>
 			<Box>
 				<Text>Dashboard</Text>
-				{userName ?<Heading>Welcome {userName}</Heading> :console.log("err")}
+				{userName ? <Heading>Welcome {userName}</Heading> : console.log("err")}
 			</Box>
 			<Box className="container side-bar">
 				<Trending />
