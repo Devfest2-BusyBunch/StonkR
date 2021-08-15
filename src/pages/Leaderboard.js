@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
 	Box,
 	Stack,
@@ -33,32 +33,31 @@ const PriceWrapper = ({ children }) => {
 const Leaderboard = () => {
 	const [userData, setUserData] = useState(null);
 
-	useEffect(() => {
-		const loadData = async () => {
-			const { data, error } = await supabase.from("users").select("user_id");
-			let user_list = data.map(el => el["user_id"]);
+	const loadData = useCallback(async () => {
+		const { data, error } = await supabase.from("users").select("user_id");
+		let user_list = data.map(el => el["user_id"]);
 
-			console.log("users retrived");
+		console.log("users retrived");
 
-			for (let user in user_list) {
-				assets(user);
-			}
+		for (let user in user_list) {
+			assets(user);
+		}
 
-			console.log("first part done");
+		console.log("first part done");
 
-			const { data: usersData, error: userError } = await supabase
-				.from("users")
-				.select("user_id, cash, assets")
-				.order("assets", { ascending: false })
-				.limit(10);
+		const { data: usersData, error: userError } = await supabase
+			.from("users")
+			.select("user_id, cash, assets")
+			.order("assets", { ascending: false })
+			.limit(10);
 
-			console.log(usersData);
-			return usersData;
-		};
-
-		const data = loadData();
-		setUserData(data);
+		console.log(usersData);
+		setUserData(usersData);
 	}, []);
+
+	useEffect(() => {
+		loadData();
+	}, [loadData]);
 
 	return (
 		<Box py={4}>
