@@ -11,7 +11,19 @@ import {
 	Button,
 	UnorderedList,
 	ListItem,
+	Box,
+	Center,
+	Stack,
+	List,
+	ListIcon,
+	useColorModeValue,
+	FormHelperText,
+	Heading,
+	Link,
+	RouterLink
 } from "@chakra-ui/react";
+
+import { CheckIcon } from "@chakra-ui/icons";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
@@ -192,6 +204,10 @@ const Stock = () => {
 			}
 		}
 	};
+	const v1 = useColorModeValue("white", "gray.800");
+	const v2 = useColorModeValue("gray.800", "white");
+	const v3 = useColorModeValue("green.50", "green.900");
+	const v4 = useColorModeValue("gray.100", "gray.900");
 
 	if (!quote) {
 		return (
@@ -207,6 +223,7 @@ const Stock = () => {
 		);
 	}
 
+	
 	return (
 		<VStack>
 			<Container>
@@ -239,13 +256,50 @@ const Stock = () => {
 					</Button>
 				</FormControl>
 			</Container>
-			<UnorderedList className="list-none">
-				{Object.keys(quote).map(key => (
-					<ListItem key={key}>
-						{key}: {quote[key]}{" "}
-					</ListItem>
-				))}
-			</UnorderedList>
+			<Container>
+				{quote && (
+					<Center py={6}>
+						<Box
+							maxW={"330px"}
+							w={"full"}
+							bg={v1}
+							boxShadow={"2xl"}
+							rounded={"md"}
+							overflow={"hidden"}>
+							<Stack textAlign={"center"} p={6} color={v2} align={"center"}>
+								<Text
+									fontSize={"sm"}
+									fontWeight={500}
+									bg={v3}
+									p={2}
+									px={3}
+									color={"green.500"}
+									rounded={"full"}>
+									{quote.symbol}
+								</Text>
+								<Stack direction={"row"} align={"center"} justify={"center"}>
+									<Text fontSize={"3xl"}>$</Text>
+									<Text fontSize={"3xl"} fontWeight={800}>
+										{quote.companyName}
+									</Text>
+								</Stack>
+							</Stack>
+
+							<Box bg={v4} px={6} py={10}>
+								<List spacing={3}>
+									{Object.keys(quote).map(key => (
+										<ListItem key={key}>
+											<ListIcon as={CheckIcon} color="green.400" />
+											{key}: {quote[key]}{" "}
+										</ListItem>
+									))}
+
+								</List>
+							</Box>
+						</Box>
+					</Center>
+				)}
+			</Container>
 		</VStack>
 	);
 };
