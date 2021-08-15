@@ -1,41 +1,45 @@
 .App {
-	font-family: sans-serif;
-	text-align: center;
+    font-family: sans-serif;
+    text-align: center;
 }
 
 .css-17b9waw {
-	align-content: flex-start;
+    align-content: flex-start;
 }
 
 .chart_outer {
-	background-color: whitesmoke;
+    background-color: rgb(49, 60, 71);
+}
+
+.candlestick-chart {
+    color: rgb(49, 60, 71);
 }
 
 .list-none {
-	list-style-type: none !important;
+    list-style-type: none !important;
 }
 
 .side-bar {
-	position: absolute;
-	left: 0;
+    position: absolute;
+    left: 0;
 }
 
-.leaderboardLabel {
-}
+/* .leaderboardLabel {
+} */
 
 .userInfo {
-	display: flex;
+    display: flex;
 }
 
 .money {
-	display: flex;
+    display: flex;
 }
 .username {
-	width: 300px;
+    width: 300px;
 }
 .cash {
-	width: 300px;
+    width: 300px;
 }
 .assets {
-	width: 200px;
+    width: 200px;
 }
