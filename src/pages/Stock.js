@@ -57,6 +57,14 @@ const Stock = () => {
 		});
 	};
 
+	function search(key, value, arr) {
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i][key] === value) {
+				return arr[i];
+			}
+		}
+	}
+
 	const placeOrder = async e => {
 		e.preventDefault();
 		const { option, quantity } = inputValues;
@@ -65,27 +73,23 @@ const Stock = () => {
 			console.log("not valid");
 			return;
 		}
+
+		let { data: users, error } = await supabase
+			.from("users")
+			.select("user_id, cash")
+			.eq("user_id", userID);
+		if (!error) {
+			console.log(users);
+			// return;
+		}
+
 		if (option === "Buy") {
-			console.log(userID);
-			const { data: cash, error } = await supabase
+			const { data: userData, error } = await supabase
 				.from("users")
-				.select("cash")
-				.eq("user_id", userID);
-
-			console.log("error", error);
-			console.log(cash);
-
-			getQuote();
-			if (cash < quantity * quote.latestPrice) {
-				console.log("not enough cash");
-				return;
-			}
-
-			const { data: updated } = await supabase
-				.from("users")
-				.update({ cash: Number(cash - quantity * quote.latestPrice) })
-				.eq("user_id", userID);
-			console.log(updated);
+				.select("*")
+				.filter("user_id", userID);
+			console.log(userData);
+			console.log(error);
 		}
 	};
 
