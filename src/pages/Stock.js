@@ -37,6 +37,14 @@ const Stock = () => {
 		getQuote();
 	}, [symbol]);
 
+	const getQuote = async () => {
+		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
+		const res = await axios.get(
+			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
+		);
+		setQuote(res.data);
+	};
+
 	const handleInputChange = event => {
 		const target = event.target;
 		const { value, name } = target;
@@ -58,21 +66,26 @@ const Stock = () => {
 			return;
 		}
 		if (option === "Buy") {
+			console.log(userID);
 			const { data: cash, error } = await supabase
 				.from("users")
 				.select("cash")
 				.eq("user_id", userID);
 
+			console.log("error", error);
 			console.log(cash);
+
+			getQuote();
 			if (cash < quantity * quote.latestPrice) {
 				console.log("not enough cash");
 				return;
 			}
-			const res = await supabase
+
+			const { data: updated } = await supabase
 				.from("users")
-				.update("cash", "dec", quantity * quote.latestPrice)
+				.update({ cash: Number(cash - quantity * quote.latestPrice) })
 				.eq("user_id", userID);
-			console.log(res);
+			console.log(updated);
 		}
 	};
 
@@ -122,7 +135,7 @@ const Stock = () => {
 					</Button>
 				</FormControl>
 			</Container>
-			<UnorderedList class="list-none">
+			<UnorderedList className="list-none">
 				{Object.keys(quote).map(key => (
 					<ListItem key={key}>
 						{key}: {quote[key]}{" "}

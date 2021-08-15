@@ -57,13 +57,13 @@ const Quote = () => {
 			</FormControl>
 			<Text>
 				{symbol && (
-					<Heading as="h3" size="md">
+					<Heading size="md">
 						<Link as={RouterLink} to={`stocks/${symbol.toLowerCase()}`}>
 							{quote.companyName}
 						</Link>
 					</Heading>
 				)}
-				<UnorderedList class="list-none">
+				<UnorderedList className="list-none">
 					{Object.keys(quote).map(key => (
 						<ListItem key={key}>
 							{key}: {quote[key]}{" "}
