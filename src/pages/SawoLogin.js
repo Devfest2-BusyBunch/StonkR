@@ -1,9 +1,10 @@
-/* eslint-disable no-unused-vars */
+
 import { useState, useEffect } from "react";
+import { Redirect } from 'react-router-dom'
 import Sawo from "sawo";
 import { addUserId } from "redux/actions";
 import { useDispatch } from "react-redux";
-import { Spinner } from "@chakra-ui/react";
+// import { Spinner } from "@chakra-ui/react";
 import { supabase } from "supabaseClient";
 
 const API_KEY = process.env.REACT_APP_SAWO_API_KEY;
@@ -35,12 +36,14 @@ const SawoLogin = ({ loggedIn }) => {
 					JSON.stringify(payload.verification_token)
 				);
 
+				// eslint-disable-next-line no-unused-vars
 				let { data: users, error } = await supabase
 					.from("users")
 					.select("user_id");
 				console.log(users);
 				if (!users.includes(payload.user_id)) {
 					console.log("User does not exist");
+					// eslint-disable-next-line no-unused-vars
 					const { data, error } = await supabase
 						.from("users")
 						.insert([{ user_id: payload.user_id }]);
@@ -55,7 +58,10 @@ const SawoLogin = ({ loggedIn }) => {
 		// 	setLoaded(true);
 		// }, 2000);
 	}, [dispatch]);
-
+	
+	if (isUserLoggedIn) {
+		return <Redirect to="/landing" />
+	}
 	return (
 		<div className="containerStyle">
 			<section>
@@ -84,7 +90,6 @@ const SawoLogin = ({ loggedIn }) => {
 						</div>
 					)}
 				</>
-				{/* )} */}
 			</section>
 		</div>
 	);
