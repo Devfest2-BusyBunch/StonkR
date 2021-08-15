@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { Button } from "@chakra-ui/react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import "./components.css";
-
+import {
+    Spacer,
+    Flex,
+    FormControl,
+    FormLabel,
+    FormErrorMessage,
+    FormHelperText,
+} from "@chakra-ui/react"
 import {
     NumberInput,
     NumberInputField,
@@ -48,12 +55,10 @@ const SIPCalc = () => {
         <div>
             <h1 className="calc-title">SIP Calculator</h1>
             <div className="calc-items">
-                <Grid templateColumns="repeat(2, 1fr)" className="input-row">
-                    <GridItem>
-                        <label className="input-label">Amount (in INR): </label>
-                    </GridItem>
-                    <GridItem>
-                        <NumberInput>
+                <Flex>
+                    <FormControl id="sip_calc">
+                        <FormLabel width={220}>Amount in INR:</FormLabel>
+                        <NumberInput width={220}>
                             <NumberInputField
                                 placeholder="Amount"
                                 value={amount}
@@ -66,15 +71,8 @@ const SIPCalc = () => {
                                 <NumberDecrementStepper />
                             </NumberInputStepper>
                         </NumberInput>
-                    </GridItem>
-                </Grid>
-                <Grid templateColumns="repeat(2, 1fr)" className="input-row">
-                    <GridItem>
-                        {" "}
-                        <label className="input-label">Number of Years: </label>
-                    </GridItem>
-                    <GridItem>
-                        <NumberInput>
+                        <FormLabel width={220}>Number of Years:</FormLabel>
+                        <NumberInput width={220}>
                             <NumberInputField
                                 placeholder="Years"
                                 value={years}
@@ -87,16 +85,8 @@ const SIPCalc = () => {
                                 <NumberDecrementStepper />
                             </NumberInputStepper>
                         </NumberInput>
-                    </GridItem>
-                </Grid>
-                <Grid templateColumns="repeat(2, 1fr)" className="input-row">
-                    <GridItem>
-                        <label className="input-label">
-                            Expected Rate of Return (in %):{" "}
-                        </label>
-                    </GridItem>
-                    <GridItem>
-                        <NumberInput>
+                        <FormLabel width={300}> Expected Rate of Return (in %):{" "}</FormLabel>
+                        <NumberInput width={220}>
                             <NumberInputField
                                 placeholder="Rate"
                                 value={rate}
@@ -109,8 +99,27 @@ const SIPCalc = () => {
                                 <NumberDecrementStepper />
                             </NumberInputStepper>
                         </NumberInput>
-                    </GridItem>
-                </Grid>
+                        
+                    </FormControl>
+                    <Spacer/>
+                                
+                    <div className="expected_output_sip">
+                        <h1 style={{fontSize:'30px'}} >Expected Amount</h1>
+                        <div className="calc-returns">
+                            <h1>Total Invested Amount: </h1>
+                            <p>  ₹{investedAmt}</p>
+                        </div>
+                        <div className="calc-returns">Maturity Amount: ₹ {returns}</div>
+                        <div className="calc-returns">
+                            Profit: ₹ {returns - investedAmt}
+                        </div>
+                        <div className="calc-returns">
+                            Profit (adjusted for inflation): ₹ {infProfits}
+                        </div>
+                    </div>
+                </Flex>
+                
+                
             </div>
 
             <Button
@@ -132,16 +141,8 @@ const SIPCalc = () => {
             >
                 Calculate
             </Button>
-            <div className="calc-returns">
-                Total Invested Amount: ₹ {investedAmt}
-            </div>
-            <div className="calc-returns">Maturity Amount: ₹ {returns}</div>
-            <div className="calc-returns">
-                Profit: ₹ {returns - investedAmt}
-            </div>
-            <div className="calc-returns">
-                Profit (adjusted for inflation): ₹ {infProfits}
-            </div>
+
+            
         </div>
     );
 };
