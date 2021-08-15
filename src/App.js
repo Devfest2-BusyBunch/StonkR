@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import Header from "components/Header";
+import { useState } from "react";
 import ColorMode from "components/ColorMode";
+import Header from "components/Header";
 import { ChakraProvider, Box, VStack, Grid } from "@chakra-ui/react";
 import {
 	BrowserRouter as Router,
@@ -24,18 +24,17 @@ const App = () => {
 
 	token = localStorage.getItem("token");
 
-	// useEffect(() => {
-	// 	setToken(localStorage.getItem("token"));
-	// }, []);
-
 	return (
 		<Provider store={store}>
 			<ChakraProvider theme={customTheme}>
-				<Header />
-				<Box textAlign="center" fontSize="xl">
-					<Grid minH="100vh" p={3}>
-						<VStack spacing={8}>
-							<Router>
+				<Router>
+					<div className="top-bar">
+						<Header />
+						<ColorMode />
+					</div>
+					<Box textAlign="center" fontSize="xl">
+						<Grid minH="100vh" p={3}>
+							<VStack spacing={8}>
 								<Switch>
 									<Route exact path="/">
 										{token ? <LandingPage /> : <Redirect to="/signin" />}
@@ -53,10 +52,10 @@ const App = () => {
 										<SawoLogin />
 									</Route>
 								</Switch>
-							</Router>
-						</VStack>
-					</Grid>
-				</Box>
+							</VStack>
+						</Grid>
+					</Box>
+				</Router>
 			</ChakraProvider>
 		</Provider>
 	);

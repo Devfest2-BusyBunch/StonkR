@@ -10,3 +10,7 @@
 .chart_outer {
 	background-color: whitesmoke;
 }
+
+.list-none {
+	list-style-type: none;
+}

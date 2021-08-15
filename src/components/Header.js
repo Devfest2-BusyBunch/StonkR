@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Box, Flex, Text, Button, Stack } from "@chakra-ui/react";
 import { Logo } from "Logo";
+import { Link as RouterLink } from "react-router-dom";
 
 const NavBar = props => {
 	const [isOpen, setIsOpen] = React.useState(false);
@@ -47,7 +48,7 @@ const MenuToggle = ({ toggle, isOpen }) => {
 
 const MenuItem = ({ children, isLast, to = "/", ...rest }) => {
 	return (
-		<Link href={to}>
+		<Link as={RouterLink} to={to}>
 			<Text display="block" {...rest}>
 				{children}
 			</Text>
