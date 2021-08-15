@@ -45,3 +45,14 @@
 .center-align {
 	text-align: center;
 }
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.colorMode-button {
+    margin-bottom: 32px;
+    margin-right: 10px;
+}

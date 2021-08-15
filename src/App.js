@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from "components/Header";
+import ColorMode from "components/ColorMode";
 import { ChakraProvider, Box, VStack, Grid } from "@chakra-ui/react";
 import {
 	BrowserRouter as Router,
