@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import {
+	useToast,
 	VStack,
 	Text,
 	Container,
@@ -32,14 +33,15 @@ const Stock = () => {
 	const [inputValues, setInputValues] = useState(null);
 	const [userID, setUserID] = useState(null);
 	const { symbol } = useParams();
+	const toast = useToast()
 	useEffect(() => {
 		const gettingDataForChart = async () => {
-			const rsp = await axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/chart/2m?token=pk_eae71671468a4161b60df617d889adad`)
+			const rsp = await axios.get(`https://sandbox.iexapis.com/stable/stock/${symbol}/chart/2m?token=${process.env.REACT_APP_SANDBOX_IEX_API_KEY}`)
 			const data = rsp.data
 			setDataProp(data)
 		}
 		gettingDataForChart()
-
+		
 
 	}, [quote])
 	const getQuote = useCallback(async () => {
@@ -82,6 +84,13 @@ const Stock = () => {
 
 		if (quantity < 0) {
 			console.log("not valid");
+			toast({
+				title: "Invalid quantity",
+				description: "Quantity should be greater than 0",
+				status: "error",
+				duration: 3000,
+				isClosable: true,
+			});
 			return;
 		}
 
@@ -104,8 +113,16 @@ const Stock = () => {
 
 			if (cash < price * quantity) {
 				console.log("not enough cash");
+				toast({
+					title: "Not enough cash",
+					description: "Could Not buy",
+					status: "error",
+					duration: 3000,
+					isClosable: true,
+				});
 				return;
 			}
+			
 
 			const { data: updated, error: updatedError } = await supabase
 				.from("users")
@@ -167,8 +184,16 @@ const Stock = () => {
 			let currentShares = portfolioData[0].quantity;
 			if (currentShares < quantity) {
 				console.log("not enough shares");
+				toast({
+					title: "Not enough shares",
+					description: "Could Not sell",
+					status: "error",
+					duration: 3000,
+					isClosable: true,
+				});
 				return;
 			}
+			
 			currentShares -= quantity;
 
 			const { data: portfolioUpdatedData, error: portfolioUpdateError } =

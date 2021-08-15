@@ -33,19 +33,11 @@ const Quote = () => {
     const [dataProp, setDataProp] = useState(null);
     const toast = useToast();
     const handleInputChange = (event) => {
-        setSymbol(event.target.value);
-    };
+        const target = event.target;
+        const { value } = target;
 
-    useEffect(() => {
-        const gettingDataForChart = async () => {
-            const rsp = await axios.get(
-                `https://cloud.iexapis.com/stable/stock/${symbol}/chart/2m?token=pk_eae71671468a4161b60df617d889adad`
-            );
-            const data = rsp.data;
-            setDataProp(data);
-        };
-        gettingDataForChart();
-    }, [symbol]);
+        setSymbol(value);
+    };
 
     const getQuote = async (event) => {
         event.preventDefault();
@@ -60,10 +52,19 @@ const Quote = () => {
                     title: "Success getting quote",
                     description: "We've created a quote for you.",
                     status: "success",
-                    duration: 2000,
+                    duration: 9000,
                     isClosable: true,
                 });
             }
+
+            const gettingDataForChart = async () => {
+                const rsp = await axios.get(
+                    `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/2m?token=${process.env.REACT_APP_SANDBOX_IEX_API_KEY}`
+                );
+                const data = rsp.data;
+                setDataProp(data);
+            };
+            gettingDataForChart();
 
             setQuote(res.data);
 
