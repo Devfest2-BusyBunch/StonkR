@@ -8,8 +8,15 @@ import {
     Icon,
     IconProps,
 } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 
 export default function LandingPage() {
+    const history = useHistory();
+
+    const handleStart = () => {
+        history.push("/signin");
+    };
+
     return (
         <Container maxW={"5xl"}>
             <Stack
@@ -40,10 +47,17 @@ export default function LandingPage() {
                         colorScheme={"primary"}
                         bg={"primary.400"}
                         _hover={{ bg: "primary.500" }}
+                        onClick={handleStart}
                     >
                         Get started
                     </Button>
-                    <Button rounded={"full"} px={6}>
+                    <Button
+                        rounded={"full"}
+                        px={6}
+                        onClick={() => {
+                            history.push("/about");
+                        }}
+                    >
                         Learn more
                     </Button>
                 </Stack>
