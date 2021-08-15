@@ -25,8 +25,10 @@ const Dashboard = () => {
 
 	return (
 		<Box>
-			<Text>Dashboard</Text>
-			{userName && <Heading>Welcome {userName}</Heading>}
+			<Box>
+				<Text>Dashboard</Text>
+				{userName && <Heading>Welcome {userName}</Heading>}
+			</Box>
 			<Box className="container side-bar">
 				<Trending />
 			</Box>
