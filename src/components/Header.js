@@ -76,6 +76,7 @@ const MenuLinks = ({ isOpen }) => {
 				pt={[4, 4, 0, 0]}>
 				<MenuItem to="/">Home</MenuItem>
 				<MenuItem to="/dashboard">Dashboard</MenuItem>
+				<MenuItem to="/leaderboard">Leaderboard</MenuItem>
 				<MenuItem to="/calculator">Calculators</MenuItem>
 				<MenuItem to="/quote">Quotes</MenuItem>
 				<MenuItem to="/leaderboard">Leaderboard</MenuItem>

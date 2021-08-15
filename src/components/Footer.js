@@ -2,6 +2,7 @@ import {
 	Box,
 	chakra,
 	Container,
+	Heading,
 	Image,
 	Link,
 	Stack,
@@ -21,7 +22,7 @@ const Logo = props => {
 				marginRight="20px"
 				{...props}
 			/>
-			<Text color={"primary.400"}>AppName</Text>
+			<Heading color={"primary.400"}>AppName</Heading>
 		</div>
 	);
 };
