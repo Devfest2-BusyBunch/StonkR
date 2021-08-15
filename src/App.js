@@ -47,6 +47,13 @@ const App = () => {
                             <Switch>
                                 <Route exact path="/">
                                     {token ? (
+                                        <Redirect to="/dashboard" />
+                                    ) : (
+                                        <Redirect to="/landing" />
+                                    )}
+                                </Route>
+                                <Route exact path="/dashboard">
+                                    {token ? (
                                         <Dashboard />
                                     ) : (
                                         <Redirect to="/landing" />
@@ -56,21 +63,21 @@ const App = () => {
                                     {token ? (
                                         <Calculator />
                                     ) : (
-                                        <Redirect to="/landing" />
+                                        <Redirect to="/signin" />
                                     )}
                                 </Route>
                                 <Route exact path="/quote">
                                     {token ? (
                                         <Quote />
                                     ) : (
-                                        <Redirect to="/landing" />
+                                        <Redirect to="/signin" />
                                     )}
                                 </Route>
                                 <Route exact path="/stocks/:symbol">
                                     {token ? (
                                         <Stock />
                                     ) : (
-                                        <Redirect to="/landing" />
+                                        <Redirect to="/signin" />
                                     )}
                                 </Route>
                                 <Route path="/landing" exact>
