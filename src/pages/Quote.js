@@ -8,6 +8,8 @@ import {
 	FormHelperText,
 	Heading,
 	Link,
+	UnorderedList,
+	ListItem,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
@@ -55,20 +57,19 @@ const Quote = () => {
 			</FormControl>
 			<Text>
 				{symbol && (
-					<Heading as="h3" size="md">
+					<Heading size="md">
 						<Link as={RouterLink} to={`stocks/${symbol.toLowerCase()}`}>
 							{quote.companyName}
 						</Link>
 					</Heading>
 				)}
-				{Object.keys(quote).map(key => (
-					<>
-						<span>
+				<UnorderedList className="list-none">
+					{Object.keys(quote).map(key => (
+						<ListItem key={key}>
 							{key}: {quote[key]}{" "}
-						</span>
-						<br />
-					</>
-				))}
+						</ListItem>
+					))}
+				</UnorderedList>
 			</Text>
 		</VStack>
 	);

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
 	VStack,
 	Text,
@@ -36,6 +37,14 @@ const Stock = () => {
 		getQuote();
 	}, [symbol]);
 
+	const getQuote = async () => {
+		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
+		const res = await axios.get(
+			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
+		);
+		setQuote(res.data);
+	};
+
 	const handleInputChange = event => {
 		const target = event.target;
 		const { value, name } = target;
@@ -51,11 +60,32 @@ const Stock = () => {
 	const placeOrder = async e => {
 		e.preventDefault();
 		const { option, quantity } = inputValues;
+		console.log(option, quantity);
+		if (quantity < 0) {
+			console.log("not valid");
+			return;
+		}
 		if (option === "Buy") {
-			const { data, error } = await supabase
+			console.log(userID);
+			const { data: cash, error } = await supabase
 				.from("users")
 				.select("cash")
-				.filter("user_id", "eq", userID);
+				.eq("user_id", userID);
+
+			console.log("error", error);
+			console.log(cash);
+
+			getQuote();
+			if (cash < quantity * quote.latestPrice) {
+				console.log("not enough cash");
+				return;
+			}
+
+			const { data: updated } = await supabase
+				.from("users")
+				.update({ cash: Number(cash - quantity * quote.latestPrice) })
+				.eq("user_id", userID);
+			console.log(updated);
 		}
 	};
 
@@ -77,14 +107,18 @@ const Stock = () => {
 		<VStack>
 			<Container>
 				<Text>
-					{quote.companyName} - {quote.latestPrice}
+					{quote.companyName} - ${quote.latestPrice}
+					<br />
+					{inputValues?.option} - {inputValues?.quantity}
 				</Text>
-				<FormControl mt={2} isRequired onSubmit={placeOrder}>
+				<FormControl mt={2} isRequired>
+					<FormLabel mt={1}>Trade Option</FormLabel>
 					<Select
 						name="option"
 						placeholder="Select trade option"
 						value={inputValues?.option || ""}
-						onChange={handleInputChange}>
+						onChange={handleInputChange}
+						isRequired>
 						<option>Buy</option>
 						<option>Sell</option>
 					</Select>
@@ -94,13 +128,14 @@ const Stock = () => {
 						name="quantity"
 						value={inputValues?.quantity || ""}
 						onChange={handleInputChange}
+						min={0}
 					/>
-					<Button type="submit" mt={2}>
+					<Button type="submit" onClick={placeOrder} mt={2}>
 						Place Order
 					</Button>
 				</FormControl>
 			</Container>
-			<UnorderedList class="list-none">
+			<UnorderedList className="list-none">
 				{Object.keys(quote).map(key => (
 					<ListItem key={key}>
 						{key}: {quote[key]}{" "}
