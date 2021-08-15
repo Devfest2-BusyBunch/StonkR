@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Text, Heading } from "@chakra-ui/react";
 import { Spacer, Flex, FormControl, FormLabel } from "@chakra-ui/react";
 import { NumberInput, NumberInputField } from "@chakra-ui/react";
 import "./components.css";
@@ -39,14 +39,14 @@ const SIPCalc = () => {
 
 	return (
 		<Box>
-			<Text
+			<Heading
 				as="h1"
 				fontSize="30px"
 				marginTop="50px"
 				marginBottom="50px"
 				color={"primary.400"}>
 				SIP Calculator
-			</Text>
+			</Heading>
 			<Box className="calc-items">
 				<Flex>
 					<FormControl className="calc_item">
@@ -84,9 +84,9 @@ const SIPCalc = () => {
 					<Spacer />
 
 					<Box className="expected_output_sip">
-						<Text as="h1" fontSize="30px" width="240px" marginBottom="50px">
+						<Heading as="h1" fontSize="30px" width="240px" marginBottom="50px">
 							Expected Amount
-						</Text>
+						</Heading>
 						<Box className="calc-returns" marginBottom="30px">
 							<Text as="span" fontSize="20px">
 								{" "}

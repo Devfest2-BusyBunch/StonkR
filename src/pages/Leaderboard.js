@@ -28,7 +28,7 @@ const PriceWrapper = ({ children }) => {
 	);
 };
 
-export default function Leaderboard() {
+const Leaderboard = () => {
 	return (
 		<Box py={4}>
 			<VStack spacing={1.5} textAlign="center">
@@ -137,12 +137,14 @@ export default function Leaderboard() {
 						<Flex className="leaderboardLabel">
 							<Box className="userInfo">
 								{" "}
-								<h1>Rank </h1>
-								<h1 className="username">Username</h1>
+								<Heading as="h1">Rank </Heading>
+								<Heading as="h3" className="username">
+									Username
+								</Heading>
 							</Box>
 
 							<Box className="money">
-								<h1 className="cash">
+								<Heading as="h1" className="cash">
 									Cash($){" "}
 									<Button
 										size="sm"
@@ -159,8 +161,8 @@ export default function Leaderboard() {
 										}}>
 										<TriangleUpIcon w={6} h={6} />
 									</Button>
-								</h1>
-								<h1 className="assets">
+								</Heading>
+								<Heading as="h1" className="assets">
 									Assets($){" "}
 									<Button
 										size="sm"
@@ -177,19 +179,25 @@ export default function Leaderboard() {
 										}}>
 										<TriangleUpIcon w={6} h={6} />
 									</Button>
-								</h1>
+								</Heading>
 							</Box>
 						</Flex>
 					</Box>
 					<Box py={2} px={12}>
 						<Flex justifyContent={"space-between"} className="leaderboardLabel">
 							<Box className="userInfo">
-								<h3>3</h3>
-								<h3 className="username">jesadasdasdasde</h3>
+								<Heading as="h3">3</Heading>
+								<Heading as="h3" className="username">
+									jesadasdasdasde
+								</Heading>
 							</Box>
 							<Box className="money">
-								<h3 className="cash">10022</h3>
-								<h3 className="assets">12</h3>
+								<Heading as="h3" className="cash">
+									10022
+								</Heading>
+								<Heading as="h3" className="assets">
+									12
+								</Heading>
 							</Box>
 						</Flex>
 					</Box>
@@ -197,4 +205,6 @@ export default function Leaderboard() {
 			</Stack>
 		</Box>
 	);
-}
+};
+
+export default Leaderboard;

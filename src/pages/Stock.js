@@ -20,7 +20,7 @@ import {
 	FormHelperText,
 	Heading,
 	Link,
-	RouterLink
+	RouterLink,
 } from "@chakra-ui/react";
 
 import { ArrowRightIcon, CheckCircleIcon } from "@chakra-ui/icons";
@@ -223,7 +223,6 @@ const Stock = () => {
 		);
 	}
 
-	
 	return (
 		<VStack>
 			<Container>
