@@ -22,7 +22,7 @@ const Logo = props => {
 				marginRight="20px"
 				{...props}
 			/>
-			<Heading color={"primary.400"}>AppName</Heading>
+			<Heading color={"primary.400"}>StonkR</Heading>
 		</Box>
 	);
 };
@@ -70,11 +70,17 @@ export default function Footer() {
 					<Link as={RouterLink} to="/dashboard">
 						Dashboard
 					</Link>
-					<Link as={RouterLink} to="/about">
-						About
+					<Link as={RouterLink} to="/leaderboard">
+						Leaderboard
 					</Link>
 					<Link as={RouterLink} to="/quote">
 						Quote
+					</Link>
+					<Link as={RouterLink} to="/calculator">
+						Calculator
+					</Link>
+					<Link as={RouterLink} to="/about">
+						About
 					</Link>
 				</Stack>
 			</Container>
@@ -91,7 +97,7 @@ export default function Footer() {
 					spacing={4}
 					justify={{ base: "center", md: "space-between" }}
 					align={{ base: "center", md: "center" }}>
-					<Text>© 2020 Something. All rights reserved.</Text>
+					<Text>© 2021 | Made for fulfilment of Devfest2.0</Text>
 					<Stack direction={"row"} spacing={0}>
 						<SocialButton
 							label={"Github"}
