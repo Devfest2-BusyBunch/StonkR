@@ -229,7 +229,7 @@ const Stock = () => {
 				<Text>
 					{quote.companyName} : ${quote.latestPrice}
 					<br />
-					{inputValues?.option}  {inputValues?.quantity}
+					{inputValues?.option} {inputValues?.quantity}
 				</Text>
 				<FormControl mt={2} isRequired>
 					<FormLabel mt={1}>Trade Option</FormLabel>
