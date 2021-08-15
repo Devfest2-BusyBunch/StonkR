@@ -31,19 +31,17 @@ const PriceWrapper = ({ children }) => {
 };
 
 const Leaderboard = () => {
+	// eslint-disable-next-line
 	const [userData, setUserData] = useState(null);
 
 	const loadData = useCallback(async () => {
+		// eslint-disable-next-line
 		const { data, error } = await supabase.from("users").select("user_id");
 		let user_list = data.map(el => el["user_id"]);
 
-		console.log("users retrived");
-
-		for (let user in user_list) {
+		user_list.forEach(user => {
 			assets(user);
-		}
-
-		console.log("first part done");
+		});
 
 		const { data: usersData, error: userError } = await supabase
 			.from("users")
@@ -51,7 +49,6 @@ const Leaderboard = () => {
 			.order("assets", { ascending: false })
 			.limit(10);
 
-		console.log(usersData);
 		setUserData(usersData);
 	}, []);
 

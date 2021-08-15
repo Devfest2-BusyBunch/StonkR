@@ -27,7 +27,7 @@ import { useParams } from "react-router";
 import { supabase } from "supabaseClient";
 
 const Stock = () => {
-	const [quote, setQuote] = useState({});
+	const [quote, setQuote] = useState(null);
 	const [inputValues, setInputValues] = useState(null);
 	const [userID, setUserID] = useState(null);
 	const { symbol } = useParams();

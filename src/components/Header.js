@@ -79,6 +79,7 @@ const MenuLinks = ({ isOpen }) => {
 				<MenuItem to="/leaderboard">Leaderboard</MenuItem>
 				<MenuItem to="/calculator">Calculators</MenuItem>
 				<MenuItem to="/quote">Quotes</MenuItem>
+				<MenuItem to="/about">About</MenuItem>
 				<MenuItem to="/signin">
 					{!localStorage.getItem("userID") && (
 						<Button
