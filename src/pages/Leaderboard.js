@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	Box,
 	Stack,
@@ -13,6 +13,8 @@ import {
 	Flex,
 } from "@chakra-ui/react";
 import { TriangleUpIcon } from "@chakra-ui/icons";
+import { supabase } from "supabaseClient";
+import assets from "utils/supabaseUtils";
 
 const PriceWrapper = ({ children }) => {
 	return (
@@ -29,7 +31,34 @@ const PriceWrapper = ({ children }) => {
 };
 
 const Leaderboard = () => {
-	useEffect(() => {}, []);
+	const [userData, setUserData] = useState(null);
+
+	useEffect(() => {
+		const loadData = async () => {
+			const { data, error } = await supabase.from("users").select("user_id");
+			let user_list = data.map(el => el["user_id"]);
+
+			console.log("users retrived");
+
+			for (let user in user_list) {
+				assets(user);
+			}
+
+			console.log("first part done");
+
+			const { data: usersData, error: userError } = await supabase
+				.from("users")
+				.select("user_id, cash, assets")
+				.order("assets", { ascending: false })
+				.limit(10);
+
+			console.log(usersData);
+			return usersData;
+		};
+
+		const data = loadData();
+		setUserData(data);
+	}, []);
 
 	return (
 		<Box py={4}>
