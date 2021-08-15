@@ -4,7 +4,7 @@ import { addUserId } from "redux/actions";
 import { useDispatch } from "react-redux";
 // import { Spinner } from "@chakra-ui/react";
 import { supabase } from "supabaseClient";
-import { randName } from "utils/usernameUtils";
+import randName from "utils/usernameUtils";
 import { Heading, Box } from "@chakra-ui/react";
 
 const API_KEY = process.env.REACT_APP_SAWO_API_KEY;

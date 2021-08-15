@@ -186,4 +186,4 @@ const randName = () => {
 	return finalName;
 };
 
-export default { randName };
+export default randName;
