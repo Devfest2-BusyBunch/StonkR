@@ -7,10 +7,6 @@
     align-content: flex-start;
 }
 
-.chart_outer {
-    background-color: rgb(49, 60, 71);
-}
-
 .candlestick-chart {
     color: rgb(49, 60, 71);
 }
