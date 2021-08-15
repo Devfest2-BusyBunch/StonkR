@@ -14,7 +14,7 @@ import { FiTrendingDown, FiTrendingUp } from "react-icons/fi";
 const StatsCard = ({ title, stat, icon }) => {
 	return (
 		<Stat
-			bg="cyan.400"
+			bg={ useColorModeValue("green.500", "green.500") }
 			color="white"
 			px={{ base: 2, md: 4 }}
 			py={"2"}
