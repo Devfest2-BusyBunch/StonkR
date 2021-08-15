@@ -1,14 +1,15 @@
 import SipCalc from "../components/SIPCalc";
 import LumpSumCalc from "../components/LumpSumCalc";
 import BitcoinCalculator from "../components/BitcoinCalculator";
+import { Box } from "@chakra-ui/react";
 
 const Calculator = () => {
 	return (
-		<div>
+		<Box>
 			<SipCalc />
 			<LumpSumCalc />
 			<BitcoinCalculator />
-		</div>
+		</Box>
 	);
 };
 

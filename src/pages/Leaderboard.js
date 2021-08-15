@@ -1,5 +1,4 @@
-import React from 'react'
-import { ReactNode } from 'react';
+import React from "react";
 import {
     Box,
     Stack,
@@ -17,15 +16,15 @@ import {
 } from '@chakra-ui/react';
 import { FaCheckCircle } from 'react-icons/fa';
 
-function PriceWrapper({ children }: { children: ReactNode }) {
+function PriceWrapper({ children }) {
     return (
         <Box
             mb={4}
             shadow="base"
             borderWidth="1px"
-            alignSelf={{ base: 'center', lg: 'flex-start' }}
-            borderColor={useColorModeValue('gray.200', 'gray.500')}
-            borderRadius={'xl'}>
+            alignSelf={{ base: "center", lg: "flex-start" }}
+            borderColor={useColorModeValue("gray.200", "gray.500")}
+            borderRadius={"xl"}>
             {children}
         </Box>
     );
@@ -166,7 +165,7 @@ export default function Leaderboard() {
                 py={10}>
                 <PriceWrapper>
                     <Box py={2} px={12}>
-                        <Flex  className="leaderboardLabel">
+                        <Flex className="leaderboardLabel">
                             <div className="userInfo"> <h1>Rank</h1>
                                 <h1 className='username'>Username</h1></div>
 
@@ -174,10 +173,10 @@ export default function Leaderboard() {
                                 <h1 className='cash'>Cash($)</h1>
                                 <h1>Assets($)</h1>
                             </div>
-                            
+
 
                         </Flex>
-                     </Box>
+                    </Box>
                     <Box py={2} px={12}>
                         <Flex justifyContent={'space-between'} className="leaderboardLabel">
                             <div className="userInfo"> <h1>3</h1>
@@ -190,7 +189,7 @@ export default function Leaderboard() {
 
 
                         </Flex>
-                     </Box>
+                    </Box>
 
                 </PriceWrapper>
 

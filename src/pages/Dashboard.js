@@ -1,16 +1,17 @@
 import Candle from "components/Chart";
 import Trending from "components/Trending";
+import { Box } from "@chakra-ui/react";
 
 const Dashboard = () => {
 	return (
-		<>
-			<div className="container side-bar">
+		<Box>
+			<Box className="container side-bar">
 				<Trending />
-			</div>
-			<div className="container chart_outer">
+			</Box>
+			<Box className="container chart_outer">
 				<Candle />
-			</div>
-		</>
+			</Box>
+		</Box>
 	);
 };
 
