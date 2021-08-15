@@ -22,13 +22,15 @@ import {
 } from "@chakra-ui/react";
 import { ArrowRightIcon, CheckCircleIcon } from "@chakra-ui/icons";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios";
 import { Link as RouterLink } from "react-router-dom";
+import Candle from "components/Chart";
 
 const Quote = () => {
 	const [quote, setQuote] = useState(null);
 	const [symbol, setSymbol] = useState(null);
+	const [dataProp,setDataProp]= useState(null)
 	const toast = useToast();
 	const handleInputChange = event => {
 		const target = event.target;
@@ -36,6 +38,17 @@ const Quote = () => {
 
 		setSymbol(value);
 	};
+	useEffect(() => {
+		const gettingDataForChart = async () =>{
+			const rsp = await axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/chart/2m?token=pk_eae71671468a4161b60df617d889adad`)
+			const data = rsp.data
+			setDataProp(data)
+		}
+		gettingDataForChart()
+		
+
+	}, [quote])
+
 
 	const getQuote = async event => {
 		event.preventDefault();
@@ -46,6 +59,7 @@ const Quote = () => {
 			);
 
 			if (res.status !== 404) {
+				
 				toast({
 					title: "Success getting quote",
 					description: "We've created a quote for you.",
@@ -56,7 +70,14 @@ const Quote = () => {
 			}
 
 			setQuote(res.data);
+
 			console.log(res.data);
+			
+			
+
+
+
+
 		} catch (error) {
 			toast({
 				title: "Failed getting quote",
@@ -67,6 +88,11 @@ const Quote = () => {
 			});
 		}
 	};
+
+
+
+
+
 	const v1 = useColorModeValue("white", "gray.800");
 	const v2 = useColorModeValue("gray.800", "white");
 	const v3 = useColorModeValue("green.50", "green.900");
@@ -172,6 +198,8 @@ const Quote = () => {
 					</Center>
 				)}
 			</Container>
+			{dataProp ? <Candle dataProp={dataProp} /> : console.log('error fetchging data for chart')}
+			
 		</VStack>
 	);
 };

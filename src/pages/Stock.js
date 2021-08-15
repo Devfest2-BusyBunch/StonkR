@@ -19,7 +19,7 @@ import {
 	FormHelperText,
 	Heading,
 } from "@chakra-ui/react";
-
+import Candle from '../components/Chart'
 import { ArrowRightIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
@@ -28,10 +28,20 @@ import { supabase } from "supabaseClient";
 
 const Stock = () => {
 	const [quote, setQuote] = useState(null);
+	const [dataProp, setDataProp] = useState(null)
 	const [inputValues, setInputValues] = useState(null);
 	const [userID, setUserID] = useState(null);
 	const { symbol } = useParams();
+	useEffect(() => {
+		const gettingDataForChart = async () => {
+			const rsp = await axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/chart/2m?token=pk_eae71671468a4161b60df617d889adad`)
+			const data = rsp.data
+			setDataProp(data)
+		}
+		gettingDataForChart()
 
+
+	}, [quote])
 	const getQuote = useCallback(async () => {
 		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
 		const res = await axios.get(
@@ -332,6 +342,7 @@ const Stock = () => {
 					</Center>
 				)}
 			</Container>
+			{dataProp ? <Candle dataProp={dataProp} /> : console.log('error fetchging data for chart')}
 		</VStack>
 	);
 };
