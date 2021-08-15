@@ -21,7 +21,8 @@ const Quote = () => {
 		setSymbol(value);
 	};
 
-	const getQuote = async () => {
+	const getQuote = async event => {
+		event.preventDefault();
 		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
 		const res = await axios.get(
 			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
@@ -31,7 +32,7 @@ const Quote = () => {
 
 	return (
 		<VStack>
-			<FormControl>
+			<FormControl onSubmit={getQuote}>
 				<FormLabel>Symbol</FormLabel>
 				<Input
 					type="text"

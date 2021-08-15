@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "components/Header";
 import ColorMode from "components/ColorMode";
 import { ChakraProvider, Box, VStack, Grid } from "@chakra-ui/react";
@@ -21,7 +21,12 @@ import Stock from "pages/Stock";
 
 const App = () => {
     let [token] = useState(false);
+
     token = localStorage.getItem("token");
+
+    // useEffect(() => {
+    // 	setToken(localStorage.getItem("token"));
+    // }, []);
 
     return (
         <Provider store={store}>
