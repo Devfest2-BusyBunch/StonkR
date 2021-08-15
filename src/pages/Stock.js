@@ -86,7 +86,9 @@ const Stock = () => {
 			}
 
 			const cash = data.cash;
+			getQuote();
 			const price = quote.latestPrice;
+
 			if (cash < price * quantity) {
 				console.log("not enough cash");
 				return;
@@ -96,6 +98,31 @@ const Stock = () => {
 				.from("users")
 				.update({ cash: cash - price * quantity })
 				.eq("user_id", userID);
+
+			const { data: historyData, error: historyError } = await supabase
+				.from("history")
+				.insert([
+					{ user: userID, symbol: symbol, operation: "buy", price, quantity },
+				]);
+
+			const { data: portfolioData, error: portfolioError } = await supabase
+				.from("portfolio")
+				.select("user_id, symbol")
+				.eq("user_id", userID);
+
+			if (!portfolioData) {
+				const { data: portfolioInsertData, error: portfolioInsertError } =
+					await supabase
+						.from("portfolio")
+						.insert([{ user: userID, symbol, quantity }]);
+			} else {
+				const { data: portfolioUpdateData, error: portfolioUpdateError } =
+					await supabase
+						.from("portfolio")
+						.update([{ quantity: portfolioData.quantity + quantity }])
+						.eq("user_id", userID)
+						.eq("symbol", symbol);
+			}
 		}
 	};
 

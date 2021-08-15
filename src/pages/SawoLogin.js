@@ -76,23 +76,18 @@ const SawoLogin = ({ loggedIn }) => {
 				)} */}
 			{/* {loaded && ( */}
 			{/* <> */}
-			<h2 className="title">
-				User Logged In : {isUserLoggedIn.toString()}
-			</h2>
+			<h2 className="title">User Logged In : {isUserLoggedIn.toString()}</h2>
 
 			{!isUserLoggedIn ? (
 				<div
 					className="formContainer"
 					id="sawo-container"
-					style={{height: '300px', width: '300px'}}
-				></div>
+					style={{ height: "300px", width: "300px" }}></div>
 			) : (
 				<div className="loggedin">
 					<h2>User Successful Login</h2>
 					<div>UserId: {payload.user_id}</div>
-					<div>
-						Verification Token: {payload.verification_token}
-					</div>
+					<div>Verification Token: {payload.verification_token}</div>
 				</div>
 			)}
 			{/* </>
