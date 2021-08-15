@@ -20,6 +20,7 @@ import Calculator from "pages/Calculator";
 import Quote from "pages/Quote";
 import Stock from "pages/Stock";
 import About from "pages/About";
+import ErrorPage from "pages/ErrorPage";
 
 const App = () => {
 	let [token] = useState(false);
@@ -70,6 +71,9 @@ const App = () => {
 								</Route>
 								<Route path="/leaderboard" exact>
 									<Leaderboard />
+								</Route>
+								<Route path="/404" exact>
+									<ErrorPage />
 								</Route>
 							</Switch>
 						</VStack>
