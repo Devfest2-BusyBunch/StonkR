@@ -16,7 +16,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { supabase } from "supabaseClient";
-// import { useSelector } from "react-redux";
 
 const Stock = () => {
 	const [quote, setQuote] = useState({});
@@ -85,7 +84,10 @@ const Stock = () => {
 				return;
 			}
 
+			console.log(data);
+
 			const cash = data.cash;
+			console.log("cash", cash);
 			getQuote();
 			const price = quote.latestPrice;
 
@@ -96,7 +98,7 @@ const Stock = () => {
 
 			const { data: updated, error: updatedError } = await supabase
 				.from("users")
-				.update({ cash: cash - price * quantity })
+				.update({ cash: Number(cash - price * quantity) })
 				.eq("user_id", userID);
 
 			const { data: historyData, error: historyError } = await supabase

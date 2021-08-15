@@ -1,6 +1,5 @@
 import {
 	VStack,
-	Text,
 	Button,
 	Input,
 	FormControl,
