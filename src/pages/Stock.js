@@ -21,6 +21,7 @@ import {
 	Heading,
 	Link,
 	RouterLink,
+	useToast
 } from "@chakra-ui/react";
 
 import { ArrowRightIcon, CheckCircleIcon } from "@chakra-ui/icons";
@@ -28,7 +29,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import { supabase } from "supabaseClient";
-
+function SuccessToast() {
+	const toast = useToast()
+	toast({
+		title: "Account created.",
+		description: "We've created your account for you.",
+		status: "success",
+		duration: 9000,
+		isClosable: true,
+	})
+	
+}
 const Stock = () => {
 	const [quote, setQuote] = useState({});
 	const [inputValues, setInputValues] = useState(null);
@@ -224,7 +235,9 @@ const Stock = () => {
 	}
 
 	return (
+	
 		<VStack>
+			
 			<Container>
 				<Text>
 					{quote.companyName} : ${quote.latestPrice}
