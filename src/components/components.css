@@ -64,3 +64,8 @@
 .router-link {
     text-decoration: none !important;
 }
+
+.footer-topdiv {
+    display: flex;
+    align-items: center;
+}

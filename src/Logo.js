@@ -7,17 +7,10 @@ const spin = keyframes`
 `;
 
 export const Logo = (props) => {
-    const prefersReducedMotion = usePrefersReducedMotion();
-
-    const animation = prefersReducedMotion
-        ? undefined
-        : `${spin} infinite 20s linear`;
-
     return (
         <Image
-            animation={animation}
             src={
-                "https://foodict.s3.ap-south-1.amazonaws.com/misc/euro-coin.png"
+                "https://foodict.s3.ap-south-1.amazonaws.com/misc/coins+(1).png"
             }
             {...props}
         />

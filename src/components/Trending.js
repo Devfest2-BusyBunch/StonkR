@@ -73,12 +73,18 @@ function Trending() {
                     return (
                         <StatsCard
                             title={trend.name}
-                            stat={trend.price_change_percentage_24h}
+                            stat={`${trend.price_change_percentage_24h}%`}
                             icon={
                                 trend.price_change_percentage_24h > 0 ? (
-                                    <FiTrendingUp color={'green'} size={"1em"} />
+                                    <FiTrendingUp
+                                        color={"green"}
+                                        size={"1em"}
+                                    />
                                 ) : (
-                                    <FiTrendingDown color={'red'} size={"1em"} />
+                                    <FiTrendingDown
+                                        color={"red"}
+                                        size={"1em"}
+                                    />
                                 )
                             }
                         />
