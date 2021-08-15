@@ -21,7 +21,7 @@ const Dashboard = () => {
 		};
 
 		update();
-	}, []);
+	}, [userID]);
 
 	return (
 		<Box>
