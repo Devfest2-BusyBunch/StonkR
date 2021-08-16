@@ -48,7 +48,6 @@ const Portfolio = () => {
                 .select("user, symbol, quantity")
                 .eq("user", userID);
 
-        console.log(portfolioUserData);
         setPortfolioData(portfolioUserData);
         setLoaded(true);
 
@@ -62,11 +61,11 @@ const Portfolio = () => {
                 let { latestPrice: price } = res.data;
                 if (idx === portfolioUserData.length - 1) {
                     flag = true;
-                    console.log("set true");
                 }
                 return { ...el, amount: price * el.quantity };
             });
         }
+
         setPortfolioData(portfolioUserData);
         setLoaded(true);
         // flag ? setPortfolioData(portfolioUserData) : console.log("wait");
@@ -78,7 +77,7 @@ const Portfolio = () => {
         loadPortfolio();
         portfolioData ? setLoaded(true) : console.log("not yet");
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [portfolioData]);
+    }, []);
 
     if (!loaded) {
         return (
