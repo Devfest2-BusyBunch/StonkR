@@ -15,10 +15,10 @@
 	list-style-type: none !important;
 }
 
-.side-bar {
+/* .side-bar {
 	position: absolute;
 	left: 0;
-}
+} */
 
 /* .leaderboardLabel {
 } */
@@ -48,5 +48,8 @@
 }
 .assets {
 	width: 150px;
+}
+.dash-grid{
+	display: grid;
 }
 }
