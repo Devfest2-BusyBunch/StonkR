@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Sawo from "sawo";
 import { addUserId } from "redux/actions";
 import { useDispatch } from "react-redux";
-// import { Spinner } from "@chakra-ui/react";
 import { supabase } from "supabaseClient";
 import randName from "utils/usernameUtils";
 import { Heading, Box, Text, useToast } from "@chakra-ui/react";
@@ -13,7 +12,6 @@ const SawoLogin = ({ loggedIn }) => {
 	const [payload, setPayload] = useState({});
 	const [isUserLoggedIn, setUserLoggedIn] = useState(false);
 	const toast = useToast();
-	// const [loaded, setLoaded] = useState(false);
 	const dispatch = useDispatch();
 	loggedIn = isUserLoggedIn;
 
@@ -41,7 +39,6 @@ const SawoLogin = ({ loggedIn }) => {
 				let { data: users, error } = await supabase
 					.from("users")
 					.select("user_id");
-				console.log(users);
 				if (!users.includes(payload.user_id)) {
 					console.log("User does not exist");
 					toast({
@@ -56,17 +53,11 @@ const SawoLogin = ({ loggedIn }) => {
 					const { data, error } = await supabase
 						.from("users")
 						.insert([{ user_id: payload.user_id, username: randomUsername }]);
-					console.log(data);
-					console.log("username", randomUsername, payload.user_id);
 				}
 			},
 		};
 		let sawo = new Sawo(config);
 		sawo.showForm();
-
-		// setTimeout(() => {
-		// 	setLoaded(true);
-		// }, 2000);
 	}, [dispatch, toast]);
 
 	if (isUserLoggedIn) {
@@ -75,18 +66,6 @@ const SawoLogin = ({ loggedIn }) => {
 
 	return (
 		<Box className="containerStyle">
-			{/* <section> */}
-			{/* {!loaded && (
-					<Spinner
-						thickness="4px"
-						speed="0.65s"
-						emptyColor="gray.200"
-						color="blue.500"
-						size="xl"
-					/>
-				)} */}
-			{/* {loaded && ( */}
-			{/* <> */}
 			<Heading className="title">
 				User Logged In : {isUserLoggedIn.toString()}
 			</Heading>
@@ -103,8 +82,6 @@ const SawoLogin = ({ loggedIn }) => {
 					<Text>Verification Token: {payload.verification_token}</Text>
 				</Box>
 			)}
-			{/* </>
-            </section> */}
 		</Box>
 	);
 };

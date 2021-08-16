@@ -53,7 +53,7 @@ const App = () => {
 									<LandingPage />
 								</Route>
 								<Route exact path="/dashboard">
-									{token ? <Dashboard /> : <Redirect to="/" />}
+									{token ? <Dashboard /> : <Redirect to="/signin" />}
 								</Route>
 								<Route exact path="/calculator">
 									{token ? <Calculator /> : <Redirect to="/signin" />}

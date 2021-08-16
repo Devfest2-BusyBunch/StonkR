@@ -48,26 +48,27 @@ const Portfolio = () => {
                 .select("user, symbol, quantity")
                 .eq("user", userID);
 
+        console.log(portfolioUserData);
         setPortfolioData(portfolioUserData);
         setLoaded(true);
 
-        // const API_KEY = process.env.REACT_APP_IEX_API_KEY;
-        // let flag = false;
-        // if (portfolioUserData.length > 0) {
-        // 	portfolioUserData.map(async (el, idx) => {
-        // 		const res = await axios.get(
-        // 			`https://cloud.iexapis.com/stable/stock/${el.symbol}/quote?token=${API_KEY}`
-        // 		);
-        // 		let { latestPrice: price } = res.data;
-        // 		if (idx === portfolioUserData.length - 1) {
-        // 			flag = true;
-        // 			console.log("set true");
-        // 		}
-        // 		return { ...el, amount: price * el.quantity };
-        // 	});
-        // }
-        // setPortfolioData(portfolioUserData);
-        // setLoaded(true);
+        const API_KEY = process.env.REACT_APP_IEX_API_KEY;
+        let flag = false;
+        if (portfolioUserData.length > 0) {
+            portfolioUserData.map(async (el, idx) => {
+                const res = await axios.get(
+                    `https://cloud.iexapis.com/stable/stock/${el.symbol}/quote?token=${API_KEY}`
+                );
+                let { latestPrice: price } = res.data;
+                if (idx === portfolioUserData.length - 1) {
+                    flag = true;
+                    console.log("set true");
+                }
+                return { ...el, amount: price * el.quantity };
+            });
+        }
+        setPortfolioData(portfolioUserData);
+        setLoaded(true);
         // flag ? setPortfolioData(portfolioUserData) : console.log("wait");
         // flag ? setLoaded(true) : console.log("waitl");
     }, [userID]);
@@ -77,7 +78,7 @@ const Portfolio = () => {
         loadPortfolio();
         portfolioData ? setLoaded(true) : console.log("not yet");
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [portfolioData]);
 
     if (!loaded) {
         return (
@@ -106,13 +107,14 @@ const Portfolio = () => {
                 columns={{ base: 1, md: 3 }}
                 spacing={{ base: 5, lg: 8 }}
             >
-                {portfolioData.map(({ symbol, quantity, amount }) => (
-                    <StatsCard
-                        title={symbol.toUpperCase()}
-                        quantity={quantity}
-                        amount={"amount"}
-                    />
-                ))}
+                {portfolioData &&
+                    portfolioData.map(({ symbol, quantity, amount }) => (
+                        <StatsCard
+                            title={symbol.toUpperCase()}
+                            quantity={quantity}
+                            amount={"amount"}
+                        />
+                    ))}
             </SimpleGrid>
         </Box>
     );
