@@ -11,6 +11,8 @@ import {
 	ListItem,
 	Button,
 	Flex,
+	Spinner,
+	Divider,
 } from "@chakra-ui/react";
 import { TriangleUpIcon } from "@chakra-ui/icons";
 import { supabase } from "supabaseClient";
@@ -33,6 +35,7 @@ const PriceWrapper = ({ children }) => {
 const Leaderboard = () => {
 	// eslint-disable-next-line
 	const [userData, setUserData] = useState(null);
+	const [loaded, setLoaded] = useState(false);
 
 	const loadData = useCallback(async () => {
 		// eslint-disable-next-line
@@ -48,7 +51,7 @@ const Leaderboard = () => {
 		// eslint-disable-next-line no-unused-vars
 		const { data: usersData, error: userError } = await supabase
 			.from("users")
-			.select("user_id, cash, assets")
+			.select("username, cash, assets")
 			.order("assets", { ascending: false })
 			.limit(10);
 
@@ -57,7 +60,28 @@ const Leaderboard = () => {
 
 	useEffect(() => {
 		loadData();
+		setTimeout(() => {
+			setLoaded(true);
+		}, 4000);
 	}, [loadData]);
+
+	const v1 = useColorModeValue("gray.50", "gray.700");
+	const v2 = useColorModeValue("red.300", "red.700");
+	const v3 = useColorModeValue("gray.900", "gray.300");
+	const v4 = useColorModeValue("gray.50", "gray.700");
+	const v5 = useColorModeValue("gray.50", "gray.700");
+
+	if (!loaded) {
+		return (
+			<Spinner
+				thickness="4px"
+				speed="0.65s"
+				emptyColor="gray.200"
+				color="blue.500"
+				size="xl"
+			/>
+		);
+	}
 
 	return (
 		<Box py={4}>
@@ -79,17 +103,14 @@ const Leaderboard = () => {
 						</Text>
 						<HStack justifyContent="center">
 							<Text fontSize="3xl" fontWeight="900">
-								username
+								{userData[1]?.username || "username"}
 							</Text>
 						</HStack>
 					</Box>
-					<VStack
-						bg={useColorModeValue("gray.50", "gray.700")}
-						py={4}
-						borderBottomRadius={"xl"}>
+					<VStack bg={v1} py={4} borderBottomRadius={"xl"}>
 						<List spacing={3} textAlign="start" px={12}>
-							<ListItem>Cash - $xyz</ListItem>
-							<ListItem>Assets - $xyz</ListItem>
+							<ListItem>Cash - $ {userData[1]?.cash || "xyz"}</ListItem>
+							<ListItem>Assets - $ {userData[1]?.cash || "xyz"}</ListItem>
 						</List>
 					</VStack>
 				</PriceWrapper>
@@ -103,10 +124,10 @@ const Leaderboard = () => {
 							style={{ transform: "translate(-50%)" }}>
 							<Text
 								textTransform="uppercase"
-								bg={useColorModeValue("red.300", "red.700")}
+								bg={v2}
 								px={3}
 								py={1}
-								color={useColorModeValue("gray.900", "gray.300")}
+								color={v3}
 								fontSize="sm"
 								fontWeight="600"
 								rounded="xl">
@@ -119,17 +140,14 @@ const Leaderboard = () => {
 							</Text>
 							<HStack justifyContent="center">
 								<Text fontSize="4xl" fontWeight="900">
-									username
+									{userData[0]?.username || "username"}
 								</Text>
 							</HStack>
 						</Box>
-						<VStack
-							bg={useColorModeValue("gray.50", "gray.700")}
-							py={4}
-							borderBottomRadius={"xl"}>
+						<VStack bg={v4} py={4} borderBottomRadius={"xl"}>
 							<List spacing={3} textAlign="start" px={12}>
-								<ListItem>Cash - $xyz</ListItem>
-								<ListItem>Assets - $xyz</ListItem>
+								<ListItem>Cash - $ {userData[0]?.cash || "xyz"}</ListItem>
+								<ListItem>Assets - $ {userData[0]?.cash || "xyz"}</ListItem>
 							</List>
 						</VStack>
 					</Box>
@@ -141,17 +159,14 @@ const Leaderboard = () => {
 						</Text>
 						<HStack justifyContent="center">
 							<Text fontSize="3xl" fontWeight="900">
-								username
+								{userData[2]?.username || "username"}
 							</Text>
 						</HStack>
 					</Box>
-					<VStack
-						bg={useColorModeValue("gray.50", "gray.700")}
-						py={4}
-						borderBottomRadius={"xl"}>
+					<VStack bg={v5} py={4} borderBottomRadius={"xl"}>
 						<List spacing={3} textAlign="start" px={12}>
-							<ListItem>Cash - $xyz</ListItem>
-							<ListItem>Assets - $xyz</ListItem>
+							<ListItem>Cash - $ {userData[2]?.cash || "xyz"}</ListItem>
+							<ListItem>Assets - $ {userData[2]?.cash || "xyz"}</ListItem>
 						</List>
 					</VStack>
 				</PriceWrapper>
@@ -214,24 +229,33 @@ const Leaderboard = () => {
 						</Flex>
 					</Box>
 					<Box py={2} px={12}>
-						<Flex justifyContent={"space-between"} className="leaderboardLabel">
-							<Box className="userInfo">
-								<Text fontSize="xl" fontWeight="200">
-									3
-								</Text>
-								<Text fontSize="xl" fontWeight="200" className="username">
-									jesadasdasdasde
-								</Text>
-							</Box>
-							<Box className="money">
-								<Text fontSize="xl" fontWeight="200" className="cash">
-									10022
-								</Text>
-								<Text fontSize="xl" fontWeight="200" className="assets">
-									12
-								</Text>
-							</Box>
-						</Flex>
+						{userData.slice(3).map((data, idx) => (
+							<>
+								<Flex
+									justifyContent={"space-between"}
+									className="leaderboardLabel"
+									mb={2}
+									mt={2}>
+									<Box className="userInfo">
+										<Text fontSize="xl" fontWeight="200">
+											{idx + 3}
+										</Text>
+										<Text fontSize="xl" fontWeight="200" className="username">
+											{data.username}
+										</Text>
+									</Box>
+									<Box className="money">
+										<Text fontSize="xl" fontWeight="200" className="cash">
+											{data.cash}
+										</Text>
+										<Text fontSize="xl" fontWeight="200" className="assets">
+											{data.assets}
+										</Text>
+									</Box>
+								</Flex>
+								<Divider />
+							</>
+						))}
 					</Box>
 				</PriceWrapper>
 			</Stack>
