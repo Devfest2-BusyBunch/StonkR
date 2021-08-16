@@ -81,7 +81,11 @@ const Portfolio = () => {
 			</Heading>
 			<SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
 				{portfolioData.map(({ symbol, quantity }) => (
-					<StatsCard title={symbol} quantity={quantity} amount={"$Amount"} />
+					<StatsCard
+						title={symbol.toUpperCase()}
+						quantity={quantity}
+						amount={"$Amount"}
+					/>
 				))}
 			</SimpleGrid>
 		</Box>
