@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import Trending from "components/Trending";
 import { supabase } from "supabaseClient";
 import Portfolio from "components/Portfolio";
-import UserWallet from "components/UserWallet";
+import UserWallet from "components/Userwallet";
 
 const Dashboard = () => {
 	const [userID, setUserID] = useState(null);
 	const [userName, setUserName] = useState(null);
-
+	
 	const v1 = useColorModeValue("gray.50", "gray.700");
 
 	useEffect(() => {
@@ -29,16 +29,16 @@ const Dashboard = () => {
 
 	return (
 		<>
-			<Box>
-				<Box>
+			<Box className="dash-grid">
+				<Box className="container trending">
+					<Trending />
+				</Box>
+				<Box className="portfolio">
 					{userName ? (
 						<Heading>Welcome {userName}</Heading>
 					) : (
 						console.log("err")
 					)}
-				</Box>
-				<Box className="container side-bar">
-					<Trending />
 				</Box>
 				<Box>
 					<Portfolio />
