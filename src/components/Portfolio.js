@@ -39,6 +39,7 @@ const Portfolio = () => {
 	const [loaded, setLoaded] = useState(false);
 
 	const loadPortfolio = useCallback(async () => {
+		// eslint-disable-next-line no-unused-vars
 		const { data: portfolioUserData, error: portfolioError } = await supabase
 			.from("portfolio")
 			.select("user, symbol, quantity")
