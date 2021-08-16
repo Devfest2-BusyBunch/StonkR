@@ -239,7 +239,7 @@ const Leaderboard = () => {
 									mt={2}>
 									<Box className="userInfo">
 										<Text fontSize="xl" fontWeight="200">
-											{idx + 3}
+											{idx + 4}
 										</Text>
 										<Text fontSize="xl" fontWeight="200" className="username">
 											{data.username}

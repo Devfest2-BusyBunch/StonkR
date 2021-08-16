@@ -2,12 +2,14 @@ import {
 	Box,
 	chakra,
 	Container,
+	Flex,
 	Heading,
 	Image,
 	Link,
 	Stack,
 	Text,
 	useColorModeValue,
+	useMediaQuery,
 	VisuallyHidden,
 } from "@chakra-ui/react";
 import { FaGithub } from "react-icons/fa";
@@ -51,6 +53,8 @@ const SocialButton = ({ children, label, href }) => {
 };
 
 export default function Footer() {
+	const [isNotSmallerScreen] = useMediaQuery("(min-width:600px)");
+
 	return (
 		<Box
 			bg={useColorModeValue("gray.50", "gray.900")}
@@ -64,26 +68,52 @@ export default function Footer() {
 				justify={"center"}
 				align={"center"}>
 				<Logo />
-				<Stack direction={"row"} spacing={6}>
-					<Link as={RouterLink} to="/">
+				<Flex
+					direction={isNotSmallerScreen ? "row" : "column"}
+					alignItems={"center"}>
+					<Link
+						as={RouterLink}
+						to="/"
+						marginBottom={!isNotSmallerScreen && 1}
+						marginRight={isNotSmallerScreen && 3}>
 						Home
 					</Link>
-					<Link as={RouterLink} to="/dashboard">
+					<Link
+						as={RouterLink}
+						to="/dashboard"
+						marginBottom={!isNotSmallerScreen && 1}
+						marginRight={isNotSmallerScreen && 3}>
 						Dashboard
 					</Link>
-					<Link as={RouterLink} to="/leaderboard">
+					<Link
+						as={RouterLink}
+						to="/leaderboard"
+						marginBottom={!isNotSmallerScreen && 1}
+						marginRight={isNotSmallerScreen && 3}>
 						Leaderboard
 					</Link>
-					<Link as={RouterLink} to="/quote">
+					<Link
+						as={RouterLink}
+						to="/quote"
+						marginBottom={!isNotSmallerScreen && 1}
+						marginRight={isNotSmallerScreen && 3}>
 						Quote
 					</Link>
-					<Link as={RouterLink} to="/calculator">
+					<Link
+						as={RouterLink}
+						to="/calculator"
+						marginBottom={!isNotSmallerScreen && 1}
+						marginRight={isNotSmallerScreen && 3}>
 						Calculator
 					</Link>
-					<Link as={RouterLink} to="/about">
+					<Link
+						as={RouterLink}
+						to="/about"
+						marginBottom={!isNotSmallerScreen && 1}
+						marginRight={isNotSmallerScreen && 3}>
 						About
 					</Link>
-				</Stack>
+				</Flex>
 			</Container>
 
 			<Box

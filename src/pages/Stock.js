@@ -158,9 +158,7 @@ const Stock = () => {
 
 			const { data: historyData, error: historyError } = await supabase
 				.from("history")
-				.insert([
-					{ user: userID, symbol: symbol, operation: "buy", price, quantity },
-				]);
+				.insert([{ user: userID, symbol, operation: "buy", price, quantity }]);
 
 			toast({
 				title: `Bought ${quantity} shares!`,
@@ -197,9 +195,9 @@ const Stock = () => {
 				.eq("user", userID);
 
 			if (portfolioData[0].length === 0) {
-				console.log("No portfolio mate");
+				console.log("You don't own any shares of this stock");
 				toast({
-					title: `No portfolio mate`,
+					title: `You don't own any shares of this ${symbol}`,
 					status: "info",
 					isClosable: true,
 				});
@@ -211,7 +209,6 @@ const Stock = () => {
 				console.log("Not enough shares bro, really sorry");
 				toast({
 					title: "Not enough shares",
-					description: "Could Not sell",
 					status: "error",
 					duration: 3000,
 					isClosable: true,
@@ -238,7 +235,7 @@ const Stock = () => {
 				.insert([
 					{
 						user: userID,
-						symbol: symbol,
+						symbol,
 						operation: "sell",
 						price,
 						quantity,
