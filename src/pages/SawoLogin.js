@@ -39,7 +39,6 @@ const SawoLogin = ({ loggedIn }) => {
 				let { data: users, error } = await supabase
 					.from("users")
 					.select("user_id");
-				console.log(users);
 				if (!users.includes(payload.user_id)) {
 					console.log("User does not exist");
 					toast({
@@ -54,8 +53,6 @@ const SawoLogin = ({ loggedIn }) => {
 					const { data, error } = await supabase
 						.from("users")
 						.insert([{ user_id: payload.user_id, username: randomUsername }]);
-					console.log(data);
-					console.log("username", randomUsername, payload.user_id);
 				}
 			},
 		};
