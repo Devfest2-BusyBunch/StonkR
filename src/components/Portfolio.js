@@ -27,9 +27,9 @@ const StatsCard = ({ title, quantity, amount }) => {
 			<StatNumber fontSize={"1xl"} fontWeight={"medium"}>
 				{quantity}
 			</StatNumber>
-			<StatNumber fontSize={"3xl"} fontWeight={"medium"}>
+			{/* <StatNumber fontSize={"3xl"} fontWeight={"medium"}>
 				{amount}
-			</StatNumber>
+			</StatNumber> */}
 		</Stat>
 	);
 };
@@ -61,10 +61,8 @@ const Portfolio = () => {
 				return { ...el, amount: price * el.quantity };
 			});
 		}
-		// setPortfolioData(portfolioUserData);
-		// setLoaded(true);
 		flag ? setPortfolioData(portfolioUserData) : console.log("wait");
-		flag ? setLoaded(true) : console.log("waitl");
+		setLoaded(true);
 	}, [userID]);
 
 	useEffect(() => {
