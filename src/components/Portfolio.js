@@ -45,6 +45,9 @@ const Portfolio = () => {
 			.from("portfolio")
 			.select("user, symbol, quantity")
 			.eq("user", userID);
+		setPortfolioData(portfolioUserData);
+		setLoaded(true);
+
 		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
 		let flag = false;
 		if (portfolioUserData.length > 0) {
