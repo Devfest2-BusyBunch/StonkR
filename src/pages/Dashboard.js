@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Trending from "components/Trending";
 import { supabase } from "supabaseClient";
 import Portfolio from "components/Portfolio";
-import Userwallet from "components/Userwallet";
+import UserWallet from "components/UserWallet";
 
 const Dashboard = () => {
 	const [userID, setUserID] = useState(null);
@@ -57,7 +57,7 @@ const Dashboard = () => {
 					borderTopRadius={"xl"}
 					className="wallet">
 					{" "}
-					<Userwallet />
+					<UserWallet />
 				</Box>
 				<Box
 					d="flex"
