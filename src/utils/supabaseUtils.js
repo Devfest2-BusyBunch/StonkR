@@ -27,7 +27,6 @@ const assets = async userID => {
 	let total = data[0].cash;
 	const { portfolioData, portfolioError } = await getPortfolio(userID);
 
-	// if (portfolioData.length > 0) {
 	portfolioData.forEach(async stock => {
 		let { symbol, quantity } = stock;
 		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
@@ -39,9 +38,9 @@ const assets = async userID => {
 		total = total + amount;
 		console.log(`${symbol} ${price} ${quantity} ${amount} ${total}`);
 	});
-	// }
 
 	console.log("ft", total);
+
 	const { data: assetUpdateData, error: assetUpdateError } = await supabase
 		.from("users")
 		.update({ assets: total })
