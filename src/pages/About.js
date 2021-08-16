@@ -1,6 +1,5 @@
 import { Box, Heading, HStack, Image, Text } from "@chakra-ui/react";
-import aboutsvg from "../aboutsvg.svg";
-
+import aboutsvg from "aboutsvg.svg";
 import MeetDevelopers from "components/MeetDevelopers";
 
 const About = () => {

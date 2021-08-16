@@ -1,12 +1,15 @@
+import { useState, useEffect, useCallback } from "react";
 import {
 	Box,
-	chakra,
+	Heading,
 	SimpleGrid,
 	Stat,
 	StatLabel,
 	StatNumber,
+	Spinner,
 	useColorModeValue,
 } from "@chakra-ui/react";
+import { supabase } from "supabaseClient";
 
 const StatsCard = ({ title, quantity, amount }) => {
 	return (
@@ -31,30 +34,54 @@ const StatsCard = ({ title, quantity, amount }) => {
 };
 
 const Portfolio = () => {
+	const [portfolioData, setPortfolioData] = useState(null);
+	const [userID, setUserID] = useState(null);
+	const [loaded, setLoaded] = useState(false);
+
+	const loadPortfolio = useCallback(async () => {
+		const { data: portfolioUserData, error: portfolioError } = await supabase
+			.from("portfolio")
+			.select("user, symbol, quantity")
+			.eq("user", userID);
+
+		setPortfolioData(portfolioUserData);
+		setLoaded(true);
+	}, [userID]);
+
+	useEffect(() => {
+		setUserID(JSON.parse(localStorage.getItem("userID")));
+		loadPortfolio();
+		// setTimeout(() => {
+		// 	setLoaded(true);
+		// }, 4000);
+	}, [loadPortfolio]);
+
+	if (!loaded) {
+		return (
+			<Spinner
+				thickness="4px"
+				speed="0.65s"
+				emptyColor="gray.200"
+				color="blue.500"
+				size="xl"
+			/>
+		);
+	}
+
 	return (
 		<Box maxW="7xl" mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
-			<chakra.h1
+			<Heading
+				as="h1"
 				textAlign={"center"}
 				fontSize={"4xl"}
 				py={10}
 				fontWeight={"bold"}>
 				Your Portfolio!
-			</chakra.h1>
+			</Heading>
 			<SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
-				<StatsCard title={"Bitcoin"} quantity={"Volume"} amount={"$Amount"} />
-				<StatsCard title={"Dogecoin"} quantity={"Volume"} amount={"$Amount"} />
-				<StatsCard
-					title={"Apple Stock  "}
-					quantity={"Volume"}
-					amount={"$Amount"}
-				/>
-				<StatsCard title={"Bitcoin"} quantity={"Volume"} amount={"$Amount"} />
-				<StatsCard title={"Dogecoin"} quantity={"Volume"} amount={"$Amount"} />
-				<StatsCard
-					title={"Apple Stock  "}
-					quantity={"Volume"}
-					amount={"$Amount"}
-				/>
+				{portfolioData.map(({ symbol, quantity }) => (
+					<StatsCard title={symbol} quantity={quantity} amount={"$Amount"} />
+				))}
 			</SimpleGrid>
 		</Box>
 	);

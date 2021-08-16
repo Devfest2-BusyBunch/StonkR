@@ -171,6 +171,7 @@ const Leaderboard = () => {
 					</VStack>
 				</PriceWrapper>
 			</Stack>
+
 			<Stack
 				direction={{ base: "row", md: "row" }}
 				// textAlign="center"
