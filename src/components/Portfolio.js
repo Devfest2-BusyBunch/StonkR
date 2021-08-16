@@ -8,7 +8,7 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react";
 
-const StatsCard = ({ title, stat, stat1 }) => {
+const StatsCard = ({ title, quantity, amount }) => {
 	return (
 		<Stat
 			px={{ base: 4, md: 8 }}
@@ -21,10 +21,10 @@ const StatsCard = ({ title, stat, stat1 }) => {
 				{title}
 			</StatLabel>
 			<StatNumber fontSize={"1xl"} fontWeight={"medium"}>
-				{stat}
+				{quantity}
 			</StatNumber>
 			<StatNumber fontSize={"3xl"} fontWeight={"medium"}>
-				{stat1}
+				{amount}
 			</StatNumber>
 		</Stat>
 	);
@@ -41,12 +41,20 @@ const Portfolio = () => {
 				Your Portfolio!
 			</chakra.h1>
 			<SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
-				<StatsCard title={"Bitcoin"} stat={"Volume"} stat1={"$Amount"} />
-				<StatsCard title={"Dogecoin"} stat={"Volume"} stat1={"$Amount"} />
-				<StatsCard title={"Apple Stock  "} stat={"Volume"} stat1={"$Amount"} />
-				<StatsCard title={"Bitcoin"} stat={"Volume"} stat1={"$Amount"} />
-				<StatsCard title={"Dogecoin"} stat={"Volume"} stat1={"$Amount"} />
-				<StatsCard title={"Apple Stock  "} stat={"Volume"} stat1={"$Amount"} />
+				<StatsCard title={"Bitcoin"} quantity={"Volume"} amount={"$Amount"} />
+				<StatsCard title={"Dogecoin"} quantity={"Volume"} amount={"$Amount"} />
+				<StatsCard
+					title={"Apple Stock  "}
+					quantity={"Volume"}
+					amount={"$Amount"}
+				/>
+				<StatsCard title={"Bitcoin"} quantity={"Volume"} amount={"$Amount"} />
+				<StatsCard title={"Dogecoin"} quantity={"Volume"} amount={"$Amount"} />
+				<StatsCard
+					title={"Apple Stock  "}
+					quantity={"Volume"}
+					amount={"$Amount"}
+				/>
 			</SimpleGrid>
 		</Box>
 	);
