@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Button, Text, Heading } from "@chakra-ui/react";
 import { Spacer, Flex, FormControl, FormLabel } from "@chakra-ui/react";
 import { NumberInput, NumberInputField } from "@chakra-ui/react";
