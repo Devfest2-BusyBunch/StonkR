@@ -68,11 +68,17 @@ const Leaderboard = () => {
 		loadData();
 	}, [loadData]);
 
-	const updateOrder = () => {
+	const updateOrder = orderBy => {
 		console.log("update");
 		setSortingOrder(sortingOrder === "ascending" ? "descending" : "ascending");
+		let sorted = userDataSorted
+			.slice(3)
+			.sort((a, b) => a[orderBy] - b[orderBy]);
+
 		setUserDataSorted(
-			userData.slice(0, 3).concat(userDataSorted.slice(3).reverse())
+			userData
+				.slice(0, 3)
+				.concat(sortingOrder === "ascending" ? sorted : sorted.reverse())
 		);
 		toast({
 			title: `Order updated!`,
@@ -210,7 +216,7 @@ const Leaderboard = () => {
 								<Heading fontSize="2xl" className="cash">
 									Cash ($){" "}
 									<IconButton
-										onClick={updateOrder}
+										onClick={() => updateOrder("cash")}
 										size="sm"
 										rounded="md"
 										color={["primary.500", "primary.500", "white", "white"]}
@@ -230,7 +236,7 @@ const Leaderboard = () => {
 								<Heading fontSize="2xl" className="assets">
 									Assets ($){" "}
 									<IconButton
-										onClick={updateOrder}
+										onClick={() => updateOrder("assets")}
 										size="sm"
 										rounded="md"
 										color={["primary.500", "primary.500", "white", "white"]}
