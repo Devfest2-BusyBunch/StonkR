@@ -1,3 +1,3 @@
-# frontend-21
+# stonkR
 
-Find out website here: [ frontend-21.vercel.app ](frontend-21.vercel.app) 
+Find out website here: [ stonkr.vercel.app ](stonkr.vercel.app)
