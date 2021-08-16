@@ -53,7 +53,7 @@ const Quote = () => {
 					title: "Success getting quote",
 					description: "We've created a quote for you.",
 					status: "success",
-					duration: 9000,
+					duration: 2000,
 					isClosable: true,
 				});
 			}
@@ -72,10 +72,10 @@ const Quote = () => {
 			console.log(res.data);
 		} catch (error) {
 			toast({
-				title: "Failed getting quote",
+				title: "Failed to get quote",
 				description: "We could not locate that stock symbol",
 				status: "error",
-				duration: 9000,
+				duration: 2000,
 				isClosable: true,
 			});
 		}
@@ -189,8 +189,8 @@ const Quote = () => {
 			{dataProp ? (
 				<Candle dataProp={dataProp} />
 			) : (
-				console.log("error fetchging data for chart")
-			)}
+				console.log("Error fetching data for chart :(")
+			)}{" "}
 		</VStack>
 	);
 };
