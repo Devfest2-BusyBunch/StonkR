@@ -49,21 +49,21 @@ const Portfolio = () => {
 		setPortfolioData(portfolioUserData);
 		setLoaded(true);
 
-		// const API_KEY = process.env.REACT_APP_IEX_API_KEY;
-		// let flag = false;
-		// if (portfolioUserData.length > 0) {
-		// 	portfolioUserData.map(async (el, idx) => {
-		// 		const res = await axios.get(
-		// 			`https://cloud.iexapis.com/stable/stock/${el.symbol}/quote?token=${API_KEY}`
-		// 		);
-		// 		let { latestPrice: price } = res.data;
-		// 		if (idx === portfolioUserData.length - 1) {
-		// 			flag = true;
-		// 			console.log("set true");
-		// 		}
-		// 		return { ...el, amount: price * el.quantity };
-		// 	});
-		// }
+		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
+		let flag = false;
+		if (portfolioUserData.length > 0) {
+			portfolioUserData.map(async (el, idx) => {
+				const res = await axios.get(
+					`https://cloud.iexapis.com/stable/stock/${el.symbol}/quote?token=${API_KEY}`
+				);
+				let { latestPrice: price } = res.data;
+				if (idx === portfolioUserData.length - 1) {
+					flag = true;
+					console.log("set true");
+				}
+				return { ...el, amount: price * el.quantity };
+			});
+		}
 		// setPortfolioData(portfolioUserData);
 		// setLoaded(true);
 		// flag ? setPortfolioData(portfolioUserData) : console.log("wait");
