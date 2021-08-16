@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import {
+	useToast,
 	Box,
 	Stack,
 	HStack,
@@ -9,7 +10,7 @@ import {
 	useColorModeValue,
 	List,
 	ListItem,
-	Button,
+	IconButton,
 	Flex,
 	Spinner,
 	Divider,
@@ -35,7 +36,10 @@ const PriceWrapper = ({ children }) => {
 const Leaderboard = () => {
 	// eslint-disable-next-line
 	const [userData, setUserData] = useState(null);
+	const [userDataSorted, setUserDataSorted] = useState(null);
+	const [sortingOrder, setSortingOrder] = useState("ascending");
 	const [loaded, setLoaded] = useState(false);
+	const toast = useToast();
 
 	const loadData = useCallback(async () => {
 		// eslint-disable-next-line
@@ -56,14 +60,33 @@ const Leaderboard = () => {
 			.limit(10);
 
 		setUserData(usersData);
+		setUserDataSorted(usersData);
+		setLoaded(true);
 	}, []);
 
 	useEffect(() => {
 		loadData();
-		setTimeout(() => {
-			setLoaded(true);
-		}, 4000);
 	}, [loadData]);
+
+	const updateOrder = orderBy => {
+		console.log("update");
+		setSortingOrder(sortingOrder === "ascending" ? "descending" : "ascending");
+		let sorted = userDataSorted
+			.slice(3)
+			.sort((a, b) => a[orderBy] - b[orderBy]);
+
+		setUserDataSorted(
+			userData
+				.slice(0, 3)
+				.concat(sortingOrder === "ascending" ? sorted : sorted.reverse())
+		);
+		toast({
+			title: `Order updated!`,
+			status: "success",
+			duration: 1500,
+			isClosable: true,
+		});
+	};
 
 	const v1 = useColorModeValue("gray.50", "gray.700");
 	const v2 = useColorModeValue("red.300", "red.700");
@@ -192,7 +215,8 @@ const Leaderboard = () => {
 							<Box className="money">
 								<Heading fontSize="2xl" className="cash">
 									Cash ($){" "}
-									<Button
+									<IconButton
+										onClick={() => updateOrder("cash")}
 										size="sm"
 										rounded="md"
 										color={["primary.500", "primary.500", "white", "white"]}
@@ -204,13 +228,15 @@ const Leaderboard = () => {
 												"primary.600",
 												"primary.600",
 											],
-										}}>
+										}}
+										aria-label="sort-button">
 										<TriangleUpIcon w={6} h={6} />
-									</Button>
+									</IconButton>
 								</Heading>
 								<Heading fontSize="2xl" className="assets">
 									Assets ($){" "}
-									<Button
+									<IconButton
+										onClick={() => updateOrder("assets")}
 										size="sm"
 										rounded="md"
 										color={["primary.500", "primary.500", "white", "white"]}
@@ -222,16 +248,17 @@ const Leaderboard = () => {
 												"primary.600",
 												"primary.600",
 											],
-										}}>
+										}}
+										aria-label="sort-button">
 										<TriangleUpIcon w={6} h={6} />
-									</Button>
+									</IconButton>
 								</Heading>
 							</Box>
 						</Flex>
 					</Box>
 					<Box py={2} px={12}>
-						{userData.slice(3).map((data, idx) => (
-							<>
+						{userDataSorted.slice(3).map((data, idx) => (
+							<Box key={idx}>
 								<Flex
 									justifyContent={"space-between"}
 									className="leaderboardLabel"
@@ -255,7 +282,7 @@ const Leaderboard = () => {
 									</Box>
 								</Flex>
 								<Divider />
-							</>
+							</Box>
 						))}
 					</Box>
 				</PriceWrapper>

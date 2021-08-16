@@ -52,9 +52,6 @@ const Portfolio = () => {
 	useEffect(() => {
 		setUserID(JSON.parse(localStorage.getItem("userID")));
 		loadPortfolio();
-		// setTimeout(() => {
-		// 	setLoaded(true);
-		// }, 4000);
 	}, [loadPortfolio]);
 
 	if (!loaded) {
