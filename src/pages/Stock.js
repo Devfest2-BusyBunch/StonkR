@@ -58,7 +58,7 @@ const Stock = () => {
 				.from("users")
 				.select("user_id, cash")
 				.eq("user_id", userID);
-			setUserCash(userData[0].cash);
+			userData.length > 0 ? setUserCash(userData[0].cash) : setUserCash(null);
 		};
 
 		setUserID(JSON.parse(localStorage.getItem("userID")));
