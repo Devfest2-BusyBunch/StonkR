@@ -41,22 +41,18 @@
 }
 @media screen and (max-width: 770px) {
 	.username {
-		width: 200px;
-	}
-	.cash {
-		width: 200px;
-	}
-	.assets {
-		width: 150px;
-	}
-	.dash-grid {
-		display: grid;
-	}
-
-	.wallet {
-		position: absolute;
-		right: 0;
-		top: 0;
-		margin-top: 200px !important;
-	}
+	width: 200px;
+}
+.cash {
+	width: 200px;
+}
+.assets {
+	width: 150px;
+}
+.dash-grid {
+	justify-content: center;
+}
+.wallet{
+	margin-top: 200px !important;
+}
 }

@@ -29,7 +29,7 @@ const Dashboard = () => {
 
 	return (
 		<>
-			<Box className="dash-grid">
+			<Box className="dash-grid" justifyContent="center">
 				<Box className="container trending">
 					<Trending />
 				</Box>
