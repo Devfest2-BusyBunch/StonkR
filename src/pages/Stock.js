@@ -161,6 +161,13 @@ const Stock = () => {
 				.insert([
 					{ user: userID, symbol: symbol, operation: "buy", price, quantity },
 				]);
+
+			toast({
+				title: `Bought ${quantity} shares!`,
+				status: "success",
+				duration: 3000,
+				isClosable: true,
+			});
 		} else if (option === "Sell") {
 			// SELL begins!
 
@@ -245,6 +252,13 @@ const Stock = () => {
 					.eq("user", userID)
 					.eq("symbol", symbol);
 			}
+
+			toast({
+				title: `Sold ${quantity} shares!`,
+				status: "success",
+				duration: 3000,
+				isClosable: true,
+			});
 		}
 	};
 	const v1 = useColorModeValue("white", "gray.800");

@@ -1,4 +1,4 @@
-import { Box, Heading, HStack, Image, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Heading, HStack, Image, Text, Wrap } from "@chakra-ui/react";
 import aboutsvg from "../aboutsvg.svg";
 
 import MeetDevelopers from "components/MeetDevelopers";
