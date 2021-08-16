@@ -1,4 +1,3 @@
-import React from "react";
 import { ColorModeSwitcher } from "ColorModeSwitcher";
 
 const ColorMode = () => {

@@ -29,16 +29,16 @@ const Dashboard = () => {
 
 	return (
 		<>
-			<Box>
-				<Box>
+			<Box className="dash-grid">
+				<Box className="container trending">
+					<Trending />
+				</Box>
+				<Box className="portfolio">
 					{userName ? (
 						<Heading>Welcome {userName}</Heading>
 					) : (
 						console.log("err")
 					)}
-				</Box>
-				<Box className="container side-bar">
-					<Trending />
 				</Box>
 				<Box>
 					<Portfolio />

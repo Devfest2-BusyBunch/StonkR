@@ -8,7 +8,7 @@ import {
 	Spacer,
 	Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { NumberInput, NumberInputField } from "@chakra-ui/react";
 
