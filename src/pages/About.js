@@ -96,7 +96,7 @@ const About = () => {
             >
                 Meet the Developer Team
             </Text>
-            <Flex>
+            <Flex direction={isNotSmallerScreen ? "row" : "column"}>
                 <MeetDevelopers
                     name="Arihant Bansal"
                     githubpfp="https://avatars.githubusercontent.com/u/17180950?v=4"
