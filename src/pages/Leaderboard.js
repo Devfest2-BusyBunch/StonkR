@@ -56,13 +56,11 @@ const Leaderboard = () => {
 			.limit(10);
 
 		setUserData(usersData);
+		setLoaded(true);
 	}, []);
 
 	useEffect(() => {
 		loadData();
-		setTimeout(() => {
-			setLoaded(true);
-		}, 4000);
 	}, [loadData]);
 
 	const v1 = useColorModeValue("gray.50", "gray.700");
