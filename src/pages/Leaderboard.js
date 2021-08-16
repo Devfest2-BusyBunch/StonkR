@@ -39,8 +39,10 @@ const Leaderboard = () => {
 		const { data, error } = await supabase.from("users").select("user_id");
 		let user_list = data.map(el => el["user_id"]);
 
-		user_list.forEach(user => {
-			assets(user);
+		user_list.forEach(async user => {
+			console.log("starting with user", user);
+			await assets(user);
+			console.log("user asset completed", user);
 		});
 
 		const { data: usersData, error: userError } = await supabase
@@ -147,8 +149,8 @@ const Leaderboard = () => {
 						py={4}
 						borderBottomRadius={"xl"}>
 						<List spacing={3} textAlign="start" px={12}>
-							<ListItem>$asdasdas - Cash</ListItem>
-							<ListItem>$asdasdas - Assets</ListItem>
+							<ListItem>Cash - $xyz</ListItem>
+							<ListItem>Assets - $xyz</ListItem>
 						</List>
 					</VStack>
 				</PriceWrapper>

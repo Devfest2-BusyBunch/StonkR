@@ -1,4 +1,4 @@
-/* eslint-disable import/no-anonymous-default-export */
+/* eslint-disable no-unused-vars */
 import { supabase } from "supabaseClient";
 import axios from "axios";
 
@@ -19,14 +19,12 @@ const getQuote = async symbol => {
 };
 
 const assets = async userID => {
-	// eslint-disable-next-line
 	const { data, error } = await supabase
 		.from("users")
 		.select("user_id, cash")
 		.eq("user_id", userID);
 
 	let total = data[0].cash;
-	// eslint-disable-next-line
 	const { portfolioData, portfolioError } = await getPortfolio(userID);
 
 	if (portfolioData.length > 0) {
@@ -35,11 +33,11 @@ const assets = async userID => {
 			let { latestPrice: price } = await getQuote(symbol);
 			let amount = Number(price) * Number(quantity);
 			total = total + amount;
-			console.log(`${symbol} ${price} ${quantity} ${amount}`);
+			console.log(`${symbol} ${price} ${quantity} ${amount} ${total}`);
 		});
 	}
 
-	console.log("ft", total);
+	console.log("ft", total, portfolioData);
 	const { data: assetUpdateData, error: assetUpdateError } = await supabase
 		.from("users")
 		.update({ assets: total })
