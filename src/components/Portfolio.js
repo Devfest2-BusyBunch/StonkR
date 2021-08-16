@@ -61,9 +61,9 @@ const Portfolio = () => {
 				return { ...el, amount: price * el.quantity };
 			});
 		}
-		setPortfolioData(portfolioUserData);
-		setLoaded(true);
-		// flag ? setPortfolioData(portfolioUserData) : console.log("wait");
+		// setPortfolioData(portfolioUserData);
+		// setLoaded(true);
+		flag ? setPortfolioData(portfolioUserData) : console.log("wait");
 		flag ? setLoaded(true) : console.log("waitl");
 	}, [userID]);
 
