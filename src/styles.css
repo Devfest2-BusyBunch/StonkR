@@ -49,12 +49,10 @@
 .assets {
 	width: 150px;
 }
-.dash-grid{
-	display: grid;
+.dash-grid {
+	justify-content: center;
 }
-
 .wallet{
-
 	margin-top: 200px !important;
 }
 }
