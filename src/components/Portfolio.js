@@ -56,12 +56,14 @@ const Portfolio = () => {
 				let { latestPrice: price } = res.data;
 				if (idx === portfolioUserData.length - 1) {
 					flag = true;
+					console.log("set true");
 				}
 				return { ...el, amount: price * el.quantity };
 			});
 		}
-
-		flag ? setPortfolioData(portfolioUserData) : console.log("wait");
+		setPortfolioData(portfolioUserData);
+		setLoaded(true);
+		// flag ? setPortfolioData(portfolioUserData) : console.log("wait");
 		flag ? setLoaded(true) : console.log("waitl");
 	}, [userID]);
 
@@ -99,7 +101,7 @@ const Portfolio = () => {
 					<StatsCard
 						title={symbol.toUpperCase()}
 						quantity={quantity}
-						amount={amount}
+						amount={"amount"}
 					/>
 				))}
 			</SimpleGrid>
