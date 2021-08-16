@@ -363,19 +363,19 @@ const Stock = () => {
 									</ListItem>
 									<ListItem>
 										<ListIcon as={CheckCircleIcon} color="green.400" />
-										Low : {quote.low}
+										Low : {quote.week52Low}
 									</ListItem>
 									<ListItem>
 										<ListIcon as={CheckCircleIcon} color="green.400" />
-										High : {quote.high}
+										High : {quote.week52High}
 									</ListItem>
 									<ListItem>
 										<ListIcon as={CheckCircleIcon} color="green.400" />
-										Open : {quote.open}
+										Open : {quote.iexOpen}
 									</ListItem>
 									<ListItem>
 										<ListIcon as={CheckCircleIcon} color="green.400" />
-										Close : {quote.close}
+										Close : {quote.iexClose}
 									</ListItem>
 									<ListItem>
 										<ListIcon as={CheckCircleIcon} color="green.400" />
@@ -383,7 +383,7 @@ const Stock = () => {
 									</ListItem>
 									<ListItem>
 										<ListIcon as={CheckCircleIcon} color="green.400" />
-										Volume : {quote.volume}
+										Volume : {quote.previousVolume}
 									</ListItem>
 									<ListItem>
 										<ListIcon as={CheckCircleIcon} color="green.400" />
