@@ -7,7 +7,6 @@ import {
 	Stack,
 	Button,
 	Link,
-	useColorModeValue,
 } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -58,12 +57,6 @@ export default function SocialProfileSimple({
 							}}
 							_focus={{
 								bg: "blue.500",
-							}}
-							flex={1}
-							fontSize={"sm"}
-							rounded={"full"}
-							_focus={{
-								bg: "blue.200",
 							}}>
 							<FaLinkedin className="meet-dev-socials" />
 						</Button>

@@ -27,17 +27,17 @@ const assets = async userID => {
 	let total = data[0].cash;
 	const { portfolioData, portfolioError } = await getPortfolio(userID);
 
-	if (portfolioData.length > 0) {
-		portfolioData.forEach(async stock => {
-			let { symbol, quantity } = stock;
-			let { latestPrice: price } = await getQuote(symbol);
-			let amount = Number(price) * Number(quantity);
-			total = total + amount;
-			console.log(`${symbol} ${price} ${quantity} ${amount} ${total}`);
-		});
-	}
+	// if (portfolioData.length > 0) {
+	portfolioData.forEach(async stock => {
+		let { symbol, quantity } = stock;
+		let { latestPrice: price } = await getQuote(symbol);
+		let amount = Number(price) * Number(quantity);
+		total = total + amount;
+		console.log(`${symbol} ${price} ${quantity} ${amount} ${total}`);
+	});
+	// }
 
-	console.log("ft", total, portfolioData);
+	console.log("ft", total);
 	const { data: assetUpdateData, error: assetUpdateError } = await supabase
 		.from("users")
 		.update({ assets: total })

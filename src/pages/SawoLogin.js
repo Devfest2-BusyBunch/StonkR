@@ -49,7 +49,7 @@ const SawoLogin = ({ loggedIn }) => {
 						description: "The requested user does not exist, try Signing Up",
 						status: "error",
 						isClosable: true,
-					})
+					});
 					// eslint-disable-next-line no-unused-vars
 					const randomUsername = randName();
 					// eslint-disable-next-line
@@ -67,7 +67,7 @@ const SawoLogin = ({ loggedIn }) => {
 		// setTimeout(() => {
 		// 	setLoaded(true);
 		// }, 2000);
-	}, [dispatch]);
+	}, [dispatch, toast]);
 
 	if (isUserLoggedIn) {
 		window.location.reload();

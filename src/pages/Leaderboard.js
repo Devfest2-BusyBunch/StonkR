@@ -45,6 +45,7 @@ const Leaderboard = () => {
 			console.log("user asset completed", user);
 		});
 
+		// eslint-disable-next-line no-unused-vars
 		const { data: usersData, error: userError } = await supabase
 			.from("users")
 			.select("user_id, cash, assets")

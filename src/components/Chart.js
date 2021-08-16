@@ -9,7 +9,7 @@ const Candle = ({ dataProp }) => {
 
 	const formattedData = [];
 
-	data.map(doc => {
+	data.forEach(doc => {
 		var currentITem = {
 			x: new Date(doc.updated),
 			y: [doc.close, doc.high, doc.low, doc.open],
@@ -24,7 +24,8 @@ const Candle = ({ dataProp }) => {
 				data: formattedData,
 			},
 		]);
-	}, [formattedData]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const options = {
 		chart: {

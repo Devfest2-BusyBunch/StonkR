@@ -111,7 +111,7 @@ const Stock = () => {
 					status: "error",
 					duration: 3000,
 					isClosable: true,
-				})
+				});
 				return;
 			}
 
@@ -180,7 +180,7 @@ const Stock = () => {
 					status: "error",
 					duration: 3000,
 					isClosable: true,
-				})
+				});
 				return;
 			}
 
@@ -195,7 +195,7 @@ const Stock = () => {
 					title: `No portfolio mate`,
 					status: "info",
 					isClosable: true,
-				})
+				});
 				return;
 			}
 
