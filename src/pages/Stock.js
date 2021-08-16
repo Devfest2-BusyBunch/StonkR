@@ -104,6 +104,12 @@ const Stock = () => {
 
 			if (error) {
 				console.log(error);
+				toast({
+					title: `${error}`,
+					status: "error",
+					duration: 3000,
+					isClosable: true,
+				})
 				return;
 			}
 
@@ -168,6 +174,12 @@ const Stock = () => {
 
 			if (error) {
 				console.log(error);
+				toast({
+					title: `${error}`,
+					status: "error",
+					duration: 3000,
+					isClosable: true,
+				})
 				return;
 			}
 
@@ -177,13 +189,18 @@ const Stock = () => {
 				.eq("user", userID);
 
 			if (portfolioData[0].length === 0) {
-				console.log("no portfolio");
+				console.log("No portfolio mate");
+				toast({
+					title: `No portfolio mate`,
+					status: "info",
+					isClosable: true,
+				})
 				return;
 			}
 
 			let currentShares = portfolioData[0].quantity;
 			if (currentShares < quantity) {
-				console.log("not enough shares");
+				console.log("Not enough shares bro, really sorry");
 				toast({
 					title: "Not enough shares",
 					description: "Could Not sell",
