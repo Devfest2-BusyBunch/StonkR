@@ -8,6 +8,7 @@ import {
 	StatLabel,
 	StatNumber,
 	useColorModeValue,
+	Spinner,
 } from "@chakra-ui/react";
 import { FiTrendingDown, FiTrendingUp } from "react-icons/fi";
 
@@ -43,7 +44,7 @@ const StatsCard = ({ title, stat, icon }) => {
 };
 
 const Trending = () => {
-	const [trends, setTrends] = useState([]);
+	const [trends, setTrends] = useState(null);
 
 	useEffect(() => {
 		axios({
@@ -55,7 +56,22 @@ const Trending = () => {
 				setTrends(doc);
 			})
 			.catch(err => console.log(err));
+		return () => {
+			setTrends(null);
+		};
 	}, []);
+
+	if (!trends) {
+		return (
+			<Spinner
+				thickness="4px"
+				speed="0.65s"
+				emptyColor="gray.200"
+				color="blue.500"
+				size="xl"
+			/>
+		);
+	}
 
 	return (
 		<Box maxW="7xl" mx={"auto"} pt={1} px={{ base: 2, sm: 12, md: 17 }}>

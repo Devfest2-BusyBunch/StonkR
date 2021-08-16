@@ -68,6 +68,8 @@ const Portfolio = () => {
 	useEffect(() => {
 		setUserID(JSON.parse(localStorage.getItem("userID")));
 		loadPortfolio();
+		portfolioData ? setLoaded(true) : console.log("not yet");
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [loadPortfolio]);
 
 	if (!loaded) {

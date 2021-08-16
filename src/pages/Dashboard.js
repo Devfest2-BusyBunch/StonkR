@@ -8,7 +8,7 @@ import UserWallet from "components/Userwallet";
 const Dashboard = () => {
 	const [userID, setUserID] = useState(null);
 	const [userName, setUserName] = useState(null);
-	
+
 	const v1 = useColorModeValue("gray.50", "gray.700");
 
 	useEffect(() => {
