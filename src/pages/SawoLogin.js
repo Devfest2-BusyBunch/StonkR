@@ -5,13 +5,14 @@ import { useDispatch } from "react-redux";
 // import { Spinner } from "@chakra-ui/react";
 import { supabase } from "supabaseClient";
 import randName from "utils/usernameUtils";
-import { Heading, Box, Text } from "@chakra-ui/react";
+import { Heading, Box, Text, useToast } from "@chakra-ui/react";
 
 const API_KEY = process.env.REACT_APP_SAWO_API_KEY;
 
 const SawoLogin = ({ loggedIn }) => {
 	const [payload, setPayload] = useState({});
 	const [isUserLoggedIn, setUserLoggedIn] = useState(false);
+	const toast = useToast();
 	// const [loaded, setLoaded] = useState(false);
 	const dispatch = useDispatch();
 	loggedIn = isUserLoggedIn;
@@ -43,6 +44,12 @@ const SawoLogin = ({ loggedIn }) => {
 				console.log(users);
 				if (!users.includes(payload.user_id)) {
 					console.log("User does not exist");
+					toast({
+						title: `User does not exist`,
+						description: "The requested user does not exist, try Signing Up",
+						status: "error",
+						isClosable: true,
+					})
 					// eslint-disable-next-line no-unused-vars
 					const randomUsername = randName();
 					// eslint-disable-next-line
