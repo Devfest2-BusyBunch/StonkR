@@ -75,7 +75,7 @@ const Candle = ({ dataProp }) => {
 
 	return (
 		<Box id="chart">
-			<Box className="candlestick-chart">
+			<Box d="flex" alignItems="center" className="candlestick-chart">
 				<Chart
 					options={options}
 					series={series}
