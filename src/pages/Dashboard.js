@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Trending from "components/Trending";
 import { supabase } from "supabaseClient";
 import Portfolio from "components/Portfolio";
-import UserWallet from "components/UserWallet";
+import UserWallet from "components/Userwallet";
 
 const Dashboard = () => {
 	const [userID, setUserID] = useState(null);
