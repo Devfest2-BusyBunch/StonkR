@@ -1,58 +1,47 @@
 .App {
-	font-family: sans-serif;
-	text-align: center;
+    font-family: sans-serif;
+    text-align: center;
 }
 
 .css-17b9waw {
-	align-content: flex-start;
+    align-content: flex-start;
 }
 
 .candlestick-chart {
-	color: rgb(49, 60, 71);
+    color: rgb(49, 60, 71);
 }
 
 .list-none {
-	list-style-type: none !important;
+    list-style-type: none !important;
 }
 
-/* .side-bar {
-	position: absolute;
-	left: 0;
-} */
-
-/* .leaderboardLabel {
-} */
-
 .userInfo {
-	display: flex;
+    display: flex;
 }
 
 .money {
-	display: flex;
+    display: flex;
 }
 .username {
-	width: 300px;
+    width: 300px;
 }
 .cash {
-	width: 300px;
+    width: 300px;
 }
 .assets {
-	width: 200px;
+    width: 200px;
 }
 @media screen and (max-width: 770px) {
-	.username {
-	width: 200px;
-}
-.cash {
-	width: 200px;
-}
-.assets {
-	width: 150px;
-}
-.dash-grid {
-	justify-content: center;
-}
-.wallet{
-	margin-top: 200px !important;
-}
+    .username {
+        width: 200px;
+    }
+    .cash {
+        width: 200px;
+    }
+    .assets {
+        width: 150px;
+    }
+    .dash-grid {
+        justify-content: center;
+    }
 }

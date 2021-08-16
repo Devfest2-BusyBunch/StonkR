@@ -45,7 +45,6 @@ const Portfolio = () => {
 			.from("portfolio")
 			.select("user, symbol, quantity")
 			.eq("user", userID);
-
 		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
 		let flag = false;
 		if (portfolioUserData.length > 0) {
@@ -61,8 +60,10 @@ const Portfolio = () => {
 				return { ...el, amount: price * el.quantity };
 			});
 		}
-		flag ? setPortfolioData(portfolioUserData) : console.log("wait");
+		setPortfolioData(portfolioUserData);
 		setLoaded(true);
+		// flag ? setPortfolioData(portfolioUserData) : console.log("wait");
+		// flag ? setLoaded(true) : console.log("waitl");
 	}, [userID]);
 
 	useEffect(() => {
@@ -70,7 +71,7 @@ const Portfolio = () => {
 		loadPortfolio();
 		portfolioData ? setLoaded(true) : console.log("not yet");
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [loadPortfolio]);
+	}, []);
 
 	if (!loaded) {
 		return (
@@ -99,7 +100,7 @@ const Portfolio = () => {
 					<StatsCard
 						title={symbol.toUpperCase()}
 						quantity={quantity}
-						amount={amount}
+						amount={"amount"}
 					/>
 				))}
 			</SimpleGrid>
