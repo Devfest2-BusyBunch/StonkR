@@ -75,7 +75,7 @@ const App = () => {
 								<Route path="/404" exact>
 									<ErrorPage />
 								</Route>
-								<Route path="/" >
+								<Route path="/">
 									<Redirect to="404" />
 								</Route>
 							</Switch>
