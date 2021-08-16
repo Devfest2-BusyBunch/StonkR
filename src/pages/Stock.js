@@ -21,7 +21,7 @@ import {
 	Heading,
 } from "@chakra-ui/react";
 import Candle from "components/Chart";
-import { ArrowRightIcon, CheckCircleIcon } from "@chakra-ui/icons";
+import { ArrowRightIcon, CheckCircleIcon, SpinnerIcon } from "@chakra-ui/icons";
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
@@ -46,10 +46,10 @@ const Stock = () => {
 
 	useEffect(() => {
 		const gettingDataForChart = async () => {
-			const rsp = await axios.get(
+			const res = await axios.get(
 				`https://sandbox.iexapis.com/stable/stock/${symbol}/chart/2m?token=${process.env.REACT_APP_SANDBOX_IEX_API_KEY}`
 			);
-			const data = rsp.data;
+			const data = res.data;
 			setDataProp(data);
 		};
 
@@ -62,10 +62,11 @@ const Stock = () => {
 		};
 
 		setUserID(JSON.parse(localStorage.getItem("userID")));
-		getUserCash();
 		getQuote();
+		getUserCash();
 		gettingDataForChart();
-	}, [quote, symbol, getQuote, userID]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [symbol, getQuote, userID]);
 
 	const handleInputChange = event => {
 		const target = event.target;
@@ -409,7 +410,13 @@ const Stock = () => {
 			{dataProp ? (
 				<Candle dataProp={dataProp} />
 			) : (
-				console.log("error fetchging data for chart")
+				<Spinner
+					thickness="10px"
+					speed="0.55s"
+					emptyColor="gray.900"
+					color="blue.800"
+					size="lg"
+				/>
 			)}
 		</VStack>
 	);
