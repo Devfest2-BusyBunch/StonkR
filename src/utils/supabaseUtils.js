@@ -41,12 +41,15 @@ const assets = async userID => {
 
 	console.log("ft", total);
 
-	const { data: assetUpdateData, error: assetUpdateError } = await supabase
-		.from("users")
-		.update({ assets: total })
-		.eq("user_id", userID);
-
-	console.log(userID, total, assetUpdateData);
+	if (portfolioData.assets > portfolioData.cash) {
+		const { data: assetUpdateData, error: assetUpdateError } = await supabase
+			.from("users")
+			.update({ assets: total })
+			.eq("user_id", userID);
+		console.log(userID, total, assetUpdateData);
+	} else {
+		console.log("working on it");
+	}
 };
 
 export default assets;
