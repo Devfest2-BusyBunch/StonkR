@@ -22,6 +22,7 @@ const Dashboard = () => {
     useEffect(() => {
         setUserID(JSON.parse(localStorage.getItem("userID")));
         const update = async () => {
+            // eslint-disable-next-line
             const { data: userData, error } = await supabase
                 .from("users")
                 .select("user_id, username")
