@@ -1,14 +1,15 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, useColorModeValue } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import Candle from "components/Chart";
 import Trending from "components/Trending";
 import { supabase } from "supabaseClient";
 import Portfolio from "components/Portfolio";
+import Userwallet from "components/Userwallet";
 
 const Dashboard = () => {
 	const [userID, setUserID] = useState(null);
 	const [userName, setUserName] = useState(null);
-
+	const v1 = useColorModeValue("gray.50", "gray.700");
 	const dataProp = [
 		{
 			close: 60.83,
@@ -1249,6 +1250,20 @@ const Dashboard = () => {
 					<Portfolio />
 				</Box>
 				<Box
+					bg={v1}
+					d="flex"
+					alignItems="center"
+					justifyContent="center"
+					mt={16}
+					mr={9}
+					height={'min'}
+					width={"min"}
+					py={4} 
+					borderBottomRadius={"xl"}
+					borderTopRadius={"xl"}
+					className="wallet"> <Userwallet />
+				</Box>
+				<Box
 					d="flex"
 					alignItems="center"
 					justifyContent="center"
@@ -1257,6 +1272,7 @@ const Dashboard = () => {
 					className="container chart_outer">
 					<Candle dataProp={dataProp} />
 				</Box>
+				
 			</Box>
 		</>
 	);
