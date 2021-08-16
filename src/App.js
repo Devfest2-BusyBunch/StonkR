@@ -9,6 +9,7 @@ import {
 	Route,
 	Redirect,
 } from "react-router-dom";
+
 import { useDispatch } from "react-redux";
 import { addUserId } from "redux/actions";
 import Leaderboard from "pages/Leaderboard";
