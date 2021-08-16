@@ -8,8 +8,7 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react";
 
-function StatsCard(props) {
-	const { title, stat, stat1 } = props;
+const StatsCard = ({ title, stat, stat1 }) => {
 	return (
 		<Stat
 			px={{ base: 4, md: 8 }}
@@ -29,9 +28,9 @@ function StatsCard(props) {
 			</StatNumber>
 		</Stat>
 	);
-}
+};
 
-export default function Portfolio() {
+const Portfolio = () => {
 	return (
 		<Box maxW="7xl" mx={"auto"} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
 			<chakra.h1
@@ -51,4 +50,6 @@ export default function Portfolio() {
 			</SimpleGrid>
 		</Box>
 	);
-}
+};
+
+export default Portfolio;
