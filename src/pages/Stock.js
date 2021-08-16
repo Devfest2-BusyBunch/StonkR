@@ -32,19 +32,9 @@ const Stock = () => {
 	const [dataProp, setDataProp] = useState(null);
 	const [inputValues, setInputValues] = useState(null);
 	const [userID, setUserID] = useState(null);
+	const [userCash, setUserCash] = useState(null);
 	const { symbol } = useParams();
 	const toast = useToast();
-
-	useEffect(() => {
-		const gettingDataForChart = async () => {
-			const rsp = await axios.get(
-				`https://sandbox.iexapis.com/stable/stock/${symbol}/chart/2m?token=${process.env.REACT_APP_SANDBOX_IEX_API_KEY}`
-			);
-			const data = rsp.data;
-			setDataProp(data);
-		};
-		gettingDataForChart();
-	}, [quote, symbol]);
 
 	const getQuote = useCallback(async () => {
 		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
@@ -55,9 +45,27 @@ const Stock = () => {
 	}, [symbol]);
 
 	useEffect(() => {
+		const gettingDataForChart = async () => {
+			const rsp = await axios.get(
+				`https://sandbox.iexapis.com/stable/stock/${symbol}/chart/2m?token=${process.env.REACT_APP_SANDBOX_IEX_API_KEY}`
+			);
+			const data = rsp.data;
+			setDataProp(data);
+		};
+
+		const getUserCash = async () => {
+			const { data: userData, error } = await supabase
+				.from("users")
+				.select("user_id, cash")
+				.eq("user_id", userID);
+			setUserCash(userData[0].cash);
+		};
+
 		setUserID(JSON.parse(localStorage.getItem("userID")));
+		getUserCash();
 		getQuote();
-	}, [symbol, getQuote]);
+		gettingDataForChart();
+	}, [quote, symbol, getQuote, userID]);
 
 	const handleInputChange = event => {
 		const target = event.target;
@@ -283,7 +291,10 @@ const Stock = () => {
 				<Text>
 					{quote.companyName} : ${quote.latestPrice}
 					<br />
-					{inputValues?.option} {inputValues?.quantity}
+					{inputValues?.option} {inputValues?.quantity}{" "}
+					{inputValues?.quantity &&
+						`{Total: ${inputValues?.quantity * quote.latestPrice}}`}
+					{userCash && `Cash: ${userCash}`}
 				</Text>
 				<FormControl mt={2} isRequired>
 					<FormLabel mt={1}>Trade Option</FormLabel>
