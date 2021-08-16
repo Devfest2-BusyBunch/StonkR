@@ -30,7 +30,11 @@ const assets = async userID => {
 	// if (portfolioData.length > 0) {
 	portfolioData.forEach(async stock => {
 		let { symbol, quantity } = stock;
-		let { latestPrice: price } = await getQuote(symbol);
+		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
+		const res = await axios.get(
+			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
+		);
+		let { latestPrice: price } = res.data;
 		let amount = Number(price) * Number(quantity);
 		total = total + amount;
 		console.log(`${symbol} ${price} ${quantity} ${amount} ${total}`);

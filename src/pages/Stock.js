@@ -35,17 +35,6 @@ const Stock = () => {
 	const { symbol } = useParams();
 	const toast = useToast();
 
-	useEffect(() => {
-		const gettingDataForChart = async () => {
-			const rsp = await axios.get(
-				`https://sandbox.iexapis.com/stable/stock/${symbol}/chart/2m?token=${process.env.REACT_APP_SANDBOX_IEX_API_KEY}`
-			);
-			const data = rsp.data;
-			setDataProp(data);
-		};
-		gettingDataForChart();
-	}, [quote, symbol]);
-
 	const getQuote = useCallback(async () => {
 		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
 		const res = await axios.get(
@@ -55,9 +44,17 @@ const Stock = () => {
 	}, [symbol]);
 
 	useEffect(() => {
+		const gettingDataForChart = async () => {
+			const rsp = await axios.get(
+				`https://sandbox.iexapis.com/stable/stock/${symbol}/chart/2m?token=${process.env.REACT_APP_SANDBOX_IEX_API_KEY}`
+			);
+			const data = rsp.data;
+			setDataProp(data);
+		};
+		gettingDataForChart();
 		setUserID(JSON.parse(localStorage.getItem("userID")));
 		getQuote();
-	}, [symbol, getQuote]);
+	}, [quote, symbol, getQuote]);
 
 	const handleInputChange = event => {
 		const target = event.target;
@@ -283,7 +280,9 @@ const Stock = () => {
 				<Text>
 					{quote.companyName} : ${quote.latestPrice}
 					<br />
-					{inputValues?.option} {inputValues?.quantity}
+					{inputValues?.option} {inputValues?.quantity}{" "}
+					{inputValues?.quantity &&
+						`{Total: ${inputValues?.quantity * quote.latestPrice}}`}
 				</Text>
 				<FormControl mt={2} isRequired>
 					<FormLabel mt={1}>Trade Option</FormLabel>
