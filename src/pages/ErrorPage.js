@@ -51,7 +51,7 @@ const ErrorPage = () => {
 						align={"center"}
 						alignSelf={"center"}
 						position={"relative"}>
-						<Link as={RouterLink} to={"/landing"}>
+						<Link as={RouterLink} to="/">
 							<Button
 								colorScheme={"green"}
 								bg={"green.400"}
@@ -65,7 +65,7 @@ const ErrorPage = () => {
 						</Link>
 						<Link
 							as={RouterLink}
-							to={"/about"}
+							to="/about"
 							variant={"link"}
 							colorScheme={"blue"}
 							size={"sm"}>
