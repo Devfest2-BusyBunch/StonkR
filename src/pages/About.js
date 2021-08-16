@@ -1,4 +1,4 @@
-import { Box, Heading, HStack, Image, Text } from "@chakra-ui/react";
+import { Box, Heading, HStack, Image, Text, Wrap, WrapItem } from "@chakra-ui/react";
 import aboutsvg from "../aboutsvg.svg";
 
 import MeetDevelopers from "components/MeetDevelopers";
@@ -80,7 +80,7 @@ const About = () => {
 				className="about-stonkr">
 				Meet the Developer Team
 			</Text>
-			<HStack spacing="20px">
+			<Wrap spacing="20px" justify="center">
 				<MeetDevelopers
 					name="Arihant Bansal"
 					githubpfp="https://avatars.githubusercontent.com/u/17180950?v=4"
@@ -105,7 +105,7 @@ const About = () => {
 					linkedinbtn={"https://www.linkedin.com/in/swarnabgarang/"}
 					githubbtn={"https://github.com/swarnabgarang"}
 				/>
-			</HStack>
+			</Wrap>
 		</Box>
 	);
 };
