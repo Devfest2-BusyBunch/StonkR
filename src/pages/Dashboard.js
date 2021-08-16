@@ -8,6 +8,7 @@ import Portfolio from "components/Portfolio";
 const Dashboard = () => {
 	const [userID, setUserID] = useState(null);
 	const [userName, setUserName] = useState(null);
+
 	const dataProp = [
 		{
 			close: 60.83,
@@ -1214,6 +1215,7 @@ const Dashboard = () => {
 			changePercent: -0.0078,
 		},
 	];
+
 	useEffect(() => {
 		setUserID(JSON.parse(localStorage.getItem("userID")));
 		const update = async () => {
@@ -1244,7 +1246,13 @@ const Dashboard = () => {
 				<Box>
 					<Portfolio />
 				</Box>
-				<Box width={"min"} className="container chart_outer">
+				<Box
+					d="flex"
+					alignItems="center"
+					justifyContent="center"
+					mt={16}
+					width={"min"}
+					className="container chart_outer">
 					<Candle dataProp={dataProp} />
 				</Box>
 			</Box>
