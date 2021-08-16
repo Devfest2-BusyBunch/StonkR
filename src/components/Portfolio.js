@@ -28,58 +28,64 @@ const StatsCard = ({ title, quantity, amount }) => {
             <StatNumber fontSize={"1xl"} fontWeight={"medium"}>
                 {quantity}
             </StatNumber>
-            {/* <StatNumber fontSize={"3xl"} fontWeight={"medium"}>
+            <StatNumber fontSize={"3xl"} fontWeight={"medium"}>
 				{amount}
-			</StatNumber> */}
+			</StatNumber>
         </Stat>
     );
 };
 
 const Portfolio = () => {
-    const [portfolioData, setPortfolioData] = useState(null);
+    const [portfolioData, setPortfolioData] = useState([]);
     const [userID, setUserID] = useState(null);
     const [loaded, setLoaded] = useState(false);
-
+    const [flag,setFlag] = useState(true)
     const loadPortfolio = useCallback(async () => {
         // eslint-disable-next-line no-unused-vars
+		setUserID(JSON.parse(localStorage.getItem("userID")))
         const { data: portfolioUserData, error: portfolioError } =
             await supabase
                 .from("portfolio")
                 .select("user, symbol, quantity")
                 .eq("user", userID);
 
-        console.log(portfolioUserData);
+		console.log(portfolioUserData);
         setPortfolioData(portfolioUserData);
         setLoaded(true);
 
         const API_KEY = process.env.REACT_APP_IEX_API_KEY;
-        let flag = false;
+       
         if (portfolioUserData.length > 0) {
+            setFlag(true)
             portfolioUserData.map(async (el, idx) => {
                 const res = await axios.get(
                     `https://cloud.iexapis.com/stable/stock/${el.symbol}/quote?token=${API_KEY}`
                 );
                 let { latestPrice: price } = res.data;
                 if (idx === portfolioUserData.length - 1) {
-                    flag = true;
+                    
                     console.log("set true");
                 }
                 return { ...el, amount: price * el.quantity };
             });
         }
-        setPortfolioData(portfolioUserData);
-        setLoaded(true);
+        else {
+            setFlag(false)
+        }
+
         // flag ? setPortfolioData(portfolioUserData) : console.log("wait");
         // flag ? setLoaded(true) : console.log("waitl");
     }, [userID]);
 
     useEffect(() => {
         setUserID(JSON.parse(localStorage.getItem("userID")));
-        loadPortfolio();
+        
         portfolioData ? setLoaded(true) : console.log("not yet");
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [portfolioData]);
-
+    }, []);
+    useEffect(() => {
+        loadPortfolio();
+    }, [flag])
     if (!loaded) {
         return (
             <Spinner
