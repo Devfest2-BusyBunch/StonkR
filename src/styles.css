@@ -39,3 +39,14 @@
 .assets {
 	width: 200px;
 }
+@media screen and (max-width:770px) {
+	.username {
+	width: 200px;
+}
+.cash {
+	width: 200px;
+}
+.assets {
+	width: 150px;
+}
+}

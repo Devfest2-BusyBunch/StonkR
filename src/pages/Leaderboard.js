@@ -173,8 +173,8 @@ const Leaderboard = () => {
 			</Stack>
 			<Stack
 				direction={{ base: "row", md: "row" }}
-				// textAlign="center"
-				// justify="center"
+				textAlign="center"
+				justify="center"
 				spacing={{ base: 4, lg: 10 }}
 				py={10}>
 				<PriceWrapper>
