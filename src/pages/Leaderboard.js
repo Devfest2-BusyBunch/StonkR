@@ -69,8 +69,11 @@ const Leaderboard = () => {
 	}, [loadData]);
 
 	const updateOrder = () => {
+		console.log("update");
 		setSortingOrder(sortingOrder === "ascending" ? "descending" : "ascending");
-		setUserDataSorted(userDataSorted.reverse());
+		setUserDataSorted(
+			userData.slice(0, 3).concat(userDataSorted.slice(3).reverse())
+		);
 		toast({
 			title: `Order updated!`,
 			status: "success",
@@ -207,6 +210,7 @@ const Leaderboard = () => {
 								<Heading fontSize="2xl" className="cash">
 									Cash ($){" "}
 									<IconButton
+										onClick={updateOrder}
 										size="sm"
 										rounded="md"
 										color={["primary.500", "primary.500", "white", "white"]}
@@ -226,6 +230,7 @@ const Leaderboard = () => {
 								<Heading fontSize="2xl" className="assets">
 									Assets ($){" "}
 									<IconButton
+										onClick={updateOrder}
 										size="sm"
 										rounded="md"
 										color={["primary.500", "primary.500", "white", "white"]}
@@ -247,7 +252,7 @@ const Leaderboard = () => {
 					</Box>
 					<Box py={2} px={12}>
 						{userDataSorted.slice(3).map((data, idx) => (
-							<>
+							<Box key={idx}>
 								<Flex
 									justifyContent={"space-between"}
 									className="leaderboardLabel"
@@ -271,7 +276,7 @@ const Leaderboard = () => {
 									</Box>
 								</Flex>
 								<Divider />
-							</>
+							</Box>
 						))}
 					</Box>
 				</PriceWrapper>
