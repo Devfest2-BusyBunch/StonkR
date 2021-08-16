@@ -32,6 +32,7 @@ const Stock = () => {
 	const [dataProp, setDataProp] = useState(null);
 	const [inputValues, setInputValues] = useState(null);
 	const [userID, setUserID] = useState(null);
+	const [userCash, setUserCash] = useState(null);
 	const { symbol } = useParams();
 	const toast = useToast();
 
@@ -51,10 +52,20 @@ const Stock = () => {
 			const data = rsp.data;
 			setDataProp(data);
 		};
-		gettingDataForChart();
+
+		const getUserCash = async () => {
+			const { data: userData, error } = await supabase
+				.from("users")
+				.select("user_id, cash")
+				.eq("user_id", userID);
+			setUserCash(userData[0].cash);
+		};
+
 		setUserID(JSON.parse(localStorage.getItem("userID")));
+		getUserCash();
 		getQuote();
-	}, [quote, symbol, getQuote]);
+		gettingDataForChart();
+	}, [quote, symbol, getQuote, userID]);
 
 	const handleInputChange = event => {
 		const target = event.target;
@@ -283,6 +294,7 @@ const Stock = () => {
 					{inputValues?.option} {inputValues?.quantity}{" "}
 					{inputValues?.quantity &&
 						`{Total: ${inputValues?.quantity * quote.latestPrice}}`}
+					{userCash && `Cash: ${userCash}`}
 				</Text>
 				<FormControl mt={2} isRequired>
 					<FormLabel mt={1}>Trade Option</FormLabel>
