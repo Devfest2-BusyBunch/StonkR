@@ -101,7 +101,7 @@ const Portfolio = () => {
 					<StatsCard
 						title={symbol.toUpperCase()}
 						quantity={quantity}
-						amount={"amount"}
+						amount={amount}
 					/>
 				))}
 			</SimpleGrid>

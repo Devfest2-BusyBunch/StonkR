@@ -36,17 +36,13 @@ const assets = async userID => {
 		let { latestPrice: price } = res.data;
 		let amount = Number(price) * Number(quantity);
 		total = total + amount;
-		console.log(`${symbol} ${price} ${quantity} ${amount} ${total}`);
 	});
-
-	console.log("ft", total);
 
 	if (portfolioData.assets > portfolioData.cash) {
 		const { data: assetUpdateData, error: assetUpdateError } = await supabase
 			.from("users")
 			.update({ assets: total })
 			.eq("user_id", userID);
-		console.log(userID, total, assetUpdateData);
 	} else {
 		console.log("working on it");
 	}
