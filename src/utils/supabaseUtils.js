@@ -27,16 +27,23 @@ const assets = async userID => {
 	let total = data[0].cash;
 	const { portfolioData, portfolioError } = await getPortfolio(userID);
 
-	portfolioData.forEach(async stock => {
-		let { symbol, quantity } = stock;
-		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
-		const res = await axios.get(
-			`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
-		);
-		let { latestPrice: price } = res.data;
-		let amount = Number(price) * Number(quantity);
-		total = total + amount;
-	});
+	for (let i = 0; i < portfolioData.length; i++) {
+		const quote = await getQuote(portfolioData[i].symbol);
+		console.log(quote);
+		total += quote.latestPrice * portfolioData[i].quantity;
+		console.log("total", total);
+	}
+
+	// portfolioData.forEach(async stock => {
+	// 	let { symbol, quantity } = stock;
+	// 	const API_KEY = process.env.REACT_APP_IEX_API_KEY;
+	// 	const res = await axios.get(
+	// 		`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${API_KEY}`
+	// 	);
+	// 	let { latestPrice: price } = res.data;
+	// 	let amount = Number(price) * Number(quantity);
+	// 	total = total + amount;
+	// });
 
 	if (portfolioData.assets > portfolioData.cash) {
 		const { data: assetUpdateData, error: assetUpdateError } = await supabase

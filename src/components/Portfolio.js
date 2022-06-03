@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect, useCallback } from "react";
 import {
 	Box,
@@ -46,6 +47,7 @@ const Portfolio = () => {
 			.select("user, symbol, quantity")
 			.eq("user", userID);
 
+		console.log(portfolioUserData);
 		setPortfolioData(portfolioUserData);
 		setLoaded(true);
 
