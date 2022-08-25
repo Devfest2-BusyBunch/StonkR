@@ -28,20 +28,21 @@ const StatsCard = ({ title, quantity, amount }) => {
 			<StatNumber fontSize={"1xl"} fontWeight={"medium"}>
 				{quantity}
 			</StatNumber>
-			{/* <StatNumber fontSize={"3xl"} fontWeight={"medium"}>
+			<StatNumber fontSize={"3xl"} fontWeight={"medium"}>
 				{amount}
-			</StatNumber> */}
+			</StatNumber>
 		</Stat>
 	);
 };
 
 const Portfolio = () => {
-	const [portfolioData, setPortfolioData] = useState(null);
+	const [portfolioData, setPortfolioData] = useState([]);
 	const [userID, setUserID] = useState(null);
 	const [loaded, setLoaded] = useState(false);
-
+	const [flag, setFlag] = useState(true);
 	const loadPortfolio = useCallback(async () => {
 		// eslint-disable-next-line no-unused-vars
+		setUserID(JSON.parse(localStorage.getItem("userID")));
 		const { data: portfolioUserData, error: portfolioError } = await supabase
 			.from("portfolio")
 			.select("user, symbol, quantity")
@@ -52,33 +53,36 @@ const Portfolio = () => {
 		setLoaded(true);
 
 		const API_KEY = process.env.REACT_APP_IEX_API_KEY;
-		let flag = false;
+
 		if (portfolioUserData.length > 0) {
+			setFlag(true);
 			portfolioUserData.map(async (el, idx) => {
 				const res = await axios.get(
 					`https://cloud.iexapis.com/stable/stock/${el.symbol}/quote?token=${API_KEY}`
 				);
 				let { latestPrice: price } = res.data;
 				if (idx === portfolioUserData.length - 1) {
-					flag = true;
 					console.log("set true");
 				}
 				return { ...el, amount: price * el.quantity };
 			});
+		} else {
+			setFlag(false);
 		}
-		// setPortfolioData(portfolioUserData);
-		// setLoaded(true);
+
 		// flag ? setPortfolioData(portfolioUserData) : console.log("wait");
 		// flag ? setLoaded(true) : console.log("waitl");
 	}, [userID]);
 
 	useEffect(() => {
 		setUserID(JSON.parse(localStorage.getItem("userID")));
-		loadPortfolio();
+
 		portfolioData ? setLoaded(true) : console.log("not yet");
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
+	useEffect(() => {
+		loadPortfolio();
+	}, [flag]);
 	if (!loaded) {
 		return (
 			<Spinner
@@ -102,13 +106,14 @@ const Portfolio = () => {
 				Your Portfolio!
 			</Heading>
 			<SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
-				{portfolioData.map(({ symbol, quantity, amount }) => (
-					<StatsCard
-						title={symbol.toUpperCase()}
-						quantity={quantity}
-						amount={"amount"}
-					/>
-				))}
+				{portfolioData &&
+					portfolioData.map(({ symbol, quantity, amount }) => (
+						<StatsCard
+							title={symbol.toUpperCase()}
+							quantity={quantity}
+							amount={"amount"}
+						/>
+					))}
 			</SimpleGrid>
 		</Box>
 	);
